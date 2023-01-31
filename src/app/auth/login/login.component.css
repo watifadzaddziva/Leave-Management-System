@@ -1,0 +1,23 @@
+.login-form {
+    margin: auto;
+    padding-top: 150px;
+   max-width: 400px;
+
+ }
+
+ .login-form-margin {
+   margin-bottom: 16px;
+   
+ }
+
+ .login-form-forgot {
+   float: right;
+ }
+
+ .login-form-button {
+   width: 100%;
+ }
+
+ /* .page{
+  background-color: #79bac0;
+  }  */
