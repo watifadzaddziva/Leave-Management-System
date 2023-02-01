@@ -45,6 +45,7 @@ export class AuthService {
   }
 
   public isAuthenticated(): boolean {
+    console.log(this.token)
     return !this.jwtHelper.isTokenExpired(this.token);
   }
 
@@ -64,28 +65,13 @@ export class AuthService {
     this.userAction.next();
   }
 
- 
 
- isLoggedIn(): boolean {
-    const token = localStorage.getItem('token'); 
-    return true
- }
-
-  logout(){
-    localStorage.removeItem('token');
-    this.router.navigate(['login'])
-  }
-
-
-  
   loginUserFromServer(user :User):Observable<User>{
-
     return this.http.post<User>("http://192.168.10.146:8081/login",user)
  
 }
       
-  registerUserFromServer(user :User):Observable<User>{
-    
+  registerUserFromServer(user :User):Observable<User>{ 
     return this.http.post<User>("http://192.168.10.146:8081/register",user);
   }
 

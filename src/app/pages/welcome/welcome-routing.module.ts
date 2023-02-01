@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CalendarComponent } from './calendar/calendar.component';
+import { EmployeesComponent } from './employees/employees.component';
 import { LeavesToApproveComponent } from './leaves-to-approve/leaves-to-approve.component';
 import { MainComponent } from './main/main.component';
 import { MyAccountComponent } from './my-account/my-account.component';
@@ -11,17 +12,16 @@ import { WelcomeComponent } from './welcome.component';
 const routes: Routes = [
   { path: '', component: WelcomeComponent, 
   children: [
-    {path: 'main', component: MainComponent},
+    {path: '', component: MainComponent},
     {path : 'calendar', component: CalendarComponent},
     {path: 'myLeave', component: MyLeaveComponent},
     {path: 'leavesToApprove', component: LeavesToApproveComponent},
     {path: 'reports', component: ReportsComponent},
-    {path : 'myAccount', component: MyAccountComponent}
+    {path : 'myAccount', component: MyAccountComponent},
+    {path: 'employees', component: EmployeesComponent}
   
   ]
-
-},
-  // { path: 'welcome', component: WelcomeComponent },
+  },
 ];
 
 @NgModule({

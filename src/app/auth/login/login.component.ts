@@ -34,12 +34,16 @@ constructor(private fb: UntypedFormBuilder,  private router : Router,
    }
 
   submitForm() {
+    console.log(this.user)
     this.authService.loginUserFromServer(this.user).subscribe((data )=>{
       if (data.message) {
         this.authService.saveToken(data.message);
+        
         let returnUrl = `${this.route.snapshot.queryParams['returnUrl']}`;
         returnUrl = returnUrl !== 'undefined' ? returnUrl : ''
-        location.href = returnUrl ? returnUrl : '/';
+        //  location.href = this.route.snapshot.queryParams['/welcome']
+         location.href = returnUrl?returnUrl:'/';
+
         return;
       }
       this.notification.warning("error", "error");

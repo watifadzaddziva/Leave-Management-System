@@ -5,10 +5,10 @@
 
  }
 
- .login-form-margin {
+ /* .login-form-margin {
    margin-bottom: 16px;
    
- }
+ } */
 
  .login-form-forgot {
    float: right;
@@ -16,6 +16,7 @@
 
  .login-form-button {
    width: 100%;
+  
  }
 
  /* .page{

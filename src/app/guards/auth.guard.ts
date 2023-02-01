@@ -11,22 +11,26 @@ export class AuthGuard implements CanActivate{
   constructor(private authService: AuthService, private router : Router){
 
   }
-  // canActivate(): boolean
-  //     {
-  //     if(!this.authService.isLoggedIn()){
-  //       this.router.navigate(['login'])
-  //       console.log('hie')
-  //     }
-  //   // return this.authService.isLoggedIn();
-  //   return true
-  // }
+  
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
     Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const url = state.url;
-    if (!this.authService.isAuthenticated() )
+    console.log(this.validateRoles(route.data['role']))
+    if (!this.authService.isAuthenticated() || !this.validateRoles(route.data['role']))
       return this.router.createUrlTree(['/login'], { queryParams: { returnUrl: url } });
-    return true;
+      
+    return this.router.navigate(['/welcome']);
+  }
+
+  validateRoles(roles: unknown[]): boolean {
+    if (!roles) return true;
+    const valid = roles.some(role => this.authService.permissions.includes(role));
+    if (!valid)
+    console.log('accept')
+      // this.nzNotification.warning('Unauthorized Role', `This content authorised for : <b>${roles.join(', ')}</b>`,
+      //   { nzAnimate: true, nzDuration: 10000 });
+    return valid;
   }
 
   // canActivateChild(

@@ -1,1 +1,94 @@
-<p>main works!</p>
+
+<div style="padding:30px;">
+    <div nz-row [nzGutter]="8">
+      <div nz-col [nzSpan]="10">
+        <nz-card nzTitle="Take A leave">
+       
+           
+            <form nz-form   [formGroup]="leaveForm"  (ngSubmit)="submitForm()">
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="7" nzRequired >From</nz-form-label>
+                    <nz-form-control [nzSpan]="14" nzHasFeedback nzErrorTip="The input is invalid!">
+                      <nz-date-picker nzPlaceHolder="Select Start Date"  class="login-form-button login-form-margin" name="toDate"  id="toDate" ></nz-date-picker>
+                    </nz-form-control>
+                  </nz-form-item>
+            
+                  <nz-form-item>
+                      <nz-form-label [nzSpan]="7" nzRequired >  To</nz-form-label>
+                      <nz-form-control [nzSpan]="14" nzHasFeedback [nzXs]="26" nzErrorTip="The input is invalid!">
+                        <nz-date-picker nzPlaceHolder="Select End Date" class="login-form-button login-form-margin" name="toDate"  id="toDate" ></nz-date-picker>
+                      </nz-form-control>
+                    </nz-form-item>
+              
+                    <nz-form-item>
+                      <nz-form-label [nzSpan]="7" nzRequired >Leave Type</nz-form-label>
+                      <nz-form-control [nzSpan]="14" nzHasFeedback  nzErrorTip="The input is invalid!">
+                        <nz-select
+                            id="leaveType"
+                            nzPlaceHolder="Select Leave Type"
+                           >
+                            <nz-option nzValue="sickLeave" nzLabel="SICK LEAVE"></nz-option>
+                            <nz-option nzValue="VACCATION" nzLabel="VACCATION"></nz-option>
+                            <nz-option nzValue="unpaidLeave" nzLabel="UNPAID LEAVE"></nz-option>
+                          </nz-select>
+                      </nz-form-control>
+                    </nz-form-item>
+                 
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="7" nzFor="gender" nzRequired>Gender</nz-form-label>
+                        <nz-form-control [nzSpan]="14" nzErrorTip="Please select your gender!">
+                          <nz-select
+                            id="gender" 
+                            nzPlaceHolder="Select gender">
+                            <nz-option nzValue="male" nzLabel="male"></nz-option>
+                            <nz-option nzValue="female" nzLabel="female"></nz-option>
+                          </nz-select>
+                        </nz-form-control>
+                      </nz-form-item>
+
+                       
+                  <nz-form-item nz-row class="login-form-margin">
+                    <nz-form-control  [nzOffset]="7" [nzSpan]="14">
+                      <button nz-button class="login-form-button login-form-margin"  type="submit"   nzType="primary">Apply Leave </button>&nbsp;&nbsp; 
+                    </nz-form-control>
+                  </nz-form-item>
+                </form>
+
+        </nz-card>
+      </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <div nz-col [nzSpan]="10">
+        <nz-card nzTitle="Balance">
+          
+    <nz-table #middleTable nzSize="middle" [nzData]="data"
+    [nzFrontPagination]="false"
+      [nzShowPagination]="false">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Used</th>
+          <th>Available</th>
+          <th>Allowance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of middleTable.data">
+          <td><nz-badge [nzStatus]="data.type">{{ data.name }}</nz-badge></td>
+          <td>{{ data.age }}</td>
+          <td>{{ data.age }}</td>
+          <td>{{ data.age }}</td>
+        </tr>
+<br><br><br><br>
+
+
+      </tbody>
+    </nz-table>
+        </nz-card>
+      </div>
+    </div>
+  </div>
+
+
+
+
+    
+

@@ -23,6 +23,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AuthService } from './services/auth.service';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { NzCardModule } from 'ng-zorro-antd/card';
 
 registerLocaleData(en);
 
@@ -46,12 +47,16 @@ registerLocaleData(en);
     NzInputModule,
     NzButtonModule,
     ReactiveFormsModule,
-    ButtonModule
+    ButtonModule,
+    NzCardModule
 
   ],
+
+  
   providers: [
     NzNotificationService, AuthService, JwtHelperService,
-    { provide:  JWT_OPTIONS, useValue: JWT_OPTIONS }
+    { provide:  JWT_OPTIONS, useValue: JWT_OPTIONS},
+    { provide: NZ_I18N, useValue: en_US }
   ],
   bootstrap: [AppComponent]
 })

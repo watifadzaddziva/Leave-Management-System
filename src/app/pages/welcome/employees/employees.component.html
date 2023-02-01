@@ -1,0 +1,104 @@
+<button nz-button nzType="primary" class="right" (click)="open()">Add Employee</button><br>
+    <nz-drawer
+      [nzBodyStyle]="{ overflow: 'auto' }"
+      [nzMaskClosable]="false"
+      [nzWidth]="600"
+      [nzVisible]="visible"
+      [nzTitle]='employee.id ? "Edit employee" : "Add employee"'
+      (nzOnClose)="close()"
+    >
+      <form nz-form *nzDrawerContent [formGroup]="employeeForm"  (ngSubmit)="submitForm()">
+            <nz-form-item>
+              <nz-form-label [nzSpan]="7" nzRequired>First Name</nz-form-label>
+              <nz-form-control [nzSpan]="14">
+                <input [(ngModel)]="employee.firstName" formControlName="firstName" name="firstName" nz-input placeholder="please enter first name" />
+              </nz-form-control>
+            </nz-form-item>
+         
+        
+              <nz-form-item>
+                <nz-form-label [nzSpan]="7" nzRequired>Last Name</nz-form-label>
+                <nz-form-control [nzSpan]="14">
+                  <input [(ngModel)]="employee.lastName" formControlName="lastName"  name="lastName" nz-input placeholder="please enter last name" />
+                </nz-form-control>
+              </nz-form-item>
+        
+          
+              <nz-form-item>
+                <nz-form-label  [nzSpan]="7" nzRequired>Email</nz-form-label>
+                <nz-form-control [nzSpan]="14" nzHasFeedback [nzErrorTip]="emailErrorTpl">
+                    <input  formControlName="email" [(ngModel)]="employee.email" name="email" nz-input  name="email" placeholder="please enter valid email"   type="email" />
+                    <ng-template #emailErrorTpl let-control>
+                      <ng-container *ngIf="control.hasError('email')">The input is not valid E-mail!</ng-container>
+                      <ng-container *ngIf="control.hasError('required')">Please input your E-mail!</ng-container>
+                    </ng-template>
+                  </nz-form-control>
+              </nz-form-item>
+
+              <nz-form-item>
+                <nz-form-label [nzSpan]="7" nzFor="gender" nzRequired>Gender</nz-form-label>
+                <nz-form-control [nzSpan]="14" nzErrorTip="Please select your gender!">
+                  <nz-select
+                    id="gender"
+                    nzPlaceHolder="Select gender"
+                    [(ngModel)]="employee.gender" name="gender"
+                    formControlName="gender">
+                    <nz-option nzValue="male" nzLabel="male"></nz-option>
+                    <nz-option nzValue="female" nzLabel="female"></nz-option>
+                  </nz-select>
+                </nz-form-control>
+              </nz-form-item>
+         
+                <nz-form-item>
+                    <nz-form-label  [nzSpan]="7" nzRequired>Date of Birth</nz-form-label>
+                    <nz-form-control  [nzSpan]="14" >
+                      <nz-date-picker class="login-form-button login-form-margin"  formControlName="dateOfBirth"  [(ngModel)]="employee.dateOfBirth" name="dateOfBirth"  nzPlaceHolder="select dob" ></nz-date-picker>
+                    </nz-form-control>
+                  </nz-form-item>
+           
+             
+        <nz-form-item nz-row class="register-area">
+            <nz-form-control  [nzOffset]="7" [nzSpan]="10">
+                <button nz-button nzType="primary" type="submit" (click)="close()">Save</button>&nbsp;
+                <button nz-button (click)="close()">Cancel</button>
+            </nz-form-control>
+          </nz-form-item>    
+      </form>  
+    </nz-drawer>
+
+<br>
+    <!-- display table -->
+    <nz-table #basicTable [nzData]="allEmployees" >
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Emal</th>
+            <th>Gender</th>
+            <th>Date Of Birth</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of basicTable.data">
+            <td>{{ data.firstName }}</td>
+            <td>{{ data.LastName }}</td>
+            <td>{{ data.email }}</td>
+            <td>{{ data.gender }}</td>
+            <td>{{ data.dateOfBirth }}</td>
+            <td>
+                <nz-button-group>
+                <a
+                  nz-popconfirm
+                  nzPopconfirmTitle="Are you sure delete this Magazine?"
+                  nzPopconfirmPlacement="bottom"
+                  (nzOnConfirm)="confirm(data)"
+                  nz-butto>
+                  <button nz-button nzType="default" nzDanger><i nz-icon nzType="delete" nzTheme="outline"></i></button>
+                </a>
+                </nz-button-group>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+
