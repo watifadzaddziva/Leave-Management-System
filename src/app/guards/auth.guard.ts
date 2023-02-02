@@ -17,10 +17,14 @@ export class AuthGuard implements CanActivate{
     Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const url = state.url;
     console.log(this.validateRoles(route.data['role']))
-    if (!this.authService.isAuthenticated() || !this.validateRoles(route.data['role']))
-      return this.router.createUrlTree(['/login'], { queryParams: { returnUrl: url } });
-      
-    return this.router.navigate(['/welcome']);
+    if (!this.authService.isAuthenticated() || !this.validateRoles(route.data['role'])){
+      // this.router.createUrlTree(['/login'], { queryParams: { returnUrl: url } });
+      this.router.navigate(['login'])
+      return false;
+    }
+       
+    // return this.router.navigate(['/welcome']);
+    return true;
   }
 
   validateRoles(roles: unknown[]): boolean {

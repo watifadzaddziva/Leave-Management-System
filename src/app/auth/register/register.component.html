@@ -1,8 +1,5 @@
-<nz-card  nzTitle="Card title" >
-  
-
+<nz-card style="width:600px; margin: auto;" nzTitle="Company Registration" >
   <form nz-form   [formGroup]="registrationForm"  (ngSubmit)="submitForm()">
-    <h2 style="text-align: center;">Leave Board</h2>
 
     <nz-form-item>
         <nz-form-label [nzSpan]="7" nzRequired >Company Name</nz-form-label>
@@ -92,7 +89,7 @@
       <nz-form-item nz-row class="register-area">
         <nz-form-control  [nzOffset]="7" [nzSpan]="10">
           <button nz-button  type="submit" [disabled]="!registrationForm.valid"  nzType="primary">Register Company</button>&nbsp;&nbsp;
-          <button nz-button (click)="resetForm($event)"  nzType="primary">Reset</button><br>
+          <button nz-button (click)="resetForm($event)" style="float: right;"  nzType="primary">Reset</button><br>
           <p>Already Registered? <a routerLink="/login"> Go to Login</a></p>
         </nz-form-control>
       </nz-form-item>
