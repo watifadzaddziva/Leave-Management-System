@@ -33,6 +33,11 @@ export class AuthService {
     return localStorage.getItem('token')
   }
 
+  currentUser?: User | undefined;
+  redirectUrl = '';
+  get isLoggedIn(): boolean
+   {return !!this.currentUser; }
+
   public setTokenPayload(token: string) {
     this.tokenPayload = this.getTokenPayload(token);
     if (this.tokenPayload) return;

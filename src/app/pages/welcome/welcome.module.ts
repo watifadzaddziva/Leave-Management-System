@@ -31,6 +31,9 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzTableModule } from 'ng-zorro-antd/table'
 import { NzCalendarModule } from 'ng-zorro-antd/calendar';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
+import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 
 registerLocaleData(en);
 
@@ -55,14 +58,16 @@ registerLocaleData(en);
  NzTableModule,
  NzCalendarModule,
  NzBadgeModule,
- NzCardModule
+ NzCardModule,
+ NzPopoverModule,
+ NzAlertModule 
 
  ],
 
 
 
   declarations: [WelcomeComponent, MainComponent, CalendarComponent, MyLeaveComponent, LeavesToApproveComponent,
-  ReportsComponent, MyAccountComponent, EmployeesComponent,],
+  ReportsComponent, MyAccountComponent, EmployeesComponent, EmployeeDetailsComponent, ],
 
   providers: [
     { provide: NZ_I18N, useValue: en_US }

@@ -9,20 +9,20 @@ import { EmployeeLeave } from '../models/employee-leave';
   providedIn: 'root'
 })
 export class DefaultService {
-  baseUrl = 'http://192.168.10.146:8081/employee'
+  baseUrl = 'http://192.168.10.146:8080/employee'
 
   constructor(private http: HttpClient, private router: Router) { }
 
 
   getAllEmployees(): Observable<any>{
-return this.http.get(`${this.baseUrl}/getAll?page=1&size=1&sort=string`)
+return this.http.get(`${this.baseUrl}/getAllEmployees?offset=0&size=100`)
   }
 
   getEmployeeById(id: number): Observable<Employee>{
     return this.http.get<Employee>(`${this.baseUrl}/getById/${id}`)
   }
-  updateEmployee(data: Employee, id: number): Observable<any>{
-    return this.http.put<any>(`${this.baseUrl}/update/${id}`, data)
+  updateEmployee(id: number, data: Employee ): Observable<Employee>{
+    return this.http.put<Employee>(`${this.baseUrl}/update/${id}`, data)
   }
 
   createEmployee(data: Employee): Observable<any>{
@@ -30,15 +30,33 @@ return this.http.get(`${this.baseUrl}/getAll?page=1&size=1&sort=string`)
   }
 
   deleteEmployee(id: number):Observable<any>{
-    return this.http.delete<any>(`${this.baseUrl}/${id}`)
+    return this.http.delete<any>(`${this.baseUrl}/delete/${id}`)
 
   }
   // employee leave
 
-  applyForLeave(data : EmployeeLeave){
-    return this.http.post(`${this.baseUrl}/leave/create`, data)
+  applyForLeave(id : EmployeeLeave){
+    return this.http.post(`${this.baseUrl}/leave/applyLeave/${id}`, id)
   }
-  createLeaveType(){
+  createLeaveType(data: any){
+    return this.http.post(`${this.baseUrl}/leaveTypes`, data)
+  }
+
+  approveLeave(data: any){
+    return this.http.post(`${this.baseUrl}/leaveTypes`, data)
+  }
+
+  rejectLeave(data: any){
+    return 
+  }
+
+  getAllAppliedLeaves(): Observable<any>{
+    return this.http.get(`${this.baseUrl}/getAllAppliedLeaves?offset=0&size=10`)   
+    
+  }
+
+  getAllLeavesTypes(): Observable<any>{
+    return this.http.get(`${this.baseUrl}/getAlLeaveTypes?offset=0&size=10`)   
     
   }
 }

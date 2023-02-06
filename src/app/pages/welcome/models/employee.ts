@@ -4,7 +4,7 @@ export class Employee {
     firstName!: string;
     lastName!: string;
     gender!: string;
-    dateOfBirth !: string;
+    dateOfBirth !: Date;
     email!: string
 
 

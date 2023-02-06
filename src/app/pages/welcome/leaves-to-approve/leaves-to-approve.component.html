@@ -1,1 +1,29 @@
-<p>leaves-to-approve works!</p>
+<nz-table #basicTable [nzData]="data" >
+    <thead>
+      <tr>
+        <th>Full Name</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Duration</th>
+        <th>Leave Type</th>
+        <th>Reason</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data?.employee?.firstName }}   {{ data?.employee?.lastName }}</td>
+        <td>{{ data.fromDate }}</td>
+        <td>{{ data.toDate }}</td>
+        <td>{{ data.duration }}</td>
+        <td>{{ data?.leaves?.leaveType }}</td>
+        <td>{{ data.reason }}</td>
+        
+        <td>
+          <button nz-button nzType="primary"  > APPROVE</button>&nbsp;
+              <button nz-button nzType="primary"  nzDanger>REJECT</button>
+            
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>

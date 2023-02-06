@@ -1,1 +1,27 @@
-<p>my-leave works!</p>
+<nz-table #basicTable [nzData]="data" >
+    <thead>
+      <tr>
+        <th>From</th>
+        <th>To</th>
+        <th>Duration</th>
+        <th>Leave Type</th>
+        <th>Reason</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.fromDate }}</td>
+        <td>{{ data.toDate }}</td>
+        <td>{{ data.noOfDays  }}</td>
+        <td>{{ data.leaveType }}</td>
+        <td>{{ data.reason }}</td>
+        
+        <td>
+          <button nz-button nzType="primary"   nzDanger>{{data.status}}</button>&nbsp;
+          <!-- <nz-alert nzType="success" nzMessage="SUCCESS" ></nz-alert>   -->
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+

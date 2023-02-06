@@ -3,6 +3,7 @@ import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { AuthService,  } from 'src/app/services/auth.service';
+import { DefaultService } from '../services/default.service';
 
 @Component({
   selector: 'app-main',
@@ -10,30 +11,13 @@ import { AuthService,  } from 'src/app/services/auth.service';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent  implements OnInit{
-  leaveForm!: FormGroup
+  leaveForm!: FormGroup;
+  id!: any;
+  data!: any;
 
-  data = [
-    {type: 'warning',
-      name: 'Sick Leave',
-      age: 32,
-      address: 'New York No. 1 Lake Park'
-    },
-    {
-      type: 'success',
-      name: 'Vaccation',
-      age: 42,
-      address: 'London No. 1 Lake Park'
-    },
-    {
-      type: 'error',
-      name: 'Unpaid',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park'
-    }
-  ];
 
   constructor(private fb: UntypedFormBuilder,
-    private authService: AuthService,
+    private defaultService: DefaultService,
    private notification : NzNotificationService,
     private router: Router ) {}
 
@@ -44,26 +28,26 @@ export class MainComponent  implements OnInit{
     leaveType: [null, [Validators.required,]],
     reason: [null, [Validators.required, ]],
 
+
    })
+   
+   this.getAllAppliedLeaves();
   }
 
   submitForm(){
-    // if (this.leaveForm.valid) {
-    //   this.authService.registerUserFromServer(this.user).subscribe((res)=>{
-    //     console.log('submit', this.leaveForm.value);
-    //     this.notification.success("Registered Succescfully" ,"")
-    //  this.router.navigate(['/login']);
-        
-    //   })
-      
-    // } else {
-    //   Object.values(this.leaveForm.controls).forEach(control => {
-    //     if (control.invalid) {
-    //       control.markAsDirty();
-    //       control.updateValueAndValidity({ onlySelf: true });
-    //     }
-    //   });
-    // }
+    if (this.leaveForm.valid) {
+      this.defaultService.applyForLeave(this.id).subscribe((res)=>{
+        console.log( this.leaveForm.value);
+        this.notification.success("leave application Succescfully" ,"")  
+      })   
+    } else {
+      Object.values(this.leaveForm.controls).forEach(control => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
+    }
   }
 
   resetForm(e: MouseEvent): void {
@@ -75,6 +59,12 @@ export class MainComponent  implements OnInit{
         this.leaveForm.controls[key].updateValueAndValidity();
       }
     }
+  }
+
+  getAllAppliedLeaves(){
+    this.defaultService.getAllLeavesTypes().subscribe((res)=>{
+      this.data = res.content
+    })
   }
 
 }

@@ -6,26 +6,48 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate{
+export class AuthGuard implements CanActivate, CanLoad{
 
   constructor(private authService: AuthService, private router : Router){
 
   }
   
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
-    Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const url = state.url;
-    console.log(this.validateRoles(route.data['role']))
-    if (!this.authService.isAuthenticated() || !this.validateRoles(route.data['role'])){
-      // this.router.createUrlTree(['/login'], { queryParams: { returnUrl: url } });
-      this.router.navigate(['login'])
-      return false;
-    }
+  // canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
+  //   Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  //   const url = state.url;
+  //   console.log(this.validateRoles(route.data['role']))
+  //   if (!this.authService.isAuthenticated() || !this.validateRoles(route.data['role'])){
+  //     // this.router.createUrlTree(['/login'], { queryParams: { returnUrl: url } });
+  //     this.router.navigate(['login'])
+  //     return false;
+  //   }
        
-    // return this.router.navigate(['/welcome']);
-    return true;
-  }
+  //   // return this.router.navigate(['/welcome']);
+  //   return true;
+  // }
+
+  
+  canActivate(
+   route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree 
+    {
+       return this.checkLoggedIn(state.url); } 
+       
+       
+// Use the segments to build the full route  // when using canLoad  
+   canLoad(route: Route, segments: UrlSegment[]): boolean {
+    return this.checkLoggedIn(segments.join('/')); } 
+
+
+
+    checkLoggedIn(url: string): boolean {
+          if (this.authService.isLoggedIn) {
+            return true; } // Retain the attempted URL for redirection    
+          this.authService.redirectUrl = url;this.router.navigate(['/login']);
+          return false;  }
+
+
 
   validateRoles(roles: unknown[]): boolean {
     if (!roles) return true;

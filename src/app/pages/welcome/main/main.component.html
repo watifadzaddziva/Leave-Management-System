@@ -27,29 +27,26 @@
                             id="leaveType"
                             nzPlaceHolder="Select Leave Type"
                            >
-                            <nz-option nzValue="sickLeave" nzLabel="SICK LEAVE"></nz-option>
-                            <nz-option nzValue="VACCATION" nzLabel="VACCATION"></nz-option>
-                            <nz-option nzValue="unpaidLeave" nzLabel="UNPAID LEAVE"></nz-option>
+                            <nz-option nzValue="SICK_LEAVE" nzLabel="SICK LEAVE"></nz-option>
+                            <nz-option nzValue="VACATION" nzLabel="VACCATION"></nz-option>
+                            <nz-option nzValue="UNPAID_LEAVE" nzLabel="UNPAID LEAVE"></nz-option>
                           </nz-select>
                       </nz-form-control>
                     </nz-form-item>
                  
                     <nz-form-item>
-                        <nz-form-label [nzSpan]="7" nzFor="gender" nzRequired>Gender</nz-form-label>
-                        <nz-form-control [nzSpan]="14" nzErrorTip="Please select your gender!">
-                          <nz-select
-                            id="gender" 
-                            nzPlaceHolder="Select gender">
-                            <nz-option nzValue="male" nzLabel="male"></nz-option>
-                            <nz-option nzValue="female" nzLabel="female"></nz-option>
-                          </nz-select>
-                        </nz-form-control>
-                      </nz-form-item>
-
+                      <nz-form-label [nzSpan]="7" nzRequired>Reason</nz-form-label>
+                      <nz-form-control [nzSpan]="14"  nzErrorTip="Please write something here!">
+                        <nz-textarea-count [nzMaxCharacterCount]="2000">
+                          <textarea  nz-input rows="2" placeholder="write any thing"></textarea>
+                        </nz-textarea-count>
+                      </nz-form-control>
+                    </nz-form-item>
                        
                   <nz-form-item nz-row class="login-form-margin">
                     <nz-form-control  [nzOffset]="7" [nzSpan]="14">
-                      <button nz-button class="login-form-button login-form-margin"  type="submit"   nzType="primary">Apply Leave </button>&nbsp;&nbsp; 
+                      <button nz-button   type="submit"   nzType="primary">Apply Leave </button>&nbsp;&nbsp; 
+                      <button nz-button   type="reset"   nzType="primary" nzDanger>Cancel </button>
                     </nz-form-control>
                   </nz-form-item>
                 </form>
@@ -57,27 +54,25 @@
         </nz-card>
       </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <div nz-col [nzSpan]="10">
-        <nz-card nzTitle="Balance">
+        <nz-card nzTitle="Leave Description">
           
     <nz-table #middleTable nzSize="middle" [nzData]="data"
     [nzFrontPagination]="false"
       [nzShowPagination]="false">
       <thead>
         <tr>
-          <th></th>
-          <th>Used</th>
-          <th>Available</th>
+          <th>Leave Type</th>
           <th>Allowance</th>
+          <th>Available</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let data of middleTable.data">
-          <td><nz-badge [nzStatus]="data.type">{{ data.name }}</nz-badge></td>
-          <td>{{ data.age }}</td>
-          <td>{{ data.age }}</td>
-          <td>{{ data.age }}</td>
+          <td>{{ data.leaveType }}</td>
+          <td>{{ data.defaultDays }}</td>
+          <td>{{ data.availableDays }}</td>
         </tr>
-<br><br><br><br><br>
+<br><br><br><br>
 
 
       </tbody>

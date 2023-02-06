@@ -24,13 +24,14 @@ import { RegisterComponent } from './auth/register/register.component';
 import { AuthService } from './services/auth.service';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { NzCardModule } from 'ng-zorro-antd/card';
+import { LoginModule } from './auth/login/login.module';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
+    // LoginComponent,
     RegisterComponent
   ],
   imports: [
@@ -48,7 +49,8 @@ registerLocaleData(en);
     NzButtonModule,
     ReactiveFormsModule,
     ButtonModule,
-    NzCardModule
+    NzCardModule,
+    LoginModule,
 
   ],
 

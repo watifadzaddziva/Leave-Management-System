@@ -15,10 +15,12 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent  implements OnInit {
 
   user  = new User();
+  retUrl:string ="login";
   loginForm = new FormGroup({
     username: new FormControl(''),
     password: new FormControl('')
   });
+  // retUrl: string | null;
 
 
 constructor(private fb: UntypedFormBuilder,  private router : Router,
@@ -30,23 +32,29 @@ constructor(private fb: UntypedFormBuilder,  private router : Router,
     this.authService.clearToken();
     if (sessionStorage.getItem('refresh-session'))
       sessionStorage.removeItem('refresh-session');
+
+      this.route.queryParamMap.subscribe(params=>{
+        const login = params.get('retUrl')
+      })
     
    }
 
   submitForm() {
     console.log(this.user)
     this.authService.loginUserFromServer(this.user).subscribe((data )=>{
-      if (data.message) {
-        this.authService.saveToken(data.message);
-        
-        let returnUrl = `${this.route.snapshot.queryParams['returnUrl']}`;
-        returnUrl = returnUrl !== 'undefined' ? returnUrl : ''
+        // this.authService.saveToken(data.message);
+        if (this.authService.redirectUrl) {
+          this.router.navigateByUrl(this.authService.redirectUrl);
+         } else {
+           this.router.navigate(['/welcome']); }
+        // let returnUrl = `${this.route.snapshot.queryParams['returnUrl']}`;
+        // returnUrl = returnUrl !== 'undefined' ? returnUrl : ''
         //  location.href = this.route.snapshot.queryParams['/welcome']
-         location.href = returnUrl?returnUrl:'/';
+        //  location.href = returnUrl?returnUrl:'/';
 
-        return;
-      }
-      this.notification.warning("error", "error");
+   
+      // this.notification.warning("error", "error");
+ 
     }, (error: HttpErrorResponse) => {
       this.authService.clearToken();
       if (error.status == 401)
