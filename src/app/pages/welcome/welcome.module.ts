@@ -34,6 +34,11 @@ import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
+import { SetEmployeesComponent } from './components/set-employees/set-employees.component';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { FormlyNgZorroAntdModule } from '@ngx-formly/ng-zorro-antd';
+import { FormlyModule } from '@ngx-formly/core';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 
 registerLocaleData(en);
 
@@ -60,20 +65,24 @@ registerLocaleData(en);
  NzBadgeModule,
  NzCardModule,
  NzPopoverModule,
- NzAlertModule 
+ NzAlertModule ,
+ FormlyNgZorroAntdModule,
+ FormlyModule,
+ NzPopconfirmModule
+ 
 
  ],
 
 
 
   declarations: [WelcomeComponent, MainComponent, CalendarComponent, MyLeaveComponent, LeavesToApproveComponent,
-  ReportsComponent, MyAccountComponent, EmployeesComponent, EmployeeDetailsComponent, ],
+  ReportsComponent, MyAccountComponent, EmployeesComponent, EmployeeDetailsComponent, SetEmployeesComponent, ],
 
-  providers: [
+  providers: [NzMessageService,
     { provide: NZ_I18N, useValue: en_US }
   ],
   bootstrap: [AppComponent],
   
-  exports: [WelcomeComponent, ]
+  exports: [WelcomeComponent,SetEmployeesComponent ]
 })
 export class WelcomeModule { }

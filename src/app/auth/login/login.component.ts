@@ -43,6 +43,7 @@ constructor(private fb: UntypedFormBuilder,  private router : Router,
     console.log(this.user)
     this.authService.loginUserFromServer(this.user).subscribe((data )=>{
         // this.authService.saveToken(data.message);
+        this.router.navigate(['/welcome']);
         if (this.authService.redirectUrl) {
           this.router.navigateByUrl(this.authService.redirectUrl);
          } else {

@@ -1,0 +1,19 @@
+<button class='mb-2 ml-3' nz-button (click)='toggle(true)' nzType='primary' >
+    <i nz-icon nzType='edit' nzTheme='outline' *ngIf="employee.id"></i>
+    <span *ngIf="!employee.id">Add Employee</span>
+    
+  </button>
+  <nz-drawer [nzClosable]='false' [nzWidth]='400' [nzVisible]='visible' nzPlacement='right'
+             [nzTitle]='employee.id ? "Edit Employee" : "Add Employee"' (nzOnClose)='toggle(false)'>
+    <ng-container *nzDrawerContent>
+      <form nz-form [formGroup]='form' nzLayout='vertical' (ngSubmit)='submit()'>
+        <formly-form [model]='employee' [fields]='fields' [options]="options"  [form]='form' ></formly-form>
+        <nz-button-group class='mt-1'>
+          <button nz-button nzType='primary' type='submit' [disabled]="form.invalid">Save</button>
+          <button nz-button nzType='primary' (click)='toggle(false)' nzGhost type='reset'>Cancel</button>
+        </nz-button-group>
+      </form>
+    </ng-container>
+  </nz-drawer>
+  
+

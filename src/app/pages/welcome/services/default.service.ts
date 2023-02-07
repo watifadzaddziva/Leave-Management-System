@@ -21,8 +21,8 @@ return this.http.get(`${this.baseUrl}/getAllEmployees?offset=0&size=100`)
   getEmployeeById(id: number): Observable<Employee>{
     return this.http.get<Employee>(`${this.baseUrl}/getById/${id}`)
   }
-  updateEmployee(id: number, data: Employee ): Observable<Employee>{
-    return this.http.put<Employee>(`${this.baseUrl}/update/${id}`, data)
+  updateEmployee(id: number, data: Employee ): Observable<any>{
+    return this.http.put<any>(`${this.baseUrl}/update/${id}`, data)
   }
 
   createEmployee(data: Employee): Observable<any>{

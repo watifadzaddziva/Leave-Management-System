@@ -34,7 +34,7 @@ import { LoginComponent } from "./login.component";
         ])
     ],
 declarations:[
-    LoginComponent
+    // LoginComponent
 ]
 
 })

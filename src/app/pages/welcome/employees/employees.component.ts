@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { Component, Injector, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { Employee } from '../models/employee';
 import { DefaultService } from '../services/default.service';
@@ -13,108 +13,87 @@ import { DefaultService } from '../services/default.service';
 })
 export class EmployeesComponent implements OnInit {
 
-  visible = false;
-  employee = new Employee();
-  employeeForm!: FormGroup
-  allEmployees!: any;
-  maxDate!: Date;
-  date!: Date;
-  employe={} as Employee; 
-  id!: number;
-  fileList: any = [];
-  pageIndex!: number;
-    pageSize!: number;
-    sortField!: string | null;
-    sortOrder!: string | null;
+  employees!: any;
+  page = 1;
+  baseUrl!: string;
+  visible!: boolean;
+  employee  ={}
+  viewId !: any;
 
-  constructor(private fb: UntypedFormBuilder, private employeeService: DefaultService,
-    private notification: NzNotificationService, private http: HttpClient,
-    private router: Router)
-    {
-     
-    }
+  constructor(private defaultService: DefaultService, 
+    private injector: Injector, private nzMessageService: NzMessageService) {
+  }
 
   ngOnInit(): void {
-
+    this.getEmployees();
     this.load();
-    this.getform()
-
-
-     this.maxDate = new Date();
-    this.maxDate.setMonth(this.maxDate.getMonth() - 12 * 18);
-    
+   
   }
 
-  getform() {
-    this.employeeForm = this.fb.group({
-      firstName: [this.employee.firstName, [Validators.required, ]],
-      lastName: ['', [Validators.required,]],
-      gender: ['', [Validators.required, ]],
-      dateOfBirth: ['', [Validators.required,  ]],
-      email: ['', [Validators.email, Validators.required]],
-     
-  
-     })
+  getEmployees(): void {
+   this.defaultService.getAllEmployees().subscribe((res)=>{
+    this.employees= res.content
+   })
   }
 
-  submitForm(){
-    console.log(this.employee);
-    
-   !this.employee.id ? this.employeeService.createEmployee(this.employeeForm.value).subscribe((res)=>{
-      this.notification.success("", "employee added successfully")
-      console.log(res);
-      this.toggle(false);
-      this.fileList = []
-      this.getform()
-      this.load();
-
-}): this.http.put(`http://192.168.10.146:8080/employee/update/${this.employee.id}`, this.employeeForm.value).subscribe
-    (res=>{
-  console.log(this.employee);
-
-  this.notification.success("", "employee updated successfully")
-  console.log(res);
-  this.toggle(false);
-   this.load();
-
-    // this.employeeService.updateEmployee(this.employee.id, this.employee).subscribe(res=>{
-    //   console.log(this.employee);
-
-    //   this.notification.success("", "employee updated successfully")
-    //   console.log(res);
-    //   this.toggle(false);
-    //    this.load();
-    })
-  }
-  
-edit(employee: Employee){
-this.employee = employee
-console.log(this.employee)
-this.toggle(true)
-}
-
+ 
 
   toggle(visible: boolean): void {
     this.visible = visible;
   }
 
-  load(){
-    this.employeeService.getAllEmployees().subscribe((res)=>{
-     this.allEmployees = res.content
-    })
+  load( event?: number): void {
+    this.defaultService.getAllEmployees().subscribe((res)=>{
+      this.employees= res.content
+     })
   }
 
+  reload(event : any){
+    this.load(event)
+    this.employee = {}
+  }
 
   confirm(id: number): void {
-    this.employeeService.deleteEmployee(id).subscribe((res) => {
-      this.notification.success("", "employee deleted successfully")
+    this.defaultService.deleteEmployee(id).subscribe(() => {
+      this.nzMessageService.info('employee has been deleted');
+      this.getEmployees();
       this.load();
     });
   }
 
-  getEmployeeById(id:number){
-this.router.navigate(['employee-details', id])
-  }
-
-
+  
 }
+
+
+export interface Audit {
+  createdDate: string;
+  modifiedDate: string;
+  createdBy?: any;
+  modifiedBy?: any;
+}
+
+export interface Employees {
+  id: number;
+  firstname: string;
+  lastName: string;
+  gender: string;
+  dateOfBirth: string;
+  email: string;
+  audit: Audit;
+}
+
+
+
+//   confirm(id: number): void {
+//     this.employeeService.deleteEmployee(id).subscribe((res) => {
+//       this.notification.success("", "employee deleted successfully")
+//       this.load();
+//     });
+//   }
+
+//   getEmployeeById(id:number){
+// this.router.navigate(['employee-details', id])
+//   }
+
+
+
