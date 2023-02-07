@@ -83,17 +83,3 @@ export interface Employees {
 }
 
 
-
-//   confirm(id: number): void {
-//     this.employeeService.deleteEmployee(id).subscribe((res) => {
-//       this.notification.success("", "employee deleted successfully")
-//       this.load();
-//     });
-//   }
-
-//   getEmployeeById(id:number){
-// this.router.navigate(['employee-details', id])
-//   }
-
-
-
