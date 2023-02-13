@@ -20,55 +20,68 @@ export class AuthService {
     private http: HttpClient,
    
     )
+
+
+    
     {
-      this.token = AuthService.TOKEN = <string>this.getToken();
-      this.setTokenPayload(this.token);
+      // this.token = AuthService.TOKEN = <string>this.getToken();
+      // this.setTokenPayload(this.token);
      }
 
-  setToken(token: string){
-    localStorage.setItem('token', token)
-  }
 
-  getToken(): string| any{
-    return localStorage.getItem('token')
-  }
+     public isAuthenticated(): boolean {
+      const token = sessionStorage.getItem('message');
+      this.router.navigate(['/welcome'])
+      // Check whether the token is expired and return
+      // true or false
+      return !this.jwtHelper.isTokenExpired(token);
+      
+    }
 
-  currentUser?: User | undefined;
-  redirectUrl = '';
-  get isLoggedIn(): boolean
-   {return !!this.currentUser; }
+  // setToken(token: string){
+  //   localStorage.setItem('token', token)
+  // }
 
-  public setTokenPayload(token: string) {
-    this.tokenPayload = this.getTokenPayload(token);
-    if (this.tokenPayload) return;
-    const data: any = {};
-    this.tokenPayload = data;
-  }
+  // getToken(): string| any{
+  //   return localStorage.getItem('token')
+  // }
 
-  public getTokenPayload(token: string) {
-    return this.jwtHelper.decodeToken(token);
-  }
+  // currentUser?: User | undefined;
+  // redirectUrl = '';
+  // get isLoggedIn(): boolean
+  //  {return !!this.currentUser; }
 
-  public isAuthenticated(): boolean {
-    console.log(this.token)
-    return !this.jwtHelper.isTokenExpired(this.token);
-  }
+  // public setTokenPayload(token: string) {
+  //   this.tokenPayload = this.getTokenPayload(token);
+  //   if (this.tokenPayload) return;
+  //   const data: any = {};
+  //   this.tokenPayload = data;
+  // }
 
-  public saveToken(token: string) {
-    sessionStorage.setItem(AuthService.NAME, token);
-  }
+  // public getTokenPayload(token: string) {
+  //   return this.jwtHelper.decodeToken(token);
+  // }
 
-  public clearToken() {
-    sessionStorage.clear();
-  }
+  // public isAuthenticated(): boolean {
+  //   console.log(this.token)
+  //   return !this.jwtHelper.isTokenExpired(this.token);
+  // }
 
-  get getAction(): Observable<void> {
-    return this.userAction.asObservable();
-  };
+  // public saveToken(token: string) {
+  //   sessionStorage.setItem(AuthService.NAME, token);
+  // }
 
-  loadAction() {
-    this.userAction.next();
-  }
+  // public clearToken() {
+  //   sessionStorage.clear();
+  // }
+
+  // get getAction(): Observable<void> {
+  //   return this.userAction.asObservable();
+  // };
+
+  // loadAction() {
+  //   this.userAction.next();
+  // }
 
 
   loginUserFromServer(user :User):Observable<User>{

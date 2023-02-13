@@ -29,7 +29,7 @@ constructor(private fb: UntypedFormBuilder,  private router : Router,
  
 
   ngOnInit(): void {
-    this.authService.clearToken();
+    // this.authService.clearToken();
     if (sessionStorage.getItem('refresh-session'))
       sessionStorage.removeItem('refresh-session');
 
@@ -44,10 +44,10 @@ constructor(private fb: UntypedFormBuilder,  private router : Router,
     this.authService.loginUserFromServer(this.user).subscribe((data )=>{
         // this.authService.saveToken(data.message);
         this.router.navigate(['/welcome']);
-        if (this.authService.redirectUrl) {
-          this.router.navigateByUrl(this.authService.redirectUrl);
-         } else {
-           this.router.navigate(['/welcome']); }
+        // if (this.authService.redirectUrl) {
+        //   this.router.navigateByUrl(this.authService.redirectUrl);
+        //  } else {
+        //    this.router.navigate(['/welcome']); }
         // let returnUrl = `${this.route.snapshot.queryParams['returnUrl']}`;
         // returnUrl = returnUrl !== 'undefined' ? returnUrl : ''
         //  location.href = this.route.snapshot.queryParams['/welcome']
@@ -57,7 +57,7 @@ constructor(private fb: UntypedFormBuilder,  private router : Router,
       // this.notification.warning("error", "error");
  
     }, (error: HttpErrorResponse) => {
-      this.authService.clearToken();
+      // this.authService.clearToken();
       if (error.status == 401)
       setTimeout(() => location.reload(), 3000);
     });
