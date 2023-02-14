@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { outputAst } from '@angular/compiler';
+import { Component, EventEmitter, OnInit, Output,  } from '@angular/core';
 import { UntypedFormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { EmployeeLeave } from '../models/employee-leave';
 import { DefaultService } from '../services/default.service';
 
 @Component({
@@ -12,6 +14,8 @@ import { DefaultService } from '../services/default.service';
 export class LeavesToApproveComponent implements OnInit {
 
   data!: any;
+  employeeLeave !:  EmployeeLeave;
+  id!: number;
 
   constructor(private fb: UntypedFormBuilder,
     private defaultService: DefaultService,
@@ -27,24 +31,24 @@ export class LeavesToApproveComponent implements OnInit {
 
 
 
-  approveLeave(){
-    // this.employeeService.updateEmployee(this.employee, this.id).subscribe(res=>{
-    //   console.log(res);
-    //   this.toggle(true);
-    //    this.load();
-    // })
+  approveLeave(id: number){
+    this.defaultService.approveLeave(id,this.employeeLeave).subscribe(res=>{
+     this.notification.success("leave have been approved ","")
+     this.ngOnInit();
+    })
   }
 
   rejectLeave(id: number): void {
-    // this.employeeService.deleteEmployee(id).subscribe((res) => {
-    //   this.notification.success("", "employee deleted successfully")
-    //   this.load();
-    // });
+    this.defaultService.rejectLeave(id,this.employeeLeave).subscribe(res=>{
+      this.notification.error("leave have been rejected ","")
+      this.ngOnInit();
+     })
   }
 
   getAllPendingLeaves(){
 this.defaultService.getAllAppliedLeaves().subscribe((res)=>{
-  this.data = res.content
+  this.data = res
+  console.log(this.data)
 })
   }
 

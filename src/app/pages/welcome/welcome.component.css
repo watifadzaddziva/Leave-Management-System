@@ -30,12 +30,13 @@
   }
   
   .sidebar-logo {
-    position: relative;
-    height: 64px;
+    /* position: relative; */
+    height: 80px;
+    width: 80px;
     padding-left: 24px;
     overflow: hidden;
     line-height: 64px;
-    /* background: #001529; */
+   
     transition: all .3s;
   }
   

@@ -10,13 +10,11 @@ import { RoleGuardService } from './services/role-guard.service';
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/login' },
   { path: 'login',  component:LoginComponent , },
-  // { path: '',  component:WelcomeComponent  },
   { path: 'register',  component:RegisterComponent },
-  { path: 'welcome', canActivate:[AuthGuard, ],
-     loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule) },
-    // { path: '', pathMatch: 'full', redirectTo: '/welcome' },
+  // { path: 'welcome', canActivate:[AuthGuard, ],
+    //  loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule) },
 
-// { path: 'welcome' , loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule) },
+{ path: 'welcome' , loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule) },
 
   {path : '**', component: PageNotFoundComponent}
 ];

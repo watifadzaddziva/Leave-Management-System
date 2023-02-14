@@ -2,7 +2,7 @@
     <i nz-icon nzType='edit' nzTheme='outline' *ngIf="employee.id"></i>
     <span *ngIf="!employee.id">Add Employee</span>
     
-  </button>
+  </button><br>
   <nz-drawer [nzClosable]='false' [nzWidth]='400' [nzVisible]='visible' nzPlacement='right'
              [nzTitle]='employee.id ? "Edit Employee" : "Add Employee"' (nzOnClose)='toggle(false)'>
     <ng-container *nzDrawerContent>

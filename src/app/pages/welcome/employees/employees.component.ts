@@ -19,21 +19,15 @@ export class EmployeesComponent implements OnInit {
   visible!: boolean;
   employee  ={}
   viewId !: any;
+  id!: Employee;
 
-  constructor(private defaultService: DefaultService, 
+  constructor(private defaultService: DefaultService, private router : Router,
     private injector: Injector, private nzMessageService: NzMessageService) {
   }
 
   ngOnInit(): void {
-    this.getEmployees();
     this.load();
    
-  }
-
-  getEmployees(): void {
-   this.defaultService.getAllEmployees().subscribe((res)=>{
-    this.employees= res.content
-   })
   }
 
  
@@ -56,12 +50,14 @@ export class EmployeesComponent implements OnInit {
   confirm(id: number): void {
     this.defaultService.deleteEmployee(id).subscribe(() => {
       this.nzMessageService.info('employee has been deleted');
-      this.getEmployees();
       this.load();
     });
   }
 
-  
+
+ 
+
+ 
 }
 
 

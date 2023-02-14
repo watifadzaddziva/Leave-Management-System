@@ -16,12 +16,12 @@
         <td>{{ data.fromDate }}</td>
         <td>{{ data.toDate }}</td>
         <td>{{ data.duration }}</td>
-        <td>{{ data?.leaves?.leaveType }}</td>
+        <td>{{ data.leaveType }}</td>
         <td>{{ data.reason }}</td>
         
         <td>
-          <button nz-button nzType="primary"  > APPROVE</button>&nbsp;
-              <button nz-button nzType="primary"  nzDanger>REJECT</button>
+          <button nz-button nzType="default" (click)="approveLeave(data.id)">APPROVE</button>&nbsp;
+              <button nz-button nzType="default" (click)="rejectLeave(data.id)"  nzDanger>REJECT</button>
             
         </td>
       </tr>

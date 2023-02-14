@@ -35,28 +35,26 @@ return this.http.get(`${this.baseUrl}/getAllEmployees?offset=0&size=100`)
   }
   // employee leave
 
-  applyForLeave(id : EmployeeLeave){
-    return this.http.post(`${this.baseUrl}/leave/applyLeave/${id}`, id)
-  }
-  createLeaveType(data: any){
-    return this.http.post(`${this.baseUrl}/leaveTypes`, data)
+  applyForLeave(data : EmployeeLeave){
+    return this.http.post(`${this.baseUrl}/applyLeave`, data)
   }
 
-  approveLeave(data: any){
-    return this.http.post(`${this.baseUrl}/leaveTypes`, data)
+
+  approveLeave(id: number, data :EmployeeLeave ):  Observable<any>{
+    return this.http.put<any>(`${this.baseUrl}/approve/${id}`, data)
   }
 
-  rejectLeave(data: any){
-    return 
+  rejectLeave(id: number, data :EmployeeLeave ):  Observable<any>{
+    return this.http.put<any>(`${this.baseUrl}/reject/${id}`, data)
   }
 
   getAllAppliedLeaves(): Observable<any>{
-    return this.http.get(`${this.baseUrl}/getAllAppliedLeaves?offset=0&size=10`)   
+    return this.http.get(`${this.baseUrl}/getPendingLeaves`)   
     
   }
 
-  getAllLeavesTypes(): Observable<any>{
-    return this.http.get(`${this.baseUrl}/getAlLeaveTypes?offset=0&size=10`)   
-    
-  }
+
+ getAllLeaves(){
+  return this.http.get(`${this.baseUrl}/getAllLeaves`)
+ }
 }

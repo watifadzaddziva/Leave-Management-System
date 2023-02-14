@@ -26,6 +26,7 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyNgZorroAntdModule } from '@ngx-formly/ng-zorro-antd';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 registerLocaleData(en);
 
@@ -52,8 +53,8 @@ registerLocaleData(en);
     ButtonModule,
     NzCardModule,
     FormlyModule,
-    FormlyNgZorroAntdModule
-    // LoginModule,
+    FormlyNgZorroAntdModule,
+    NzSelectModule,
 
   ],
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DefaultService } from '../services/default.service';
 
 @Component({
   selector: 'app-my-leave',
@@ -7,37 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyLeaveComponent implements OnInit{
 
+  data!: any;
+
+constructor(private defaultService: DefaultService){}
+
 
   ngOnInit(): void {
+this.getAllLeaves();
+ }
 
-  }
-
-  data = [
-    {
-      fromDate: 	'Thu, 02 Feb',
-      toDate: 'Fri, 03 Feb',
-      leaveType: 'Sick Leave',
-      noOfDays:'1',
-      reason:'Sick Leave',
-      status:'REJECTED'
-    },
-    {
-      fromDate: 'Wed, 01 Feb',
-      toDate: 'Thu, 03 Feb',
-      leaveType: 'Vaccation',
-      noOfDays:'2',
-      reason:'Vaccation',
-      color: 'info',
-      status:'REJECTED'
-    },
-    {
-      fromDate: 'Mon,30 Jan ',
-      toDate: 'Thu, 02 Feb',
-      leaveType: 'Unpaid',
-      noOfDays:'3',
-      reason:' take a rest for few days',
-      status:'REJECTED'
-    },
-  ];
-
+ getAllLeaves(){
+  this.defaultService.getAllLeaves().subscribe((res)=>{
+    this.data = res
+  })
+ }
 }

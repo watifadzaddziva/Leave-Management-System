@@ -4,9 +4,9 @@
         <div class='right'>
           <app-set-employees [employee]='employee' (output)='reload($event)'></app-set-employees>
         </div>
-        <nz-table *ngIf='employees' [(nzPageIndex)]='page' (nzPageIndexChange)='load($event)'
-                  [nzFrontPagination]='false' #basicTable [nzData]='employees' [nzPageSize]='7'
-                  [nzTotal]='employees.totalElements'>
+        <nz-table 
+                 #basicTable [nzData]='employees' [nzPageSize]='7'
+                  >
           <thead>
           <tr>
             <th>First Name</th>
@@ -19,8 +19,8 @@
           </thead>
           <tbody>
           <tr *ngFor='let data of basicTable.data'>
-            <td>{{data.firstName}} </td>
-            <td>{{data.lastName}} </td>
+         <td> <a  routerLink='/welcome/employee-details/{{data.id}}'>{{data.firstName}} </a></td>   
+            <td><a  routerLink='/welcome/employee-details/{{data.id}}'>{{data.lastName}} </a></td>
             <td>{{data.email}} </td>
             <td>{{data.gender}} </td>
             <td>{{data.dateOfBirth}} </td>

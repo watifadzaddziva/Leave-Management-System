@@ -4,8 +4,9 @@ export class Employee {
     firstName!: string;
     lastName!: string;
     gender!: string;
+    employeeId!: string;
     dateOfBirth !: Date;
-    email!: string
+    email!: string;
 
 
 

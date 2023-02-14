@@ -1,4 +1,4 @@
-
+<h3>
 <div style="padding:30px;">
     <div nz-row [nzGutter]="8">
       <div nz-col [nzSpan]="10">
@@ -9,26 +9,45 @@
                 <nz-form-item>
                     <nz-form-label [nzSpan]="7" nzRequired >From</nz-form-label>
                     <nz-form-control [nzSpan]="14" nzHasFeedback nzErrorTip="The input is invalid!">
-                      <nz-date-picker nzPlaceHolder="Select Start Date"  class="login-form-button login-form-margin" name="toDate"  id="toDate" ></nz-date-picker>
+                      <nz-date-picker formControlName="fromDate" [(ngModel)]="applyLeave.fromDate" name="fromDate" nzPlaceHolder="Select Start Date"  class="login-form-button login-form-margin" name="toDate"  id="toDate" ></nz-date-picker>
                     </nz-form-control>
                   </nz-form-item>
             
                   <nz-form-item>
                       <nz-form-label [nzSpan]="7" nzRequired >  To</nz-form-label>
-                      <nz-form-control [nzSpan]="14" nzHasFeedback [nzXs]="26" nzErrorTip="The input is invalid!">
-                        <nz-date-picker nzPlaceHolder="Select End Date" class="login-form-button login-form-margin" name="toDate"  id="toDate" ></nz-date-picker>
+                      <nz-form-control [nzSpan]="14" nzHasFeedback  nzErrorTip="The input is invalid!">
+                        <nz-date-picker formControlName="toDate" name="toDate" [(ngModel)]="applyLeave.toDate" nzPlaceHolder="Select End Date" class="login-form-button login-form-margin" name="toDate"  id="toDate" ></nz-date-picker>
                       </nz-form-control>
                     </nz-form-item>
+
               
+                    <nz-form-item>
+                      <nz-form-label [nzSpan]="7" nzRequired >Employee</nz-form-label>
+                      <nz-form-control [nzSpan]="14" nzHasFeedback  nzErrorTip="The input is invalid!">
+                        <nz-select
+                            id="employeeId"
+                            nzPlaceHolder="Employees "
+                            formControlName="employeeId"
+                            [(ngModel)]="applyLeave.employeeId"
+                            name="employeeId"
+                           >
+                            <nz-option *ngFor="let employee of employees" [nzValue]="employee.id" [nzLabel]="employee.firstName" > </nz-option>
+                          </nz-select>
+                      </nz-form-control>
+                    </nz-form-item>
+
                     <nz-form-item>
                       <nz-form-label [nzSpan]="7" nzRequired >Leave Type</nz-form-label>
                       <nz-form-control [nzSpan]="14" nzHasFeedback  nzErrorTip="The input is invalid!">
                         <nz-select
                             id="leaveType"
                             nzPlaceHolder="Select Leave Type"
+                            formControlName="leaveType"
+                            name="leaveType"
+                            [(ngModel)]="applyLeave.leaveType"
                            >
                             <nz-option nzValue="SICK_LEAVE" nzLabel="SICK LEAVE"></nz-option>
-                            <nz-option nzValue="VACATION" nzLabel="VACCATION"></nz-option>
+                            <nz-option nzValue="VACATION" nzLabel="VACATION"></nz-option>
                             <nz-option nzValue="UNPAID_LEAVE" nzLabel="UNPAID LEAVE"></nz-option>
                           </nz-select>
                       </nz-form-control>
@@ -38,7 +57,7 @@
                       <nz-form-label [nzSpan]="7" nzRequired>Reason</nz-form-label>
                       <nz-form-control [nzSpan]="14"  nzErrorTip="Please write something here!">
                         <nz-textarea-count [nzMaxCharacterCount]="2000">
-                          <textarea  nz-input rows="2" placeholder="write any thing"></textarea>
+                          <textarea  formControlName="reason" [(ngModel)]="applyLeave.reason" name="reason" nz-input rows="2" placeholder="write any thing"></textarea>
                         </nz-textarea-count>
                       </nz-form-control>
                     </nz-form-item>
@@ -63,14 +82,12 @@
         <tr>
           <th>Leave Type</th>
           <th>Allowance</th>
-          <th>Available</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let data of middleTable.data">
-          <td>{{ data.leaveType }}</td>
+          <td><nz-badge [nzStatus]="data.type" ></nz-badge>{{ data.leaveType }}</td>
           <td>{{ data.defaultDays }}</td>
-          <td>{{ data.availableDays }}</td>
         </tr>
 <br><br><br><br>
 
@@ -81,7 +98,7 @@
       </div>
     </div>
   </div>
-
+</h3>
 
 
 

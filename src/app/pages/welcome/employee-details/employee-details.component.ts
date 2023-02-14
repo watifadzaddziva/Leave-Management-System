@@ -13,7 +13,7 @@ export class EmployeeDetailsComponent implements OnInit {
   id!: number;
   employee!: Employee;
   allEmployees !: any;
-
+ employeeDetails!: any;
 
 
   constructor(private employeeService: DefaultService, private route: ActivatedRoute,
@@ -24,8 +24,19 @@ export class EmployeeDetailsComponent implements OnInit {
     this.id=this.route.snapshot.params['id'];
     this.employee= new Employee();
 
+    this.employeeService.getAllEmployees().subscribe(
+      (data)=>{
+       this.allEmployees= data.content
+       this.employeeService.getEmployeeById(this.id).subscribe(data=>{
+        console.log(data);
+        this.employeeDetails=data
+  
+      })
+      });
     
    
   }
+
+
 
 }

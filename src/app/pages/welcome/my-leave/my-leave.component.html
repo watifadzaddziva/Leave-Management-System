@@ -1,6 +1,7 @@
-<nz-table #basicTable [nzData]="data" >
+<nz-table #basicTable [nzData]="data" [nzPageSize]="7" >
     <thead>
       <tr>
+        <th>Full Name</th>
         <th>From</th>
         <th>To</th>
         <th>Duration</th>
@@ -11,16 +12,17 @@
     </thead>
     <tbody>
       <tr *ngFor="let data of basicTable.data">
+        <td>{{data?.employee.firstName}}  {{data?.employee.lastName}} </td>
         <td>{{ data.fromDate }}</td>
         <td>{{ data.toDate }}</td>
-        <td>{{ data.noOfDays  }}</td>
+        <td>{{ data.duration  }}</td>
         <td>{{ data.leaveType }}</td>
         <td>{{ data.reason }}</td>
-        
         <td>
-          <button nz-button nzType="primary"   nzDanger>{{data.status}}</button>&nbsp;
-          <!-- <nz-alert nzType="success" nzMessage="SUCCESS" ></nz-alert>   -->
-        </td>
+          <i *ngIf="data.status=='REJECTED'" class='mx-3' style='color: red' >REJECTED</i>
+          <i *ngIf="data.status=='APPROVED'" class='mx-3' style='color: rgb(44, 177, 44)'>APPROVED</i>
+          <i *ngIf="data.status=='PENDING'" class='mx-3' style='color: blue' >PENDING</i>
+           </td>
       </tr>
     </tbody>
   </nz-table>
