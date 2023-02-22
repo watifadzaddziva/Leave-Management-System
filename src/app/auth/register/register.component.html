@@ -1,30 +1,25 @@
-<nz-card style="width:600px; margin: auto;" nzTitle="Company Registration" >
-  <form nz-form   [formGroup]="registrationForm"  (ngSubmit)="submitForm()">
+<nz-card  style="width:60%; margin: auto;" nzTitle="Company Registration" >
+  <form nz-form nzLayout='vertical' style="width:60%;" [formGroup]="registrationForm"  (ngSubmit)="submitForm()">
 
-    <nz-form-item>
-        <nz-form-label [nzSpan]="7" nzRequired >Company Name</nz-form-label>
-        <nz-form-control [nzSpan]="14" nzHasFeedback nzErrorTip="The input is invalid!">
-          <input nz-input [(ngModel)]="user.companyName" name="companyName"  id="companyName" formControlName="companyName"/>
-        </nz-form-control>
-      </nz-form-item>
+   
 
       <nz-form-item>
-          <nz-form-label [nzSpan]="7" nzRequired >  First Name</nz-form-label>
-          <nz-form-control [nzSpan]="14" nzHasFeedback [nzXs]="26" nzErrorTip="The input is invalid!">
-            <input nz-input [(ngModel)]="user.name" name="name"  id="name" formControlName="name"/>
+          <nz-form-label nzRequired >  First Name</nz-form-label>
+          <nz-form-control  nzHasFeedback nzErrorTip="The input is invalid!">
+            <input nz-input [(ngModel)]="user.firstName" name="firstName"  id="firstName" formControlName="firstName"/>
           </nz-form-control>
         </nz-form-item>
   
         <nz-form-item>
-          <nz-form-label [nzSpan]="7" nzRequired nzFor="lastName">Last Name</nz-form-label>
-          <nz-form-control [nzSpan]="14" nzHasFeedback  nzErrorTip="The input is invalid!">
+          <nz-form-label  nzRequired nzFor="lastName">Last Name</nz-form-label>
+          <nz-form-control  nzHasFeedback  nzErrorTip="The input is invalid!">
             <input nz-input  [(ngModel)]="user.lastName" name="lastName" id="lastName" formControlName="lastName"/>
           </nz-form-control>
         </nz-form-item>
   
         <nz-form-item>
-            <nz-form-label [nzSpan]="7" nzRequired>E-mail</nz-form-label>
-            <nz-form-control [nzSpan]="14" nzHasFeedback [nzErrorTip]="emailErrorTpl">
+            <nz-form-label nzRequired>E-mail</nz-form-label>
+            <nz-form-control  nzHasFeedback [nzErrorTip]="emailErrorTpl">
               <input nz-input [(ngModel)]="user.email" name="email" formControlName="email"  type="email" />
               <ng-template #emailErrorTpl let-control>
                 <ng-container *ngIf="control.hasError('email')">The input is not valid E-mail!</ng-container>
@@ -34,8 +29,8 @@
           </nz-form-item>
      
         <nz-form-item>
-            <nz-form-label [nzSpan]="7" nzRequired>Username</nz-form-label>
-            <nz-form-control [nzSpan]="14" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
+            <nz-form-label  nzRequired>Username</nz-form-label>
+            <nz-form-control  nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
               <input nz-input [(ngModel)]="user.username" name="username" formControlName="username"  />
               <ng-template #userErrorTpl let-control>
                 <ng-container *ngIf="control.hasError('required')">Please input your username!</ng-container>
@@ -46,8 +41,8 @@
 
 
         <nz-form-item>
-            <nz-form-label [nzSpan]="7" nzFor="password" nzRequired>Password</nz-form-label>
-            <nz-form-control nzHasFeedback  [nzSpan]="14" [nzErrorTip]="errorTpl">
+            <nz-form-label nzFor="password" nzRequired>Password</nz-form-label>
+            <nz-form-control nzHasFeedback  [nzErrorTip]="errorTpl">
               <input
                 nz-input
                 type="password"
@@ -73,8 +68,8 @@
             </nz-form-control>
           </nz-form-item>
           <nz-form-item>
-            <nz-form-label [nzSpan]="7" nzFor="checkPassword" nzRequired>Confirm Password</nz-form-label>
-            <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTpl"  nzHasFeedback>
+            <nz-form-label nzFor="checkPassword" nzRequired>Confirm Password</nz-form-label>
+            <nz-form-control [nzErrorTip]="errorTpl"  nzHasFeedback>
               <input  nz-input type="password" formControlName="checkPassword" id="checkPassword" />
               <ng-template #errorTpl let-control>
                 <ng-container *ngIf="control.hasError('required')">Please confirm your password!</ng-container>
@@ -87,10 +82,10 @@
   
          
       <nz-form-item nz-row class="register-area">
-        <nz-form-control  [nzOffset]="7" [nzSpan]="10">
-          <button nz-button  type="submit" [disabled]="!registrationForm.valid"  nzType="primary">Register Company</button>&nbsp;&nbsp;
-          <button nz-button (click)="resetForm($event)" style="float: right;"  nzType="primary">Reset</button><br>
-          <p>Already Registered? <a routerLink="/login"> Go to Login</a></p>
+        <nz-form-control   >
+          <button nz-button  type="submit" [disabled]="registrationForm.invalid"  nzType="primary">Register Company</button>&nbsp;&nbsp;
+          <button nz-button (click)="resetForm($event)"  nzType="primary">Reset</button>&nbsp;&nbsp;
+          Already Registered? <a style="color:rgb(0, 38, 255);"     routerLink="/login"> Go to Login</a>
         </nz-form-control>
       </nz-form-item>
     </form>

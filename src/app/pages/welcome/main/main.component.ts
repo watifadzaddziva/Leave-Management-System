@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { AuthService,  } from 'src/app/services/auth.service';
 import { EmployeeLeave } from '../models/employee-leave';
@@ -30,15 +31,14 @@ export class MainComponent  implements OnInit{
   constructor(private fb: UntypedFormBuilder,
     private defaultService: DefaultService,
    private notification : NzNotificationService,
+   private jwtHelper: JwtHelperService,
     private router: Router ) {}
 
   ngOnInit(): void {
-    this.load();
 
     this.leaveForm = this.fb.group({
     fromDate: ['', [Validators.required, ]],
     toDate: ['', [Validators.required, ]],
-    employeeId: ['', [Validators.required]],
     leaveType: ['', [Validators.required,]],
     reason: ['', [Validators.required, ]],
 
@@ -51,12 +51,16 @@ export class MainComponent  implements OnInit{
   submitForm(){
 
     if (this.leaveForm.valid) {
-      var svc; 
-      svc = this.defaultService.applyForLeave( this.applyLeave);
+      const dataToSend= this.leaveForm.value;
+      const user=JSON.parse(sessionStorage.getItem('user') ?? '{}')  
+      dataToSend.username= user.username
+       var svc; 
+      svc = this.defaultService.applyForLeave(dataToSend);
       svc.subscribe(res => {
         this.notification.success('Saved', 'leave application Succescfully!', { nzDuration: 10000 });
         console.log(res);
         this.filelist=[];
+        this.leaveForm.reset();
         
       });
     }
@@ -76,17 +80,8 @@ export class MainComponent  implements OnInit{
 
   
 
-  load( event?: number): void {
-    this.defaultService.getAllEmployees().subscribe((res)=>{
-      this.employees= res.content;
-      console.log(this.employees)
-     })
-  }
+  
 
-  reload(event : any){
-    this.load(event)
-    this.employee = {}
-  }
-
+  
 
 }

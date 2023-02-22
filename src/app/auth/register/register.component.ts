@@ -28,8 +28,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
    this.registrationForm = this.fb.group({
-    companyName: [null, [Validators.required, Validators.minLength(3)]],
-    name: [null, [Validators.required, Validators.minLength(3)]],
+    firstName: [null, [Validators.required, Validators.minLength(3)]],
     lastName: [null, [Validators.required,Validators.minLength(3)]],
     username: [null, [Validators.required, Validators.minLength(3)]],
     email: [null, [Validators.email, Validators.required]],
@@ -43,7 +42,6 @@ export class RegisterComponent implements OnInit {
   submitForm(){
     if (this.registrationForm.valid) {
       this.authService.registerUserFromServer(this.user).subscribe((res)=>{
-        console.log('submit', this.registrationForm.value);
         this.notification.success("Registered Succescfully" ,"")
      this.router.navigate(['/login']);
         

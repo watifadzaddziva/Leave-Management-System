@@ -18,7 +18,7 @@ import { LoginComponent } from "./login.component";
     imports:[
         FormsModule,
         HttpClientModule,
-         BrowserAnimationsModule,
+        BrowserAnimationsModule,
         IconsProviderModule,
         NzLayoutModule,
         NzMenuModule,

@@ -19,8 +19,8 @@
           </thead>
           <tbody>
           <tr *ngFor='let data of basicTable.data'>
-         <td> <a  routerLink='/welcome/employee-details/{{data.id}}'>{{data.firstName}} </a></td>   
-            <td><a  routerLink='/welcome/employee-details/{{data.id}}'>{{data.lastName}} </a></td>
+         <td> <a style="color:rgb(0, 38, 255);"   routerLink='/welcome/employee-details/{{data.id}}'>{{data.firstName}} </a></td>   
+            <td><a style="color:rgb(0, 38, 255);"  routerLink='/welcome/employee-details/{{data.id}}'>{{data.lastName}} </a></td>
             <td>{{data.email}} </td>
             <td>{{data.gender}} </td>
             <td>{{data.dateOfBirth}} </td>

@@ -31,7 +31,25 @@ export const EmployeesFields = function (): FormlyFieldConfig[] {
         }
       },
   
+      {
+        key: 'username',
+        type: 'input',
+        templateOptions: {
+          label: 'Username',
+          placeholder: 'Enter username',
+          required: true,
+        }
+      },
   
+      {
+        key: 'password',
+        type: 'input',
+        templateOptions: {
+          label: 'Password',
+          placeholder: 'Enter Password',
+          required: true,
+        }
+      },
      
       {
         key: 'gender',
@@ -41,8 +59,8 @@ export const EmployeesFields = function (): FormlyFieldConfig[] {
           placeholder: 'select gender',
           required: true,
           options: [
-            { value: 'FEMALE', label: 'Female' },
-            { value: 'MALE', label: 'Male' },
+            { value: 'Female', label: 'Female' },
+            { value: 'Male', label: 'Male' },
            
           ]
         }

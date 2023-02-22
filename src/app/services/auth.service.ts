@@ -4,93 +4,68 @@ import { Router, UrlSerializer } from '@angular/router';
 import { BehaviorSubject, map, Observable, of, Subject, throwError } from 'rxjs';
 import { User } from '../models/user';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { TokenPayload } from '../pages/welcome/models/token-payload';
 
 @Injectable()
 export class AuthService {
   static NAME = 'token';
   static TOKEN: string;
   public token!: string;
-  tokenPayload: User | undefined;
+  tokenPayload: TokenPayload | undefined;
   username!: string;
   userAction: Subject<void> = new Subject();
   permissions!: any[] ;
-  
 
-  constructor(private router : Router, public jwtHelper: JwtHelperService,
-    private http: HttpClient,
-   
-    )
+  constructor(public jwtHelper: JwtHelperService, private http: HttpClient) {
+    this.token = AuthService.TOKEN = <string>this.getToken();
+    this.setTokenPayload(this.token);
+    // if (!this.tokenPayload) return;
+    // this.permissions = this.tokenPayload.authorities;
+  }
 
+  public getTokenPayload(token: string) {
+    return this.jwtHelper.decodeToken(token);
+  }
 
-    
-    {
-      // this.token = AuthService.TOKEN = <string>this.getToken();
-      // this.setTokenPayload(this.token);
-     }
+  public setTokenPayload(token: string) {
+    this.tokenPayload = this.getTokenPayload(token);
+    if (this.tokenPayload) return;
+    const data: any = {};
+    this.tokenPayload = data;
+  }
 
+  public isAuthenticated(): boolean {
+    return !this.jwtHelper.isTokenExpired(this.token);
+  }
 
-     public isAuthenticated(): boolean {
-      const token = sessionStorage.getItem('message');
-      this.router.navigate(['/welcome'])
-      // Check whether the token is expired and return
-      // true or false
-      return !this.jwtHelper.isTokenExpired(token);
-      
-    }
+  public saveToken(token: string) {
+    sessionStorage.setItem(AuthService.NAME, token);
+  }
 
-  // setToken(token: string){
-  //   localStorage.setItem('token', token)
-  // }
+  public getToken() {
+    return sessionStorage.getItem(AuthService.NAME);
+  }
 
-  // getToken(): string| any{
-  //   return localStorage.getItem('token')
-  // }
+  public clearToken() {
+    sessionStorage.clear();
+  }
 
-  // currentUser?: User | undefined;
-  // redirectUrl = '';
-  // get isLoggedIn(): boolean
-  //  {return !!this.currentUser; }
+  get getAction(): Observable<void> {
+    return this.userAction.asObservable();
+  };
 
-  // public setTokenPayload(token: string) {
-  //   this.tokenPayload = this.getTokenPayload(token);
-  //   if (this.tokenPayload) return;
-  //   const data: any = {};
-  //   this.tokenPayload = data;
-  // }
-
-  // public getTokenPayload(token: string) {
-  //   return this.jwtHelper.decodeToken(token);
-  // }
-
-  // public isAuthenticated(): boolean {
-  //   console.log(this.token)
-  //   return !this.jwtHelper.isTokenExpired(this.token);
-  // }
-
-  // public saveToken(token: string) {
-  //   sessionStorage.setItem(AuthService.NAME, token);
-  // }
-
-  // public clearToken() {
-  //   sessionStorage.clear();
-  // }
-
-  // get getAction(): Observable<void> {
-  //   return this.userAction.asObservable();
-  // };
-
-  // loadAction() {
-  //   this.userAction.next();
-  // }
+  loadAction() {
+    this.userAction.next();
+  }
 
 
   loginUserFromServer(user :User):Observable<User>{
-    return this.http.post<User>("http://192.168.10.146:8080/login",user)
+    return this.http.post<User>("http://54.156.63.145:8080/login",user)
  
 }
       
   registerUserFromServer(user :User):Observable<User>{ 
-    return this.http.post<User>("http://192.168.10.146:8080/register",user);
+    return this.http.post<User>("http://54.156.63.145:8080/register",user);
   }
 
 }

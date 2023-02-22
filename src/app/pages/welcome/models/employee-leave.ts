@@ -2,7 +2,7 @@ export class EmployeeLeave {
     id!: number;
     fromDate !: string;
     toDate !: string;
-    employeeId!: string;
+    username!: string;
     leaveType !: string;
     reason !: string;
 }
