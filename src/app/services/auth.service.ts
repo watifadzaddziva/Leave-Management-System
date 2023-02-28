@@ -24,11 +24,11 @@ export class AuthService {
   }
 
   public getTokenPayload(token: string) {
-    return this.jwtHelper.decodeToken(token);
+    // return this.jwtHelper.decodeToken(token);
   }
 
   public setTokenPayload(token: string) {
-    this.tokenPayload = this.getTokenPayload(token);
+    // this.tokenPayload = this.getTokenPayload(token);
     if (this.tokenPayload) return;
     const data: any = {};
     this.tokenPayload = data;

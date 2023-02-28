@@ -27,6 +27,7 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyNgZorroAntdModule } from '@ngx-formly/ng-zorro-antd';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 registerLocaleData(en);
 
@@ -55,6 +56,7 @@ registerLocaleData(en);
     FormlyModule,
     FormlyNgZorroAntdModule,
     NzSelectModule,
+    FullCalendarModule
 
   ],
 

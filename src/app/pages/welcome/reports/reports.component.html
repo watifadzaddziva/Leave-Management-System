@@ -1,1 +1,35 @@
-<p>reports works!</p>
+<div style="background: #ECECEC;padding:30px;">
+    <div nz-row [nzGutter]="10">
+      <div nz-col [nzSpan]="6" class="text-center"  [style]="{backgroundColor:'#31087B', borderRadius:'20px'}">
+        <nz-card nzTitle="Total Employees" [style]="{borderRadius: '20px'}">
+          <p>0</p>
+        </nz-card>
+      </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <div nz-col [nzSpan]="6" class="text-center" [style]="{backgroundColor:'#31087B',borderRadius:'20px'}">
+        <nz-card nzTitle="Total leaves Applied"  [style]="{borderRadius: '20px'}">
+          <p>{{this.pending.total}}</p>
+        </nz-card>
+      </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <div nz-col [nzSpan]="6" class="text-center" [style]="{backgroundColor:'#31087B',borderRadius:'20px'}">
+        <nz-card nzTitle="Total leaves Pending" [style]="{borderRadius: '20px'}" >
+          <p>{{this.pending.total}}</p>
+        </nz-card>
+      </div>
+    </div><br><br>
+    <div nz-row [nzGutter]="10">
+        <div nz-col [nzSpan]="6" class="text-center" [style]="{backgroundColor:'#31087B',borderRadius:'20px'}">
+          <nz-card nzTitle="Total leaves Approved" [style]="{borderRadius: '20px'}" >
+            <p>{{this.approved.total}}</p>
+          </nz-card>
+        </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div nz-col [nzSpan]="6" class="text-center"  [style]="{backgroundColor:'#FF0303',borderRadius:'20px'}">
+          <nz-card nzTitle="Total leaves Rejected" [style]="{borderRadius: '20px'}">
+            <p>{{this.rejected.total}}</p>
+          </nz-card>
+        </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div nz-col [nzSpan]="6" class="text-center" [style]="{backgroundColor:'#31087B',borderRadius:'20px'}" >
+          <nz-card nzTitle="Total" [style]="{borderRadius: '20px'}" >
+            <p>0</p>
+          </nz-card>
+        </div>
+  </div>

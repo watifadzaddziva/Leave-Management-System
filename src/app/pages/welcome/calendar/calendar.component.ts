@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CalendarOptions } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
 
 @Component({
   selector: 'app-calendar',
@@ -7,29 +9,17 @@ import { Component } from '@angular/core';
 })
 export class CalendarComponent {
 
-  listDataMap = {
-    eight: [
-      { type: 'warning', content: 'This is warning event.' },
-      { type: 'success', content: 'This is usual event.' }
-    ],
-    ten: [
-      { type: 'warning', content: 'This is warning event.' },
-      { type: 'success', content: 'This is usual event.' },
-      { type: 'error', content: 'This is error event.' }
-    ],
-    eleven: [
-      { type: 'warning', content: 'This is warning event' },
-      { type: 'success', content: 'This is very long usual event........' },
-      { type: 'error', content: 'This is error event 1.' },
-      
+  calendarOptions: CalendarOptions = {
+    plugins: [dayGridPlugin],
+    initialView: 'dayGridMonth',
+    weekends: false,
+    events: [
+      { title: 'Meeting', start: new Date() },
+      { title: 'Reading', start: '2023-01-30', end:'2023-02-02' },
+      { title: 'Studying', start: '2023-02-22', end:'2023-02-23' },
+      { title: 'Studying', start: '2023-03-13T12:00:00', end:'2023-03-16T15:30:00' }
     ]
   };
 
-  getMonthData(date: Date): number | null {
-    if (date.getMonth() === 8) {
-      return 1394;
-    }
-    return null;
-  }
 
 }

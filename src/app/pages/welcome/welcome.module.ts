@@ -39,6 +39,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { FormlyNgZorroAntdModule } from '@ngx-formly/ng-zorro-antd';
 import { FormlyModule } from '@ngx-formly/core';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 registerLocaleData(en);
 
@@ -68,7 +69,8 @@ registerLocaleData(en);
  NzAlertModule ,
  FormlyNgZorroAntdModule,
  FormlyModule,
- NzPopconfirmModule
+ NzPopconfirmModule,
+ FullCalendarModule
  
 
  ],

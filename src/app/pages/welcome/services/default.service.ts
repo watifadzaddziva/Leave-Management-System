@@ -57,4 +57,17 @@ return this.http.get(`${this.baseUrl}/getAllEmployees?offset=0&size=100`)
  getAllLeaves(){
   return this.http.get(`${this.baseUrl}/getAllLeaves`)
  }
+
+ getTotalPending(){
+return this.http.get(`${this.baseUrl}/numberOfPendingLeaves`)
+}
+
+ getTotalApproved(){
+  return this.http.get(`${this.baseUrl}/numberOfApproved`)
+  
+ }
+ getTotalRejected(){
+  return this.http.get(`${this.baseUrl}/numberOfRejectedLeaves`)
+
+ }
 }

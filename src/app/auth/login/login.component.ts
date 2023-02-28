@@ -60,6 +60,7 @@ constructor(private fb: UntypedFormBuilder,  private router : Router,
        
     }, (error: HttpErrorResponse) => {
       this.authService.clearToken();
+      this.notification.error('','bad credentials')
       if (error.status == 401)
       setTimeout(() => location.reload(), 3000);
     });

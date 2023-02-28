@@ -1,10 +1,11 @@
 <h3>
 <div style="padding:30px;">
     <div nz-row [nzGutter]="8">
-      <div nz-col [nzSpan]="10">
-        <nz-card nzTitle="Take A leave">
+      <div nz-col [nzSpan]="14">
+        <!-- <nz-card nzTitle="Take A leave">
        
-           
+            -->
+            <h3 class="text-center">Take A Leave </h3><br>
             <form nz-form   [formGroup]="leaveForm"  (ngSubmit)="submitForm()">
                 <nz-form-item>
                     <nz-form-label [nzSpan]="7" nzRequired >From</nz-form-label>
@@ -19,22 +20,6 @@
                         <nz-date-picker formControlName="toDate" name="toDate" [(ngModel)]="applyLeave.toDate" nzPlaceHolder="Select End Date" class="login-form-button login-form-margin" name="toDate"  id="toDate" ></nz-date-picker>
                       </nz-form-control>
                     </nz-form-item>
-
-              
-                    <!-- <nz-form-item>
-                      <nz-form-label [nzSpan]="7" nzRequired >Employee</nz-form-label>
-                      <nz-form-control [nzSpan]="14" nzHasFeedback  nzErrorTip="The input is invalid!">
-                        <nz-select
-                            id="employeeId"
-                            nzPlaceHolder="Employees "
-                            formControlName="employeeId"
-                            [(ngModel)]="applyLeave.employeeId"
-                            name="employeeId"
-                           >
-                            <nz-option *ngFor="let employee of employees" [nzValue]="employee.id" [nzLabel]="employee.firstName" > </nz-option>
-                          </nz-select>
-                      </nz-form-control>
-                    </nz-form-item> -->
 
                     <nz-form-item>
                       <nz-form-label [nzSpan]="7" nzRequired >Leave Type</nz-form-label>
@@ -69,12 +54,12 @@
                     </nz-form-control>
                   </nz-form-item>
                 </form>
-
-        </nz-card>
+<!-- 
+        </nz-card> -->
       </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <div nz-col [nzSpan]="10">
-        <nz-card nzTitle="Leave Description">
-          
+      <div nz-col [nzSpan]="6">
+        <!-- <nz-card nzTitle="Leave Description"> -->
+          <h3 class="text-center">Leave Description </h3>   <br>
     <nz-table #middleTable nzSize="middle" [nzData]="data"
     [nzFrontPagination]="false"
       [nzShowPagination]="false">
@@ -94,7 +79,7 @@
 
       </tbody>
     </nz-table>
-        </nz-card>
+        <!-- </nz-card> -->
       </div>
     </div>
   </div>
