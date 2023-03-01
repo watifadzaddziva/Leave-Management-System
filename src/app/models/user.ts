@@ -6,6 +6,6 @@ export class User {
         email !: string;
         username !: string;
         password !: string;
-        message!: string
+        token!: string
  
 }

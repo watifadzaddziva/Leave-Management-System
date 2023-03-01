@@ -30,32 +30,18 @@
   }
   
   .sidebar-logo {
+    color:#1890ff
     /* position: relative; */
-    height: 80px;
-    width: 80px;
-    padding-left: 24px;
-    overflow: hidden;
-    line-height: 64px;
+    /* height: 80px; */
+    /* width: 80px; */
+    /* padding-left: 24px; */
+    /* overflow: hidden; */
+    /* line-height: 64px; */
    
-    transition: all .3s;
+    /* transition: all .3s; */
   }
   
-  .sidebar-logo img {
-    display: inline-block;
-    height: 32px;
-    width: 32px;
-    vertical-align: middle;
-  }
-  
-  .sidebar-logo h1 {
-    display: inline-block;
-    margin: 0 0 0 20px;
-    /* color: #fff; */
-    font-weight: 600;
-    font-size: 14px;
-    font-family: Avenir,Helvetica Neue,Arial,Helvetica,sans-serif;
-    vertical-align: middle;
-  }
+ 
   
   nz-header {
     padding: 0;
@@ -68,6 +54,7 @@
     height: 64px;
     padding: 0;
     background: #fff;
+    /* float:right; */
     /* box-shadow: 0 1px 4px rgba(0,21,41,.08); */
   }
   

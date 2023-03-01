@@ -16,7 +16,7 @@ const routes: Routes = [
     {path: '', component: MainComponent},
     {path: 'main', component: MainComponent},
     {path : 'calendar', component: CalendarComponent},
-    {path: 'myLeave', component: MyLeaveComponent},
+    {path: 'allLeaves', component: MyLeaveComponent},
     {path: 'leavesToApprove', component: LeavesToApproveComponent},
     {path: 'reports', component: ReportsComponent},
     {path : 'myAccount', component: MyAccountComponent},

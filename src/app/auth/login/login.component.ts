@@ -45,15 +45,17 @@ constructor(private fb: UntypedFormBuilder,  private router : Router,
   submitForm() {
     console.log(this.user)
     this.authService.loginUserFromServer(this.user).subscribe((data )=>{
+console.log("auth response", data);
+let tok= data.token +"";
+let userData: {};
+userData=data
+      this.authService.saveToken(tok)
 
-      sessionStorage.setItem('token',data.message)
-      sessionStorage.setItem('user',JSON.stringify(data));
-      this.authService.saveToken('token')
         
         // const tokn= this.jwtHelper.decodeToken(AuthService.TOKEN)
         // console.log(tokn)
         // console.log(this.authService.isLoggedIn)
-        // sessionStorage.setItem('user', JSON.stringify((data)))
+        sessionStorage.setItem('user_data', JSON.stringify((userData)))
         // console.log()
        
         this.router.navigate(['/welcome']);

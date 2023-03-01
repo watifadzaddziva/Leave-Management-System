@@ -10,7 +10,8 @@
               [nzTrigger]="null">
 
       <div class="sidebar-logo">
-          <img src="/assets/afrosoft.jpg" >
+       <h5>  <i style="color:#0e4d89"> ***Welcome <br>
+          <span style="color:#0e4d89" >{{this.userDetails.firstName | titlecase}}  {{this.userDetails.lastName | titlecase}} *** </span></i></h5> 
 
       </div>
       <ul nz-menu   nzMode="inline" [nzInlineCollapsed]="isCollapsed">
@@ -19,7 +20,7 @@
   
             <li nz-menu-item routerLink="/welcome/main">
               <i nz-icon nzType='home'></i>
-              <span>Main</span>
+              <span>Home</span>
             </li>
   
             <li nz-menu-item routerLink="/welcome/calendar">
@@ -27,7 +28,7 @@
               <span>Calendar</span>
             </li>
             
-            <li nz-menu-item routerLink="/welcome/myLeave">
+            <li nz-menu-item routerLink="/welcome/allLeaves">
               <i nz-icon nzType='clock-circle'></i>
               <span>All Leaves</span>
             </li>
@@ -54,18 +55,18 @@
               <span>My Account</span>
             </li>
             <br><br><br><br><br>
-            <li style="margin-bottom: 5px" nz-menu-item routerLink="/login"> 
-              <button nz-button nzType="primary" style="width: 100%;"><i nz-icon nzType='logout'></i>Logout</button>
-            </li>
+            
           </ul>
         </li>
       </ul>
+      <div style="margin-left: 45px; margin-right: 10px;"  routerLink="/login">
+          <button nz-button nzType="primary" style="width: 100%;"><i nz-icon nzType='logout'></i>Logout</button>
+      </div>
     </nz-sider>
     <nz-layout>
       <nz-header>   
         <div class="app-header">
           <!-- <button nz-button nz-popover nzType="primary" nzPopoverTitle="Title" nzPopoverContent="Content">Hover me</button> -->
-
           <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
               <span class="trigger"
                  nz-icon

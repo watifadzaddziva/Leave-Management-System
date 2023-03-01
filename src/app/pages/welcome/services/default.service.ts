@@ -11,11 +11,12 @@ import { EmployeeLeave } from '../models/employee-leave';
 export class DefaultService {
   baseUrl = 'http://54.156.63.145:8080/employee'
 
+
   constructor(private http: HttpClient, private router: Router) { }
 
 
-  getAllEmployees(): Observable<any>{
-return this.http.get(`${this.baseUrl}/getAllEmployees?offset=0&size=100`)
+getAllEmployees(): Observable<any>{
+  return this.http.get(`${this.baseUrl}/getAllEmployees?offset=0&size=100`)
   }
 
   getEmployeeById(id: number): Observable<Employee>{
@@ -39,7 +40,6 @@ return this.http.get(`${this.baseUrl}/getAllEmployees?offset=0&size=100`)
     return this.http.post(`${this.baseUrl}/applyLeave`, data)
   }
 
-
   approveLeave(id: number, data :EmployeeLeave ):  Observable<any>{
     return this.http.put<any>(`${this.baseUrl}/approve/${id}`, data)
   }
@@ -49,25 +49,37 @@ return this.http.get(`${this.baseUrl}/getAllEmployees?offset=0&size=100`)
   }
 
   getAllAppliedLeaves(): Observable<any>{
-    return this.http.get(`${this.baseUrl}/getPendingLeaves`)   
-    
+    return this.http.get(`${this.baseUrl}/getPendingLeaves`)    
   }
 
-
- getAllLeaves(){
+ getAllLeaves(): Observable<any>{
   return this.http.get(`${this.baseUrl}/getAllLeaves`)
  }
 
- getTotalPending(){
+//  get Count
+
+ getTotalLeaves(){
+  return this.http.get(`${this.baseUrl}/numberOfLeaves`)
+ }
+ getTotalPending(): Observable<any>{
 return this.http.get(`${this.baseUrl}/numberOfPendingLeaves`)
 }
 
- getTotalApproved(){
+ getTotalApproved(): Observable<any>{
   return this.http.get(`${this.baseUrl}/numberOfApproved`)
   
  }
- getTotalRejected(){
+ getTotalRejected(): Observable<any>{
   return this.http.get(`${this.baseUrl}/numberOfRejectedLeaves`)
 
  }
+
+ getTotalEmployees(): Observable<any>{
+  return this.http.get(`${this.baseUrl}/totalEmployees`)
+ }
+
+ public findByName(string: number | string): Observable<any> {
+  return this.http.get(`${this.baseUrl}/findEmployeeByName?`);
+}
+
 }

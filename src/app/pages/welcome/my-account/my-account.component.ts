@@ -38,9 +38,11 @@ this.UseDet();
      }
 
 
-  UseDet(){
-    this.userDetails=JSON.parse(sessionStorage.getItem('user') ?? '{}')  
-    this.userDetails.username
+  UseDet(){ 
+    
+      const tokenData=JSON.parse(sessionStorage.getItem('user_data') ?? '{}')  
+      this.userDetails= tokenData.user.employee
+      console.log(this.userDetails)
   }
      
      

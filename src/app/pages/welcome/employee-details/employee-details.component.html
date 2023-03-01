@@ -1,9 +1,11 @@
 <h3>
 <nz-card [style]="{backgroundColor:'#EEEEEE',borderRadius:'20px', width:'700px'}" nzTitle="EMPLOYEE DETAILS" >
+
+  
   <div >
   <h3>
     Email            :{{  this.employeeDetails.email}}<br>
-    Full Name     : {{this.employeeDetails.firstName }}  {{this.employeeDetails.lastName}}<br>
+    Full Name     : {{this.employeeDetails.firstName | titlecase }}  {{this.employeeDetails.lastName | titlecase}}<br>
     Date Of Birth : {{this.employeeDetails.dateOfBirth}}<br>
     Gender        : {{this.employeeDetails.gender}}<br><br>
 

@@ -52,8 +52,10 @@ export class MainComponent  implements OnInit{
 
     if (this.leaveForm.valid) {
       const dataToSend= this.leaveForm.value;
-      const user=JSON.parse(sessionStorage.getItem('user') ?? '{}')  
-      dataToSend.username= user.username
+      const tokenData=JSON.parse(sessionStorage.getItem('user_data') ?? '{}')  
+      dataToSend.employeeId= tokenData.user.employee.id
+
+      
        var svc; 
       svc = this.defaultService.applyForLeave(dataToSend);
       svc.subscribe(res => {

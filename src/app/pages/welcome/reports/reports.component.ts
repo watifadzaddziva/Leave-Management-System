@@ -9,10 +9,13 @@ import { DefaultService } from '../services/default.service';
 export class ReportsComponent  implements OnInit{
 
   data!: any
+  name!: any
   rejected!: any;
   approved!: any;
   pending!: any;
   employees!: any;
+  allLeaves!: any;
+  allEmployees!: any;
 constructor(private defaultService: DefaultService){}
 
   ngOnInit(): void {
@@ -20,9 +23,15 @@ constructor(private defaultService: DefaultService){}
     this.getApproved();
     this.getPending();
     this.getRejected();
+    this.getLeaves();
   }
 
 
+getLeaves(){
+this.defaultService.getTotalLeaves().subscribe((res)=>{
+  this.allLeaves=res
+})
+  }
 getPending(){
 this.defaultService.getTotalPending().subscribe((res)=>{
   this.pending = res
@@ -42,10 +51,10 @@ getRejected(){
 }
 
 load( event?: number): void {
-  this.defaultService.getAllEmployees().subscribe((res)=>{
-    this.employees= res.count
-    console.log(this.employees)
+  this.defaultService.getTotalEmployees().subscribe((res)=>{
+    this.employees= res
    })
 }
+
 
 }
