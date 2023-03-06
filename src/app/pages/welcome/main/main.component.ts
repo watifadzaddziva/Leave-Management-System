@@ -64,6 +64,8 @@ export class MainComponent  implements OnInit{
         this.filelist=[];
         this.leaveForm.reset();
         
+      },err=>{
+        this.notification.error('error', 'invalid dates', { nzDuration: 10000 });
       });
     }
   }

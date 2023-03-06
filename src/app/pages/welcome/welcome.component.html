@@ -10,8 +10,11 @@
               [nzTrigger]="null">
 
       <div class="sidebar-logo">
-       <h5>  <i style="color:#0e4d89"> ***Welcome <br>
-          <span style="color:#0e4d89" >{{this.userDetails.firstName | titlecase}}  {{this.userDetails.lastName | titlecase}} *** </span></i></h5> 
+       <h5> 
+         <i style="color:#0e4d89"> ***Welcome <br>
+          <!-- <span style="color:#0e4d89" >{{this.userDetails.firstName | titlecase}}  {{this.userDetails.lastName | titlecase}} *** </span> -->
+        </i>
+        </h5> 
 
       </div>
       <ul nz-menu   nzMode="inline" [nzInlineCollapsed]="isCollapsed">
@@ -66,7 +69,6 @@
     <nz-layout>
       <nz-header>   
         <div class="app-header">
-          <!-- <button nz-button nz-popover nzType="primary" nzPopoverTitle="Title" nzPopoverContent="Content">Hover me</button> -->
           <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
               <span class="trigger"
                  nz-icon

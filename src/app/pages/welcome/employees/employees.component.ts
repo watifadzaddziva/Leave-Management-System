@@ -19,9 +19,10 @@ export class EmployeesComponent implements OnInit {
   visible!: boolean;
   employee  ={}
   viewId !: any;
-  name!: any
+  username!: any
   id!: Employee;
-  allEmployees!: any;
+  // allEmployees!: any;
+  emp!: any;
 
   constructor(private defaultService: DefaultService, private router : Router,
     private injector: Injector, private nzMessageService: NzMessageService) {
@@ -57,9 +58,10 @@ export class EmployeesComponent implements OnInit {
   }
 
 
-  search(name: string): void {
-    this.defaultService.findByName(name).subscribe(result => {
-      this.allEmployees = result;
+  search(username: string): void {
+    this.defaultService.findByName(username).subscribe(result => {
+      this.employees = result
+      
   
     });
   

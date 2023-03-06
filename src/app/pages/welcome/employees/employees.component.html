@@ -8,11 +8,11 @@
         type="text"
         ngModel
         nz-input
-        [(ngModel)]="name"
-        placeholder="search by name"
+        [(ngModel)]="username"
+        placeholder="search by username"
         style="width: 50%"
       />
-      <button [disabled]="name === ''" nz-button nzType="primary" (click)="search(this.name)" nzSearch>
+      <button [disabled]="username === ''" nz-button nzType="primary" (click)="search(this.username)" nzSearch>
         <i nz-icon nzType="search"></i>
       </button>
     </nz-input-group>
@@ -40,7 +40,7 @@
           <tr *ngFor='let data of basicTable.data'>
          <td> <a style="color:rgb(0, 38, 255);"   routerLink='/welcome/employee-details/{{data.id}}'>{{data.firstName | titlecase}} </a></td>   
            <td><a style="color:rgb(0, 38, 255);"  routerLink='/welcome/employee-details/{{data.id}}'>{{data.lastName | titlecase}} </a></td>
-            <td>{{data.username | titlecase}}</td>
+            <td>{{data.username }}</td>
            <td>{{data.email}} </td>
             <td>{{data.gender}} </td>
             <td>{{data.dateOfBirth}} </td>

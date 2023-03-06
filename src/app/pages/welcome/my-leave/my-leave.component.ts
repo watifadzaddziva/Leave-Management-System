@@ -10,7 +10,6 @@ export class MyLeaveComponent implements OnInit{
 
   data!: any;
   status!: any
-  leaves!: any;
 
 constructor(private defaultService: DefaultService){}
 
@@ -27,8 +26,8 @@ this.getAllLeaves();
 
  
  search(status: string): void {
-  this.defaultService.findByName(status).subscribe(result => {
-    this.leaves = result;
+  this.defaultService.findByStatus(status).subscribe(result => {
+    this.data = result;
 
   });
 

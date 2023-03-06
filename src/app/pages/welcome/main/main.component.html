@@ -2,9 +2,6 @@
 <div style="padding:30px;">
     <div nz-row [nzGutter]="8">
       <div nz-col [nzSpan]="14">
-        <!-- <nz-card nzTitle="Take A leave">
-       
-            -->
             <h3 class="text-center">Take A Leave </h3><br>
             <form nz-form   [formGroup]="leaveForm"  (ngSubmit)="submitForm()">
                 <nz-form-item>
@@ -54,13 +51,10 @@
                     </nz-form-control>
                   </nz-form-item>
                 </form>
-<!-- 
-        </nz-card> -->
       </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <div nz-col [nzSpan]="6">
-        <!-- <nz-card nzTitle="Leave Description"> -->
-          <h3 class="text-center">Leave Description </h3>   <br>
-    <nz-table #middleTable nzSize="middle" [nzData]="data"
+         <br><br> <!-- <h3 class="text-center">Leave Description </h3>   <br> -->
+    <nz-table #middleTable nzSize="default" [nzData]="data" [style]="{width:'140%'}"
     [nzFrontPagination]="false"
       [nzShowPagination]="false">
       <thead>

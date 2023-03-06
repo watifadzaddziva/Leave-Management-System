@@ -1,5 +1,5 @@
 <nz-input-group >
-  <button style="float:right " [disabled]="status === ''" nz-button nzType="primary" (click)="search(this.status)" nzSearch>
+  <button style="float:right "  nz-button nzType="primary" (click)="search(this.status)" nzSearch>
     <i nz-icon nzType="search"></i>
   </button>
   <input
@@ -7,8 +7,8 @@
     ngModel
     nz-input
     [(ngModel)]="status"
-    placeholder="search by status"
-    style="width: 20%; float:right "
+    placeholder="search by status , please type in capitals"
+    style="width: 25%; float:right "
   />
   
 </nz-input-group>

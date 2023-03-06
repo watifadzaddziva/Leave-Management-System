@@ -1,25 +1,45 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import { DefaultService } from '../services/default.service';
+import interactionPlugin from '@fullcalendar/interaction';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css']
 })
-export class CalendarComponent {
+export class CalendarComponent implements OnInit {
+  
+  
+  calendarOptions!:CalendarOptions
+  Allevents: any
 
-  calendarOptions: CalendarOptions = {
-    plugins: [dayGridPlugin],
-    initialView: 'dayGridMonth',
-    weekends: false,
-    events: [
-      { title: 'Meeting', start: new Date() },
-      { title: 'Reading', start: '2023-01-30', end:'2023-02-02' },
-      { title: 'Studying', start: '2023-02-22', end:'2023-02-23' },
-      { title: 'Studying', start: '2023-03-13T12:00:00', end:'2023-03-16T15:30:00' }
-    ]
-  };
+constructor(private defaultService: DefaultService, private http:HttpClient){}
+
+  ngOnInit(): void {
+    this.getAllEvents();
+  }
+
+  getAllEvents(){
+    this.defaultService.getAllEvents().subscribe(res=>{
+      this.calendarOptions.events = res
+    })
+this.calendarOptions={
+  plugins: [dayGridPlugin, ],
+  initialView: 'dayGridMonth',
+  weekends: false,
+}
+    
+
+    console.log(this.calendarOptions);
+    
+  }
+
+
+
 
 
 }

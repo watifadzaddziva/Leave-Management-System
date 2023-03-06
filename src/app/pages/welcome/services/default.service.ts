@@ -9,7 +9,7 @@ import { EmployeeLeave } from '../models/employee-leave';
   providedIn: 'root'
 })
 export class DefaultService {
-  baseUrl = 'http://54.156.63.145:8080/employee'
+  baseUrl = 'http://192.168.10.146:8080/employee'
 
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -78,8 +78,16 @@ return this.http.get(`${this.baseUrl}/numberOfPendingLeaves`)
   return this.http.get(`${this.baseUrl}/totalEmployees`)
  }
 
- public findByName(string: number | string): Observable<any> {
-  return this.http.get(`${this.baseUrl}/findEmployeeByName?`);
+ public findByName(username:string): Observable<any> {
+  return this.http.get(`${this.baseUrl}/findEmployeeByName/${username}`);
+}
+
+public findByStatus(status:string): Observable<any> {
+  return this.http.get(`${this.baseUrl}/findLeaveByStatus/${status}`);
+}
+
+getAllEvents(): Observable <any>{
+return this.http.get(`${this.baseUrl}/calendar`)
 }
 
 }

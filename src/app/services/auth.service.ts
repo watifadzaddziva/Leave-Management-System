@@ -60,12 +60,12 @@ export class AuthService {
 
 
   loginUserFromServer(user :User):Observable<User>{
-    return this.http.post<User>("http://54.156.63.145:8080/login",user)
+    return this.http.post<User>("http://192.168.10.146:8080/login",user)
  
 }
       
   registerUserFromServer(user :User):Observable<User>{ 
-    return this.http.post<User>("http://54.156.63.145:8080/register",user);
+    return this.http.post<User>("http://192.168.10.146:8080/register",user);
   }
 
 }
