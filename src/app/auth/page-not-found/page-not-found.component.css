@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+  }
+  
+  .content {
+    text-align: center;
+  }
+
+  .login-form-button{
+    background-color:#05134a;
+    color:white;
+  }

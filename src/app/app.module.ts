@@ -28,6 +28,9 @@ import { FormlyModule } from '@ngx-formly/core';
 import { FormlyNgZorroAntdModule } from '@ngx-formly/ng-zorro-antd';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { NgxPermissionsModule, NgxPermissionsService } from 'ngx-permissions';
+import { HomePageComponent } from './auth/home-page/home-page.component';
+import { RouterModule } from '@angular/router';
 
 registerLocaleData(en);
 
@@ -35,7 +38,8 @@ registerLocaleData(en);
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -56,13 +60,15 @@ registerLocaleData(en);
     FormlyModule,
     FormlyNgZorroAntdModule,
     NzSelectModule,
-    FullCalendarModule
+    FullCalendarModule,
+    NgxPermissionsModule.forRoot(),
+  RouterModule
 
   ],
 
   
   providers: [
-    NzNotificationService, AuthService, JwtHelperService,
+    NzNotificationService, AuthService, JwtHelperService,NgxPermissionsService,
     { provide:  JWT_OPTIONS, useValue: JWT_OPTIONS},
     { provide: NZ_I18N, useValue: en_US }
   ],

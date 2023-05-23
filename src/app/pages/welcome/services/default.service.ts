@@ -34,9 +34,13 @@ getAllEmployees(): Observable<any>{
     return this.http.delete<any>(`${this.baseUrl}/delete/${id}`)
 
   }
+
+  getMyLeaves(id:any){
+    return this.http.get(`${this.baseUrl}/myleaves/${id}`)
+  }
   // employee leave
 
-  applyForLeave(data : EmployeeLeave){
+  applyForLeave(data : any){
     return this.http.post(`${this.baseUrl}/applyLeave`, data)
   }
 
@@ -79,15 +83,17 @@ return this.http.get(`${this.baseUrl}/numberOfPendingLeaves`)
  }
 
  public findByName(username:string): Observable<any> {
-  return this.http.get(`${this.baseUrl}/findEmployeeByName/${username}`);
+  return this.http.get(`${this.baseUrl}/findEmployeeByName?username=${username}`);
 }
 
 public findByStatus(status:string): Observable<any> {
-  return this.http.get(`${this.baseUrl}/findLeaveByStatus/${status}`);
+  return this.http.get(`${this.baseUrl}/findLeaveByStatus?status=${status}`);
 }
 
 getAllEvents(): Observable <any>{
 return this.http.get(`${this.baseUrl}/calendar`)
 }
+
+
 
 }

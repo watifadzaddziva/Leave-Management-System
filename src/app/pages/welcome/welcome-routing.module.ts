@@ -9,14 +9,15 @@ import { MyAccountComponent } from './my-account/my-account.component';
 import { MyLeaveComponent } from './my-leave/my-leave.component';
 import { ReportsComponent } from './reports/reports.component';
 import { WelcomeComponent } from './welcome.component';
+import { AllLeavesComponent } from './all-leaves/all-leaves.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent, 
   children: [
-    {path: '', component: MainComponent},
-    {path: 'main', component: MainComponent},
+    {path: '', component: MyLeaveComponent},
     {path : 'calendar', component: CalendarComponent},
-    {path: 'allLeaves', component: MyLeaveComponent},
+    {path: 'my-leaves', component: MyLeaveComponent},
+    {path:'allLeaves',component:AllLeavesComponent},
     {path: 'leavesToApprove', component: LeavesToApproveComponent},
     {path: 'reports', component: ReportsComponent},
     {path : 'myAccount', component: MyAccountComponent},

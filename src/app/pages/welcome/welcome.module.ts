@@ -40,6 +40,9 @@ import { FormlyNgZorroAntdModule } from '@ngx-formly/ng-zorro-antd';
 import { FormlyModule } from '@ngx-formly/core';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { NgxPermissionsModule, NgxPermissionsService } from 'ngx-permissions';
+import { AllLeavesComponent } from './all-leaves/all-leaves.component';
+
 
 registerLocaleData(en);
 
@@ -70,7 +73,8 @@ registerLocaleData(en);
  FormlyNgZorroAntdModule,
  FormlyModule,
  NzPopconfirmModule,
- FullCalendarModule
+ FullCalendarModule,
+ NgxPermissionsModule
  
 
  ],
@@ -78,9 +82,9 @@ registerLocaleData(en);
 
 
   declarations: [WelcomeComponent, MainComponent, CalendarComponent, MyLeaveComponent, LeavesToApproveComponent,
-  ReportsComponent, MyAccountComponent, EmployeesComponent, EmployeeDetailsComponent, SetEmployeesComponent, ],
+  ReportsComponent, MyAccountComponent, EmployeesComponent, EmployeeDetailsComponent, SetEmployeesComponent, AllLeavesComponent, ],
 
-  providers: [NzMessageService,
+  providers: [NzMessageService,NgxPermissionsService,
     { provide: NZ_I18N, useValue: en_US }
   ],
   bootstrap: [AppComponent],

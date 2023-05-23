@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DefaultService } from '../services/default.service';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({
   selector: 'app-my-leave',
@@ -8,28 +9,55 @@ import { DefaultService } from '../services/default.service';
 })
 export class MyLeaveComponent implements OnInit{
 
-  data!: any;
-  status!: any
+  leaves!: any;
+  leave:any;
+  status!: any;
+  employee  ={}
 
-constructor(private defaultService: DefaultService){}
+constructor(private defaultService: DefaultService, private notification:NzNotificationService){}
 
 
-  ngOnInit(): void {
-this.getAllLeaves();
- }
-
- getAllLeaves(){
-  this.defaultService.getAllLeaves().subscribe((res)=>{
-    this.data = res
+ngOnInit(): void {
+  const userId=JSON.parse(sessionStorage.getItem('user_data') ?? '{}')  
+  const id= userId.user.employee.id
+  console.log(id)
+  this.defaultService.getMyLeaves(id).subscribe(res=>{
+    this.leaves=res;
+    console.log(res)
+  },error=>{
+    this.notification.error('Error while fetching user leaves','')
   })
  }
 
- 
- search(status: string): void {
-  this.defaultService.findByStatus(status).subscribe(result => {
-    this.data = result;
-
-  });
-
+getMyLeaves(){
+  const userId=JSON.parse(sessionStorage.getItem('user_data') ?? '{}')  
+  const id= userId.user.id
+  console.log(id)
+  this.defaultService.getMyLeaves(id).subscribe(res=>{
+    this.leaves=res;
+    console.log(res)
+  },error=>{
+    this.notification.error('Error while fetching user leaves','')
+  })
+   
 }
+
+confirm(id: number): void {
+  // this.defaultService.deleteEmployee(id).subscribe(() => {
+  //   this.nzMessageService.info('employee has been deleted');
+  //   this.load();
+  // });
+}
+
+load( event?: number): void {
+  // this.defaultService.getAllEmployees().subscribe((res)=>{
+  //   this.employees= res.content
+  //  })
+}
+
+reload(event : any){
+  this.load(event)
+  this.employee = {}
+}
+
 }

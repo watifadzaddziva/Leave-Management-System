@@ -31,15 +31,13 @@ this.calendarOptions={
   plugins: [dayGridPlugin, ],
   initialView: 'dayGridMonth',
   weekends: false,
-}
-    
-
-    console.log(this.calendarOptions);
-    
   }
+}
 
 
-
+toggleWeekends() {
+  this.calendarOptions.weekends = !this.calendarOptions.weekends // toggle the boolean!
+}
 
 
 }

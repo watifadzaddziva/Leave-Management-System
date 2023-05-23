@@ -13,6 +13,7 @@ import { NzMenuModule } from "ng-zorro-antd/menu";
 import { ButtonModule } from "primeng/button";
 import { IconsProviderModule } from "src/app/icons-provider.module";
 import { LoginComponent } from "./login.component";
+import { PageNotFoundComponent } from "../page-not-found/page-not-found.component";
 
 @NgModule({
     imports:[
@@ -30,7 +31,8 @@ import { LoginComponent } from "./login.component";
         ButtonModule,
         NzCardModule,
         RouterModule.forChild([
-            {path: 'login', component: LoginComponent}
+            {path: 'login', component: LoginComponent},
+            {path:'404',component:PageNotFoundComponent}
         ])
     ],
 declarations:[

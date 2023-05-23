@@ -1,70 +1,81 @@
-:host {
-    display: flex;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    /* -moz-osx-font-smoothing: grayscale; */
-  }
-  
-  .app-layout {
-    height: 100vh;
-    /* background-color: white; */
-  }
-  
+@media screen and (max-width: 767px) {
   .menu-sidebar {
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
     z-index: 10;
+    box-shadow: 1px 0 4px rgba(0, 21, 41, .35);
+    transition: left 0.3s ease;
+  }
+
+  .menu-sidebar.nz-collapsed {
+    left: -256px;
+  }
+
+  .app-layout {
+    flex-direction: column;
+  }
+
+  .inner-content {
+    margin-top: 64px;
+    padding: 24px;
+  }
+
+  .logout-button {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 48px);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .menu-sidebar {
     min-height: 100vh;
-     box-shadow: 2px 0 6px rgba(0,21,41,.35); 
   }
-  
-  .header-trigger {
-    height: 64px;
-    padding: 20px 24px;
-    font-size: 20px;
-    cursor: pointer;
-    transition: all .3s,padding 0s;
+
+  .app-layout {
+    flex-direction: row;
   }
-  
-  .trigger:hover {
-    color: #1890ff;
+
+  .inner-content {
+    flex: 1;
+    margin: 24px;
   }
-  
-  .sidebar-logo {
-    color:#1890ff
-    /* position: relative; */
-    /* height: 80px; */
-    /* width: 80px; */
-    /* padding-left: 24px; */
-    /* overflow: hidden; */
-    /* line-height: 64px; */
-   
-    /* transition: all .3s; */
-  }
-  
- 
-  
-  nz-header {
-    padding: 0;
+
+  .sidebar-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    z-index: 2;
+    padding: 16px;
+    text-align: center;
+  }
+  
+  .logout-button {
+    width: 100%;
+  }
+
+  .user-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
   }
   
   .app-header {
-    position: relative;
-    height: 64px;
-    padding: 0;
-    background: #fff;
-    /* float:right; */
-    /* box-shadow: 0 1px 4px rgba(0,21,41,.08); */
+    background-color: white;
   }
-  
-  nz-content {
-    margin: 24px;
+
+  .right {
+    float: right;
   }
-  
-  .inner-content {
-    padding: 24px;
-    background: #fff;
-    height: 100%;
+
+  .user-info {
+    display: flex;
+    align-items: center;
   }
-  
+}
+

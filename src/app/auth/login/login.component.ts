@@ -17,7 +17,7 @@ import jwt_decode from 'jwt-decode';
 export class LoginComponent  implements OnInit {
 
   user  = new User();
-  retUrl!: string | null;
+  returnUrl: any;
   loginForm = new FormGroup({
     username: new FormControl(''),
     password: new FormControl('')
@@ -34,35 +34,21 @@ constructor(private fb: UntypedFormBuilder,  private router : Router,
  
 
   ngOnInit(): void {
-    if (sessionStorage.getItem('refresh-session'))
-      sessionStorage.removeItem('refresh-session');
-
-      this.route.queryParamMap.subscribe(params=>{
-        const login = params.get('retUrl')
-      })
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '';
    }
 
   submitForm() {
     console.log(this.user)
     this.authService.loginUserFromServer(this.user).subscribe((data )=>{
-console.log("auth response", data);
-let tok= data.token +"";
-let userData: {};
-userData=data
-      this.authService.saveToken(tok)
-
-        
-        // const tokn= this.jwtHelper.decodeToken(AuthService.TOKEN)
-        // console.log(tokn)
-        // console.log(this.authService.isLoggedIn)
-        sessionStorage.setItem('user_data', JSON.stringify((userData)))
-        // console.log()
-       
-        this.router.navigate(['/welcome']);
-       
+    let tok= data.message;
+    let userData: {};
+    userData=data
+    this.authService.setToken(tok)
+    sessionStorage.setItem('user_data', JSON.stringify((userData)))
+    this.router.navigate(['/welcome']); 
     }, (error: HttpErrorResponse) => {
       this.authService.clearToken();
-      this.notification.error('','bad credentials')
+      this.notification.error('','Bad Credentials')
       if (error.status == 401)
       setTimeout(() => location.reload(), 3000);
     });

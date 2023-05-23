@@ -5,67 +5,69 @@ import { BehaviorSubject, map, Observable, of, Subject, throwError } from 'rxjs'
 import { User } from '../models/user';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { TokenPayload } from '../pages/welcome/models/token-payload';
+import { NgxPermissionsService } from 'ngx-permissions';
 
 @Injectable()
 export class AuthService {
   static NAME = 'token';
   static TOKEN: string;
-  public token!: string;
-  tokenPayload: TokenPayload | undefined;
-  username!: string;
-  userAction: Subject<void> = new Subject();
-  permissions!: any[] ;
+  token: string;
+  tokenPayload: any;
+  
 
-  constructor(public jwtHelper: JwtHelperService, private http: HttpClient) {
+  constructor(public jwtHelper: JwtHelperService,private permissionsService:NgxPermissionsService, private http: HttpClient) {
     this.token = AuthService.TOKEN = <string>this.getToken();
-    this.setTokenPayload(this.token);
-    // if (!this.tokenPayload) return;
-    // this.permissions = this.tokenPayload.authorities;
+    if (!this.token) return;
+    this.setTokenPayload();
+   
   }
 
-  public getTokenPayload(token: string) {
-    // return this.jwtHelper.decodeToken(token);
-  }
+  setToken(token: string) {
+    this.token=token;
+    sessionStorage.setItem(AuthService.NAME, token)
+}
 
-  public setTokenPayload(token: string) {
-    // this.tokenPayload = this.getTokenPayload(token);
-    if (this.tokenPayload) return;
-    const data: any = {};
+getToken() {
+    return sessionStorage.getItem(AuthService.NAME)
+    
+}
+
+public setTokenPayload() {
+  this.tokenPayload = this.decodeToken();
+  if (this.tokenPayload) {
+    const role = this.tokenPayload.role;
+    const user = this.tokenPayload.sub;
+    this.permissionsService.loadPermissions([role]);
+  } else {
+    let data: any = {};
     this.tokenPayload = data;
   }
+}
 
-  public isAuthenticated(): boolean {
+public clearToken() {
+    sessionStorage.clear()
+}
+
+public decodeToken() {
+  const decodedToken= this.jwtHelper.decodeToken(this.token)
+    return decodedToken;
+}
+
+public isAuthenticated() {
     return !this.jwtHelper.isTokenExpired(this.token);
-  }
+}
 
-  public saveToken(token: string) {
-    sessionStorage.setItem(AuthService.NAME, token);
-  }
+public isLoggedIn(){
+    return this.getToken() ? true : false
+}
 
-  public getToken() {
-    return sessionStorage.getItem(AuthService.NAME);
-  }
-
-  public clearToken() {
-    sessionStorage.clear();
-  }
-
-  get getAction(): Observable<void> {
-    return this.userAction.asObservable();
-  };
-
-  loadAction() {
-    this.userAction.next();
-  }
-
-
-  loginUserFromServer(user :User):Observable<User>{
-    return this.http.post<User>("http://192.168.10.146:8080/login",user)
+  loginUserFromServer(user :any):Observable<any>{
+    return this.http.post<any>("http://192.168.10.146:8080/login",user)
  
 }
       
-  registerUserFromServer(user :User):Observable<User>{ 
-    return this.http.post<User>("http://192.168.10.146:8080/register",user);
+  registerUserFromServer(user :any):Observable<any>{ 
+    return this.http.post<any>("http://192.168.10.146:8080/register",user);
   }
 
 }

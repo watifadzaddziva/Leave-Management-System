@@ -1,3 +1,4 @@
 <div id='calendar-container'>
-<full-calendar [options]="calendarOptions" [style]="{width: '100vh', height:'100vh'}"></full-calendar>
+    <button nzType="primary" nz-button (click)="toggleWeekends()">toggle weekends</button>
+<full-calendar [options]="calendarOptions" ></full-calendar>
 </div>

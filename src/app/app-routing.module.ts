@@ -6,17 +6,19 @@ import { RegisterComponent } from './auth/register/register.component';
 import { AuthGuard } from './guards/auth.guard';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { RoleGuardService } from './services/role-guard.service';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/login' },
   { path: 'login',  component:LoginComponent , },
+  {path:'forgot-password',component:ForgotPasswordComponent},
   { path: 'register',  component:RegisterComponent },
   // { path: 'welcome', canActivate:[AuthGuard, ],
-    //  loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule) },
+  //    loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule) },
 
 { path: 'welcome' , loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule) },
-
-  {path : '**', component: PageNotFoundComponent}
+{path:'404', component: PageNotFoundComponent},
+  {path : '**',redirectTo:'/404'}
 ];
 
 @NgModule({

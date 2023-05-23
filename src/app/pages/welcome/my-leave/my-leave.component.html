@@ -1,44 +1,45 @@
-<nz-input-group >
-  <button style="float:right "  nz-button nzType="primary" (click)="search(this.status)" nzSearch>
-    <i nz-icon nzType="search"></i>
-  </button>
-  <input
-    type="text"
-    ngModel
-    nz-input
-    [(ngModel)]="status"
-    placeholder="search by status , please type in capitals"
-    style="width: 25%; float:right "
-  />
-  
-</nz-input-group>
+<div class='container'>
+  <div class="row right">
+  <div class='col' >
+    <app-main style="float:right" [leave]='leave' (output)='reload($event)'></app-main>
+  </div>
+</div>
 <br>
-<nz-table #basicTable [nzData]="data" [nzPageSize]="7" >
+  <nz-table 
+           #basicTable [nzData]='leaves' [nzPageSize]='7'
+            >
     <thead>
-      <tr>
-        <th>Full Name</th>
-        <th>From</th>
-        <th>To</th>
-        <th>Duration</th>
-        <th>Leave Type</th>
-        <th>Reason</th>
-        <th>Status</th>
-      </tr>
+    <tr>
+      <th>Leave Type</th>
+      <th>Reason</th>
+      <th>Status</th>
+      <th>Duration</th>
+      <th>To</th>
+      <th>From</th>
+      <th></th>
+    </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of basicTable.data">
-        <td>{{data?.employee.firstName | titlecase}}  {{data?.employee.lastName | titlecase}} </td>
-        <td>{{ data.fromDate }}</td>
-        <td>{{ data.toDate }}</td>
-        <td>{{ data.duration  }}</td>
-        <td>{{ data.leaveType }}</td>
-        <td>{{ data.reason }}</td>
-        <td>
-          <i *ngIf="data.status=='REJECTED'" class='mx-3' style='color: red' >Rejected</i>
-          <i *ngIf="data.status=='APPROVED'" class='mx-3' style='color: rgb(44, 177, 44)'>Approved</i>
-          <i *ngIf="data.status=='PENDING'" class='mx-3' style='color: blue' >Pending</i>
-           </td>
-      </tr>
+    <tr *ngFor='let data of basicTable.data'>
+     <td>{{data.email}} </td>
+      <td>{{data.gender}} </td>
+      <td>{{data.dateOfBirth}} </td>
+      <td>{{data.email}} </td>
+      <td>{{data.gender}} </td>
+      <td>{{data.dateOfBirth}} </td>
+      <td>
+        <nz-button-group>
+        <app-main [leave]='data' (output)='load($event)'></app-main>
+        <a
+          nz-popconfirm
+          nzPopconfirmTitle="Are you sure delete this leave?"
+          nzPopconfirmPlacement="bottom"
+          (nzOnConfirm)="confirm(data.id)"
+          nz-butto>
+          <button nz-button nzType="default" nzDanger><i nz-icon nzType="delete" nzTheme="outline"></i></button>
+        </a>
+        </nz-button-group>
+      </td>
+    </tr>
     </tbody>
   </nz-table>
-

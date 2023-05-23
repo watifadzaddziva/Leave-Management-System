@@ -1,12 +1,7 @@
+<!-- <app-home-page></app-home-page> -->
 <div class="container">
-  <div class="row  ">
-<!-- <div class="col-lg-6   d-lg-block">
- <img src="assets/sddefault.jpg"   style="height:100vh; width: 100vh; background-size: 100%  100%;  background-attachment: fixed; background-size: cover;">
-</div> -->
-<div class="col">
-  <body>
     <form nz-form nzLayout='vertical'  class="login-form"   (ngSubmit)="submitForm()">
-      <h2 style="text-align: center;">Login</h2>
+      <h2 style="text-align: center;">Leave System</h2>
         <nz-form-item>
           <nz-form-label nzRequired >  Username</nz-form-label>
           <nz-form-control nzErrorTip="Please input your email!">
@@ -30,14 +25,12 @@
             </label>
           </div>
           <div nz-col [nzSpan]="12">
-            <a style="color:rgb(0, 38, 255);"    class="login-form-forgot">Forgot password</a>
+            <a style="color:rgb(0, 38, 255);"  routerLink="/forgot-password"   class="login-form-forgot">Forgot password</a>
           </div>
         </div>
         <button nz-button type="sumbit"  class="login-form-button " nzType="primary">Log in</button>
        <p> No Account ?   <a style="color:rgb(0, 38, 255);"    routerLink="/register">Register now!</a></p> 
       </form>
-    </body>
-</div>
 </div>
  
   

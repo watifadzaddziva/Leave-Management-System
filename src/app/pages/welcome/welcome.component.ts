@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Roles } from './models/roles';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
+import { NgxPermissionsService } from 'ngx-permissions';
 
 @Component({
   selector: 'app-welcome',
@@ -7,20 +11,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomeComponent implements OnInit {
   isCollapsed = false;
-  userDetails!: any;
-  constructor() { }
+  user!:string;
+  first_name!:string;
+
+  constructor(private authService: AuthService, private router:Router,private permissionsService: NgxPermissionsService) {
+   
+   }
 
   ngOnInit() {
-    this.UseDet();
+if (this.authService.isAuthenticated()) {
+    this.authService.setTokenPayload();
+    this.user = this.authService.tokenPayload?.sub;
+  }
+
   }
 
 
-  UseDet(){ 
-    
-    const tokenData=JSON.parse(sessionStorage.getItem('user_data') ?? '{}')  
-    this.userDetails= tokenData.user.employee
-    console.log(this.userDetails)
-}
-  
 
+  logout(){
+    window.location.href='/'
+    sessionStorage.clear();
+  
+  }
 }

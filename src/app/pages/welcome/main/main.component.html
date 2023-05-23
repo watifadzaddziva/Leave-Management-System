@@ -1,83 +1,20 @@
-<h3>
-<div style="padding:30px;">
-    <div nz-row [nzGutter]="8">
-      <div nz-col [nzSpan]="14">
-            <h3 class="text-center">Take A Leave </h3><br>
-            <form nz-form   [formGroup]="leaveForm"  (ngSubmit)="submitForm()">
-                <nz-form-item>
-                    <nz-form-label [nzSpan]="7" nzRequired >From</nz-form-label>
-                    <nz-form-control [nzSpan]="14" nzHasFeedback nzErrorTip="The input is invalid!">
-                      <nz-date-picker formControlName="fromDate" [(ngModel)]="applyLeave.fromDate" name="fromDate" nzPlaceHolder="Select Start Date"  class="login-form-button login-form-margin" name="toDate"  id="toDate" ></nz-date-picker>
-                    </nz-form-control>
-                  </nz-form-item>
-            
-                  <nz-form-item>
-                      <nz-form-label [nzSpan]="7" nzRequired >  To</nz-form-label>
-                      <nz-form-control [nzSpan]="14" nzHasFeedback  nzErrorTip="The input is invalid!">
-                        <nz-date-picker formControlName="toDate" name="toDate" [(ngModel)]="applyLeave.toDate" nzPlaceHolder="Select End Date" class="login-form-button login-form-margin" name="toDate"  id="toDate" ></nz-date-picker>
-                      </nz-form-control>
-                    </nz-form-item>
-
-                    <nz-form-item>
-                      <nz-form-label [nzSpan]="7" nzRequired >Leave Type</nz-form-label>
-                      <nz-form-control [nzSpan]="14" nzHasFeedback  nzErrorTip="The input is invalid!">
-                        <nz-select
-                            id="leaveType"
-                            nzPlaceHolder="Select Leave Type"
-                            formControlName="leaveType"
-                            name="leaveType"
-                            [(ngModel)]="applyLeave.leaveType"
-                           >
-                            <nz-option nzValue="SICK_LEAVE" nzLabel="SICK LEAVE"></nz-option>
-                            <nz-option nzValue="VACATION" nzLabel="VACATION"></nz-option>
-                            <nz-option nzValue="UNPAID_LEAVE" nzLabel="UNPAID LEAVE"></nz-option>
-                          </nz-select>
-                      </nz-form-control>
-                    </nz-form-item>
-                 
-                    <nz-form-item>
-                      <nz-form-label [nzSpan]="7" nzRequired>Reason</nz-form-label>
-                      <nz-form-control [nzSpan]="14"  nzErrorTip="Please write something here!">
-                        <nz-textarea-count [nzMaxCharacterCount]="2000">
-                          <textarea  formControlName="reason" [(ngModel)]="applyLeave.reason" name="reason" nz-input rows="2" placeholder="write any thing"></textarea>
-                        </nz-textarea-count>
-                      </nz-form-control>
-                    </nz-form-item>
-                       
-                  <nz-form-item nz-row class="login-form-margin">
-                    <nz-form-control  [nzOffset]="7" [nzSpan]="14">
-                      <button nz-button   type="submit"   nzType="primary">Apply Leave </button>&nbsp;&nbsp; 
-                      <button nz-button   type="reset"   nzType="primary" nzDanger>Cancel </button>
-                    </nz-form-control>
-                  </nz-form-item>
-                </form>
-      </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <div nz-col [nzSpan]="6">
-         <br><br> <!-- <h3 class="text-center">Leave Description </h3>   <br> -->
-    <nz-table #middleTable nzSize="default" [nzData]="data" [style]="{width:'140%'}"
-    [nzFrontPagination]="false"
-      [nzShowPagination]="false">
-      <thead>
-        <tr>
-          <th>Leave Type</th>
-          <th>Allowance</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let data of middleTable.data">
-          <td><nz-badge [nzStatus]="data.type" ></nz-badge>{{ data.leaveType }}</td>
-          <td>{{ data.defaultDays }}</td>
-        </tr>
-<br><br><br><br>
-
-
-      </tbody>
-    </nz-table>
-        <!-- </nz-card> -->
-      </div>
-    </div>
-  </div>
-</h3>
+<button class='mb-2 ml-3' nz-button (click)='toggle(true)' nzType='primary' >
+  <!-- <i nz-icon nzType='edit' nzTheme='outline' ></i> -->
+  <span >Apply Leave</span>
+  
+</button><br>
+<nz-drawer [nzClosable]='false' [nzWidth]='400' [nzVisible]='visible' nzPlacement='right'
+           [nzTitle]="'Apply Leave'" (nzOnClose)='toggle(false)'>
+  <ng-container *nzDrawerContent>
+    <form nz-form [formGroup]='form' nzLayout='vertical' (ngSubmit)='submit()'>
+      <formly-form [model]="leave"  [fields]='fields' [options]="options"  [form]='form' ></formly-form>
+      <nz-button-group class='mt-1'>
+        <button nz-button nzType='primary' type='submit' [disabled]="form.invalid">Save</button>
+        <button nz-button nzType='primary' (click)='toggle(false)' nzGhost type='reset'>Cancel</button>
+      </nz-button-group>
+    </form>
+  </ng-container>
+</nz-drawer>
 
 
 
