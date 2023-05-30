@@ -40,7 +40,7 @@ getAllEmployees(): Observable<any>{
  }
 
  public findByName(username:string): Observable<any> {
-  return this.http.get(`${this.baseUrl}employee/findEmployeeByName/{username}`);
+  return this.http.get(`${this.baseUrl}employee/findEmployeeByName/${username}`);
 }
 
    // employee leave
@@ -98,7 +98,7 @@ return this.http.get(`${this.baseUrl}leave/numberOfPendingLeaves`)
  }
 
 public findByStatus(status:any): Observable<any> {
-  return this.http.get(`${this.baseUrl}leave/findLeaveByStatus/{status}`);
+  return this.http.get(`${this.baseUrl}leave/findLeaveByStatus/${status}`);
 }
 
 getAllEvents(): Observable <any>{

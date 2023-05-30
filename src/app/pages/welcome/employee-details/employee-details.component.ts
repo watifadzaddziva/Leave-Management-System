@@ -22,12 +22,10 @@ export class EmployeeDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.id=this.route.snapshot.params['id'];
     this.employee= new Employee();
-
     this.employeeService.getAllEmployees().subscribe(
       (data)=>{
        this.allEmployees= data.content
        this.employeeService.getEmployeeById(this.id).subscribe(data=>{
-        console.log(data);
         this.employeeDetails=data
   
       })

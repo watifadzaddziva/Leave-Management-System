@@ -19,12 +19,21 @@
  <div class="col text-center">
   <div class="card" style="border-radius: 20px; height: 500px;"><br><br>
     <h4>EMPLOYEE PROFILE</h4><br>
+    <div class="row">
+    <div class="col">
     <p>Email: {{this.employeeDetails.email}}</p>
     <p>First Name: {{this.employeeDetails.firstName}}</p>
     <p>Last Name: {{this.employeeDetails.lastName}}</p>
     <p>Username: {{this.employeeDetails.username}}</p>
     <p>Date Of Birth: {{this.employeeDetails.dateOfBirth}}</p>
     <p>Gender: {{this.employeeDetails.gender}}</p>
+  </div>
+    <div class="col">
+    <p>Available Sick Days: {{this.employeeDetails.availableSickLeave}}</p>
+    <p>Available Unpaid Days: {{this.employeeDetails.availableUnpaidLeave}}</p>
+    <p>Available Vacation Days: {{this.employeeDetails.availableVacationLeave}}</p>
+    </div>
+   </div>
   </div>
 </div> 
 </div>
