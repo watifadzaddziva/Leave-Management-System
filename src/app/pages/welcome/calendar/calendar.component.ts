@@ -12,10 +12,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
-  
-  
+
   calendarOptions!:CalendarOptions
-  Allevents: any
 
 constructor(private defaultService: DefaultService, private http:HttpClient){}
 
@@ -23,20 +21,28 @@ constructor(private defaultService: DefaultService, private http:HttpClient){}
     this.getAllEvents();
   }
 
-  getAllEvents(){
-    this.defaultService.getAllEvents().subscribe(res=>{
-      this.calendarOptions.events = res
-    })
+  getAllEvents() {
+    this.defaultService.getAllEvents().subscribe(res => {
+      console.log(res)
+      this.calendarOptions.events = res.map((event: any) => ({
+        title: event.title,
+        start: new Date(event.start),
+        end: new Date(event.end)
+      }));
+
+    });
+
 this.calendarOptions={
   plugins: [dayGridPlugin, ],
   initialView: 'dayGridMonth',
   weekends: false,
+  eventDisplay: 'block',
   }
 }
 
 
 toggleWeekends() {
-  this.calendarOptions.weekends = !this.calendarOptions.weekends // toggle the boolean!
+  this.calendarOptions.weekends = !this.calendarOptions.weekends 
 }
 
 

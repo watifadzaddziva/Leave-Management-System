@@ -40,7 +40,7 @@ constructor(private fb: UntypedFormBuilder,  private router : Router,
   submitForm() {
     console.log(this.user)
     this.authService.loginUserFromServer(this.user).subscribe((data )=>{
-    let tok= data.message;
+    let tok= data.token;
     let userData: {};
     userData=data
     this.authService.setToken(tok)
@@ -49,8 +49,8 @@ constructor(private fb: UntypedFormBuilder,  private router : Router,
     }, (error: HttpErrorResponse) => {
       this.authService.clearToken();
       this.notification.error('','Bad Credentials')
-      if (error.status == 401)
-      setTimeout(() => location.reload(), 3000);
+      // if (error.status == 401)
+      // setTimeout(() => location.reload(), 3000);
     });
    }
 

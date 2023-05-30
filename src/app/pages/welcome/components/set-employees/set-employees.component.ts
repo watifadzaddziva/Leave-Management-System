@@ -22,7 +22,8 @@ export class SetEmployeesComponent implements OnInit {
 
 
   constructor(private defaultService: DefaultService, 
-    private notification: NzNotificationService, private injector: Injector) {
+    private notification: NzNotificationService, 
+    private injector: Injector) {
   }
 
   ngOnInit(): void {

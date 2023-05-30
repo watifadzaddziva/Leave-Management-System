@@ -31,7 +31,11 @@
           <td>{{ data.fromDate }}</td>
           <td>{{ data.toDate }}</td>
           <td>{{ data.duration  }}</td>
-          <td>{{ data.leaveType }}</td>
+          <td>
+            <p *ngIf="data.leaveType=='SICK_LEAVE'" class='mx-3' >Sick Leave</p>
+              <p *ngIf="data.leaveType=='VACATION'" class='mx-3' >Vacation</p>
+              <p *ngIf="data.leaveType=='UNPAID_LEAVE'" class='mx-3' >Unpaid Leave</p>
+               </td>
           <td>{{ data.reason }}</td>
           <td>
             <i *ngIf="data.status=='REJECTED'" class='mx-3' style='color: red' >Rejected</i>

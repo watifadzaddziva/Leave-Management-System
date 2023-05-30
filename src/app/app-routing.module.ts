@@ -7,12 +7,16 @@ import { AuthGuard } from './guards/auth.guard';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { RoleGuardService } from './services/role-guard.service';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
+import { VerificationCodeComponent } from './auth/verification-code/verification-code.component';
+import { SetNewPasswordComponent } from './auth/set-new-password/set-new-password.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/login' },
   { path: 'login',  component:LoginComponent , },
   {path:'forgot-password',component:ForgotPasswordComponent},
   { path: 'register',  component:RegisterComponent },
+  { path: 'verify-password',  component:VerificationCodeComponent },
+  //{ path: 'set-new-password',  component:SetNewPasswordComponent },
   // { path: 'welcome', canActivate:[AuthGuard, ],
   //    loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule) },
 

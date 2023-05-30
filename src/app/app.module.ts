@@ -31,6 +31,10 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { NgxPermissionsModule, NgxPermissionsService } from 'ngx-permissions';
 import { HomePageComponent } from './auth/home-page/home-page.component';
 import { RouterModule } from '@angular/router';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
+import { PageNotFoundComponent } from './auth/page-not-found/page-not-found.component';
+import { VerificationCodeComponent } from './auth/verification-code/verification-code.component';
+import { SetNewPasswordComponent } from './auth/set-new-password/set-new-password.component';
 
 registerLocaleData(en);
 
@@ -39,7 +43,11 @@ registerLocaleData(en);
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomePageComponent
+    HomePageComponent,
+    ForgotPasswordComponent,
+    PageNotFoundComponent,
+    VerificationCodeComponent,
+    SetNewPasswordComponent
   ],
   imports: [
     BrowserModule,

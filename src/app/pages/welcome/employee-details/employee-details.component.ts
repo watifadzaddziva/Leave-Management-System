@@ -15,7 +15,6 @@ export class EmployeeDetailsComponent implements OnInit {
   allEmployees !: any;
  employeeDetails!: any;
 
-
   constructor(private employeeService: DefaultService, private route: ActivatedRoute,
     private router: Router){
 

@@ -7,6 +7,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { DefaultService } from '../services/default.service';
 
 @Component({
   selector: 'app-my-account',
@@ -17,6 +18,7 @@ export class MyAccountComponent {
 
   
   user  = new User();
+  userInfo:any;
   retUrl!: string | null;
   loginForm = new FormGroup({
     username: new FormControl(''),
@@ -30,6 +32,7 @@ export class MyAccountComponent {
   constructor(private fb: UntypedFormBuilder,  private router : Router,
     private authService: AuthService, private route : ActivatedRoute,
     public jwtHelper : JwtHelperService,
+    private defaultService:DefaultService,
     private notification : NzNotificationService, private guard: AuthGuard){}
    
   
@@ -41,8 +44,14 @@ this.UseDet();
   UseDet(){ 
     
       const tokenData=JSON.parse(sessionStorage.getItem('user_data') ?? '{}')  
-      this.userDetails= tokenData.user.employee
-      console.log(this.userDetails)
+      this.userInfo=tokenData.user.employee
+      const id= tokenData.user.employee.id
+      this.defaultService.getRemainingLeaveDays(id).subscribe((res)=>{
+      this.userDetails=res
+      },error=>{
+        this.notification.error("Error while fetching employee leaves","")
+      })
+
   }
      
      

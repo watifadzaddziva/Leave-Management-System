@@ -42,6 +42,7 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { NgxPermissionsModule, NgxPermissionsService } from 'ngx-permissions';
 import { AllLeavesComponent } from './all-leaves/all-leaves.component';
+import { AdminsComponent } from './admins/admins.component';
 
 
 registerLocaleData(en);
@@ -82,7 +83,7 @@ registerLocaleData(en);
 
 
   declarations: [WelcomeComponent, MainComponent, CalendarComponent, MyLeaveComponent, LeavesToApproveComponent,
-  ReportsComponent, MyAccountComponent, EmployeesComponent, EmployeeDetailsComponent, SetEmployeesComponent, AllLeavesComponent, ],
+  ReportsComponent, MyAccountComponent, EmployeesComponent, EmployeeDetailsComponent, SetEmployeesComponent, AllLeavesComponent, AdminsComponent, ],
 
   providers: [NzMessageService,NgxPermissionsService,
     { provide: NZ_I18N, useValue: en_US }

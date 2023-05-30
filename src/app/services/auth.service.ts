@@ -9,6 +9,7 @@ import { NgxPermissionsService } from 'ngx-permissions';
 
 @Injectable()
 export class AuthService {
+  baseUrl='http://192.168.10.146:8085'
   static NAME = 'token';
   static TOKEN: string;
   token: string;
@@ -62,12 +63,20 @@ public isLoggedIn(){
 }
 
   loginUserFromServer(user :any):Observable<any>{
-    return this.http.post<any>("http://192.168.10.146:8080/login",user)
+    return this.http.post<any>(`${this.baseUrl}/login`,user)
  
 }
       
   registerUserFromServer(user :any):Observable<any>{ 
-    return this.http.post<any>("http://192.168.10.146:8080/register",user);
+    return this.http.post<any>(`${this.baseUrl}/register`,user);
   }
 
+  sendPasswordResetEmail(email:any):Observable<any>{
+    return this.http.post<any>(`${this.baseUrl}/reset/request-password-reset`,email) 
+  }
+
+
+  setNewPassword(data:any):Observable<any>{
+    return this.http.post<any>(`${this.baseUrl}/reset/reset-password`,data)
+  }
 }

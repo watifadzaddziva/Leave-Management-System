@@ -1,4 +1,9 @@
 <div id='calendar-container'>
     <button nzType="primary" nz-button (click)="toggleWeekends()">toggle weekends</button>
-<full-calendar [options]="calendarOptions" ></full-calendar>
+<full-calendar [options]="calendarOptions" >
+    <ng-template #eventContent let-arg>
+        <b>{{arg.timeText}}</b>
+        <i>{{arg.event.title}}</i>
+      </ng-template>
+</full-calendar>
 </div>

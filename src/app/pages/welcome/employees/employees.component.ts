@@ -21,7 +21,6 @@ export class EmployeesComponent implements OnInit {
   viewId !: any;
   username!: any
   id!: Employee;
-  // allEmployees!: any;
   emp!: any;
 
   constructor(private defaultService: DefaultService, private router : Router,

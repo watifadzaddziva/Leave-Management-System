@@ -1,10 +1,10 @@
 <button class='mb-2 ml-3' nz-button (click)='toggle(true)' nzType='primary' >
-  <!-- <i nz-icon nzType='edit' nzTheme='outline' ></i> -->
-  <span >Apply Leave</span>
+  <i nz-icon nzType='edit' nzTheme='outline' *ngIf="leave.id"></i>
+  <span *ngIf="!leave.id">Apply Leave</span>
   
 </button><br>
 <nz-drawer [nzClosable]='false' [nzWidth]='400' [nzVisible]='visible' nzPlacement='right'
-           [nzTitle]="'Apply Leave'" (nzOnClose)='toggle(false)'>
+           [nzTitle]='leave.id? "Edit Leave":"Apply Leave"' (nzOnClose)='toggle(false)'>
   <ng-container *nzDrawerContent>
     <form nz-form [formGroup]='form' nzLayout='vertical' (ngSubmit)='submit()'>
       <formly-form [model]="leave"  [fields]='fields' [options]="options"  [form]='form' ></formly-form>

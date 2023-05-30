@@ -1,7 +1,9 @@
-/* 
-    .page{
-      background-color: #79bac0;
-      }  */
+body {
+    background-color: #d6d9e2;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+  }
      
      [nz-form] {
         max-width: 600px;
@@ -22,8 +24,19 @@
         cursor: pointer;
       }
       
+      .login-form {
+        margin: auto;
+        padding-top: 50px;
+    
+     }    
+
+
  .login-form-margin {
     margin-bottom: 16px;
+  }
+  .text-center{
+    color:#8e8ebb
+   
   }
  
   .login-form-forgot {

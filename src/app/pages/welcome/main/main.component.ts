@@ -22,46 +22,48 @@ export class MainComponent  implements OnInit{
   @Output() output = new EventEmitter();
   fileList: any = [];
   options: any;
-  id!: any;
-  filelist!: any;
+ 
 
   constructor(private fb: UntypedFormBuilder,
     private defaultService: DefaultService,
+    private authService:AuthService,
    private notification : NzNotificationService,
    private jwtHelper: JwtHelperService,
     private router: Router ) {}
 
-  ngOnInit(): void {
- this.fields= ApplyLeaveFieldsFields();
-  }
+ngOnInit(): void {
+this.leave={...this.leave };
+this.fields= ApplyLeaveFieldsFields();
+}
 
+// ngOnchanges(){
+//   this.leave={...this.leave };
+//   this.fields= ApplyLeaveFieldsFields(); 
+// }
+
+
+toggle(visible: boolean): void {
+  this.visible = visible;
+}
   submit(){
 
     if (this.form.valid) {
-      const dataToSend = this.form.value as { employeeId: number; };
+      const dataToSend = this.form.value as {employeeId:number};
       const tokenData=JSON.parse(sessionStorage.getItem('user_data') ?? '{}')  
-      dataToSend.employeeId= tokenData.user.employee.id
-      console.log(dataToSend)
+      dataToSend.employeeId = tokenData.user.employee.id;
      var svc; 
+    //  this.leave.id? svc=this.defaultService.updateLeave(this.leave, this.form.value):
       svc = this.defaultService.applyForLeave(dataToSend);
       svc.subscribe(res => {
         this.notification.success('Saved', 'leave application Succescfully!', { nzDuration: 10000 });
-        console.log(res);
-        this.filelist=[];
-
-        
+        this.output.emit(res)
+        this.toggle(false)
+        this.fileList=[];
       },err=>{
-        this.notification.error('error', 'invalid dates', { nzDuration: 10000 });
+        this.notification.error('Error while applying leave', '', { nzDuration: 10000 });
       });
     }
   }
-
-  toggle(visible: boolean): void {
-    this.visible = visible;
-  }
-
- 
-
 
 
 }
