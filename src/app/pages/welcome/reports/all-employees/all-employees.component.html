@@ -1,0 +1,36 @@
+<div style="padding: 30px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 40px;">
+      <div style="flex: 1;">
+        <h3 style="font-size: 18px; font-weight: bold;">Specify Parameter Values</h3>
+        <p style="font-size: 14px;">Report parameter values must be specified before the report can be displayed. Click the View Filter button to select the parameters and click View Report.</p>
+      </div>
+  
+      <div>
+        <button nz-button (click)="toggle(true)" nzType="primary">
+          <i nz-icon nzType="filter" style="margin-right: 8px;"></i>View Filter
+        </button>
+      </div>
+    </div>
+  
+    <div style="margin-top: 40px;">
+      <app-loader *ngIf="loading"></app-loader>
+  
+      <ng-container *ngIf="isLoaded">
+        <iframe [src]="safeUrl" style="width: 100%; height: calc(100vh - 260px); border: none;"></iframe>
+      </ng-container>
+    </div>
+  
+    <nz-drawer [nzClosable]="false" [nzVisible]="visible" nzWidth="30%" nzPlacement="right" (nzOnClose)="toggle(false)">
+        <h5 class="mb-5">Report Date Filters</h5>
+        <ng-container *nzDrawerContent>
+          <h5 class="mb-5">Report Filters</h5>
+          <form nz-form [formGroup]='form' nzLayout='vertical' (ngSubmit)='loadReport()'>
+            <formly-form [model]='dates' [fields]='fields' [form]='form' [options]="{}"></formly-form>
+            <nz-button-group class='mt-1'>
+              <button nz-button [disabled]="!form.valid" nzType='primary' type='submit'>View Report</button>
+      
+            </nz-button-group>
+          </form>
+        </ng-container>
+      </nz-drawer>
+  </div>

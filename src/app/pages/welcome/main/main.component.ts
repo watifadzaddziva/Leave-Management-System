@@ -20,9 +20,11 @@ export class MainComponent  implements OnInit{
   fields !: FormlyFieldConfig[];
   @Input() leave!: any;
   @Output() output = new EventEmitter();
+  @Output() leaveToApproveCountChange = new EventEmitter<number>();
+  leavesToApproveCount: number = 0;
   fileList: any = [];
   options: any;
- 
+ id:any
 
   constructor(private fb: UntypedFormBuilder,
     private defaultService: DefaultService,
@@ -36,12 +38,6 @@ this.leave={...this.leave };
 this.fields= ApplyLeaveFieldsFields();
 }
 
-// ngOnchanges(){
-//   this.leave={...this.leave };
-//   this.fields= ApplyLeaveFieldsFields(); 
-// }
-
-
 toggle(visible: boolean): void {
   this.visible = visible;
 }
@@ -51,12 +47,15 @@ toggle(visible: boolean): void {
       const dataToSend = this.form.value as {employeeId:number};
       const tokenData=JSON.parse(sessionStorage.getItem('user_data') ?? '{}')  
       dataToSend.employeeId = tokenData.user.employee.id;
+      this.id=tokenData.user.employee.id;
      var svc; 
-    //  this.leave.id? svc=this.defaultService.updateLeave(this.leave, this.form.value):
+     this.leave.id? svc=this.defaultService.updateLeave(this.leave.id,this.id, this.form.value):
       svc = this.defaultService.applyForLeave(dataToSend);
       svc.subscribe(res => {
         this.notification.success('Saved', 'leave application Succescfully!', { nzDuration: 10000 });
         this.output.emit(res)
+        this.leavesToApproveCount++;
+        this.leaveToApproveCountChange.emit(this.leavesToApproveCount)
         this.toggle(false)
         this.fileList=[];
       },err=>{

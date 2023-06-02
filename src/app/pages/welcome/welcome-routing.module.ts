@@ -10,6 +10,7 @@ import { MyLeaveComponent } from './my-leave/my-leave.component';
 import { ReportsComponent } from './reports/reports.component';
 import { WelcomeComponent } from './welcome.component';
 import { AllLeavesComponent } from './all-leaves/all-leaves.component';
+import { AllEmployeesComponent } from './reports/all-employees/all-employees.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent, 
@@ -19,11 +20,16 @@ const routes: Routes = [
     {path: 'my-leaves', component: MyLeaveComponent},
     {path:'allLeaves',component:AllLeavesComponent},
     {path: 'leavesToApprove', component: LeavesToApproveComponent},
-    {path: 'reports', component: ReportsComponent},
+    {path: 'reports', component: ReportsComponent,
+    children:
+    [
+      {path:'all-employees-report',component:AllEmployeesComponent}
+    ]
+  },
     {path : 'myAccount', component: MyAccountComponent},
     {path: 'employees', component: EmployeesComponent},
-    {path: 'employee-details/:id', component: EmployeeDetailsComponent}
-  
+    {path: 'employee-details/:id', component: EmployeeDetailsComponent},
+ 
   ]
   },
 ];

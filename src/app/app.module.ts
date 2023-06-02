@@ -35,7 +35,6 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
 import { PageNotFoundComponent } from './auth/page-not-found/page-not-found.component';
 import { VerificationCodeComponent } from './auth/verification-code/verification-code.component';
 import { SetNewPasswordComponent } from './auth/set-new-password/set-new-password.component';
-
 registerLocaleData(en);
 
 @NgModule({
@@ -70,7 +69,7 @@ registerLocaleData(en);
     NzSelectModule,
     FullCalendarModule,
     NgxPermissionsModule.forRoot(),
-  RouterModule
+  RouterModule,
 
   ],
 

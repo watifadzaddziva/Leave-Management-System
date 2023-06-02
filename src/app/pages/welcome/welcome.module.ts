@@ -43,6 +43,8 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { NgxPermissionsModule, NgxPermissionsService } from 'ngx-permissions';
 import { AllLeavesComponent } from './all-leaves/all-leaves.component';
 import { AdminsComponent } from './admins/admins.component';
+import { LoaderComponent } from './loader/loader.component';
+import { AllEmployeesComponent } from './reports/all-employees/all-employees.component';
 
 
 registerLocaleData(en);
@@ -83,7 +85,7 @@ registerLocaleData(en);
 
 
   declarations: [WelcomeComponent, MainComponent, CalendarComponent, MyLeaveComponent, LeavesToApproveComponent,
-  ReportsComponent, MyAccountComponent, EmployeesComponent, EmployeeDetailsComponent, SetEmployeesComponent, AllLeavesComponent, AdminsComponent, ],
+  ReportsComponent, MyAccountComponent, EmployeesComponent, EmployeeDetailsComponent, SetEmployeesComponent, AllLeavesComponent, AdminsComponent, LoaderComponent, AllEmployeesComponent, ],
 
   providers: [NzMessageService,NgxPermissionsService,
     { provide: NZ_I18N, useValue: en_US }

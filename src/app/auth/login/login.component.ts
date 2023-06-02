@@ -38,7 +38,6 @@ constructor(private fb: UntypedFormBuilder,  private router : Router,
    }
 
   submitForm() {
-    console.log(this.user)
     this.authService.loginUserFromServer(this.user).subscribe((data )=>{
     let tok= data.token;
     let userData: {};
@@ -48,9 +47,12 @@ constructor(private fb: UntypedFormBuilder,  private router : Router,
     this.router.navigate(['/welcome']); 
     }, (error: HttpErrorResponse) => {
       this.authService.clearToken();
-      this.notification.error('','Bad Credentials')
-      // if (error.status == 401)
-      // setTimeout(() => location.reload(), 3000);
+      if (error.status == 401 || error.status==400){
+        this.notification.error('Incorrect Username or Password','')
+      }else{
+        this.notification.error('Server Unavailable: Please try again later','')
+      }
+
     });
    }
 

@@ -27,7 +27,8 @@ constructor(private defaultService: DefaultService, private http:HttpClient){}
       this.calendarOptions.events = res.map((event: any) => ({
         title: event.title,
         start: new Date(event.start),
-        end: new Date(event.end)
+        end: new Date(event.end),
+        color: this.getEventColor(event.leaveType)
       }));
 
     });
@@ -43,6 +44,19 @@ this.calendarOptions={
 
 toggleWeekends() {
   this.calendarOptions.weekends = !this.calendarOptions.weekends 
+}
+
+getEventColor(leaveType:string):string{
+  switch (leaveType) {
+    case 'VACATION':
+      return '#2db7f5'; 
+    case 'UNPAID_LEAVE':
+      return '#ED2B2A'; 
+    case 'SICK_LEAVE':
+      return '#F79327'; 
+    default:
+      return '#000000'; 
+  }
 }
 
 

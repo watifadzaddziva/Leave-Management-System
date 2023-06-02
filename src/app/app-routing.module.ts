@@ -16,13 +16,12 @@ const routes: Routes = [
   {path:'forgot-password',component:ForgotPasswordComponent},
   { path: 'register',  component:RegisterComponent },
   { path: 'verify-password',  component:VerificationCodeComponent },
-  //{ path: 'set-new-password',  component:SetNewPasswordComponent },
   // { path: 'welcome', canActivate:[AuthGuard, ],
   //    loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule) },
 
 { path: 'welcome' , loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule) },
-{path:'404', component: PageNotFoundComponent},
-  {path : '**',redirectTo:'/404'}
+{path:'**', component: PageNotFoundComponent},
+  // {path : '**',redirectTo:'/404'}
 ];
 
 @NgModule({

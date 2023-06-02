@@ -1,30 +1,31 @@
-<div style="background: #ECECEC;padding:30px;">
-    <div nz-row [nzGutter]="10">
-      <div nz-col [nzSpan]="6" class="text-center"  [style]="{backgroundColor:'#31087B', borderRadius:'20px'}">
-        <nz-card nzTitle="Total Employees" [style]="{borderRadius: '20px'}">
-          <p>{{this.employees.total}}</p>
-        </nz-card>
-      </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <div nz-col [nzSpan]="6" class="text-center" [style]="{backgroundColor:'#31087B',borderRadius:'20px'}">
-        <nz-card nzTitle="Total leaves Applied"  [style]="{borderRadius: '20px'}">
-          <p>{{this.allLeaves.total}}</p>
-        </nz-card>
-      </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <div nz-col [nzSpan]="6" class="text-center" [style]="{backgroundColor:'#31087B',borderRadius:'20px'}">
-        <nz-card nzTitle="Total leaves Pending" [style]="{borderRadius: '20px'}" >
-          <p>{{this.pending.total}}</p>
-        </nz-card>
-      </div>
-    </div><br><br>
-    <div nz-row [nzGutter]="10">
-        <div nz-col [nzSpan]="6" class="text-center" [style]="{backgroundColor:'#31087B',borderRadius:'20px'}">
-          <nz-card nzTitle="Total leaves Approved" [style]="{borderRadius: '20px'}" >
-            <p>{{this.approved.total}}</p>
-          </nz-card>
-        </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <div nz-col [nzSpan]="6" class="text-center"  [style]="{backgroundColor:'#FF0303',borderRadius:'20px'}">
-          <nz-card nzTitle="Total leaves Rejected" [style]="{borderRadius: '20px'}">
-            <p>{{this.rejected.total}}</p>
-          </nz-card>
-        </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  </div>
+
+<h4 class="text-center mb-0"><i nz-icon nzType="file" nzTheme="outline"></i>&nbsp;
+  Reports</h4>
+<br>
+<ul nz-menu nzMode="horizontal">
+  <li nz-submenu nzSelected nzTitle="Employees" routerLink="/welcome/reports/all-employees-report" nzIcon="user" >
+    <!-- <ul>
+      <li nz-menu-item nzTitle="" routerLink='/reports/delegates'>Delegates
+      </li>
+      <li nz-menu-item nzTitle="" routerLink='/reports/events-report'>By Event
+      </li>
+    </ul> -->
+  </li>
+  <li nz-submenu nzSelected nzTitle="Donations" routerLink='/reports/donation-report-by-dates' nzIcon="fund" >
+  </li>
+  <li nz-submenu nzTitle="Membership" nzIcon="user">
+    <ul>
+      <li nz-menu-item nzTitle="" routerLink="/reports/membership-report-by-member">By Member
+      </li>
+    </ul>
+  </li>
+  <li nz-submenu nzTitle="Subscriptions" routerLink="/reports/subscription-report-by-dates" nzIcon="user">
+  </li>
+  <li nz-submenu nzTitle="Merchandise" nzIcon="shopping">
+    <ul>
+      <li nz-menu-item nzTitle="" routerLink="/reports/merchandise-report-by-dates">By Dates
+      </li>
+    </ul>
+  </li>
+</ul>
+<router-outlet></router-outlet>

@@ -51,8 +51,8 @@ getAllEmployees(): Observable<any>{
   applyForLeave(data : any){
     return this.http.post(`${this.baseUrl}leave/applyLeave`, data)
   }
-  updateLeave(data: any){
-return this.http.put(`${this.baseUrl}leave/`,data)
+  updateLeave(leaveId: number,employeeId:number,data:any){
+return this.http.put(`${this.baseUrl}leave/updateLeave/${leaveId}/${employeeId}`,data)
   }
 
   cancelLeave(leaveId:number, employeeId:number){

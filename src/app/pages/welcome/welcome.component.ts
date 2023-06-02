@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Roles } from './models/roles';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
@@ -11,6 +11,7 @@ import { NgxPermissionsService } from 'ngx-permissions';
 })
 export class WelcomeComponent implements OnInit {
   isCollapsed = false;
+  @Input() leaveToApproveCountChange!: number;
   user!:string;
   first_name!:string;
 
@@ -19,6 +20,7 @@ export class WelcomeComponent implements OnInit {
    }
 
   ngOnInit() {
+
 if (this.authService.isAuthenticated()) {
     this.authService.setTokenPayload();
     this.user = this.authService.tokenPayload?.sub;
