@@ -17,7 +17,9 @@ import jwt_decode from 'jwt-decode';
 export class LoginComponent  implements OnInit {
 
   user  = new User();
+  view!: boolean;
   returnUrl: any;
+  passwordVisible: boolean = false;;
   loginForm = new FormGroup({
     username: new FormControl(''),
     password: new FormControl('')
@@ -55,7 +57,13 @@ constructor(private fb: UntypedFormBuilder,  private router : Router,
 
     });
    }
+   togglePasswordVisibility(): void {
+    this.passwordVisible = !this.passwordVisible;
+  }
 
+  toggleView() {
+    this.view = !this.view;
+  }
 
     
    }

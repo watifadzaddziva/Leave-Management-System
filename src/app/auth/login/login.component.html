@@ -6,16 +6,21 @@
           <nz-form-label nzRequired >  Username</nz-form-label>
           <nz-form-control nzErrorTip="Please input your email!">
             <nz-input-group nzPrefixIcon="user">
-              <input [(ngModel)]="user.username" name="username"  type="userName" nz-input  placeholder="userName" />
+              <input [(ngModel)]="user.username" name="username"   nz-input  placeholder="userName" />
             </nz-input-group>
           </nz-form-control>
         </nz-form-item>
         <nz-form-item>
-          <nz-form-label nzRequired > Password</nz-form-label>
+          <nz-form-label nzRequired>Password</nz-form-label>
           <nz-form-control nzErrorTip="Please input your Password!">
-            <nz-input-group nzPrefixIcon="lock">
-              <input [(ngModel)]="user.password" name="password"  type="password" nz-input  placeholder="Password" />
-            </nz-input-group>
+            <nz-input-group nzPrefixIcon="lock" [nzSuffix]="suffixTemplate">
+              <input style="width: 100%" nz-input [type]="view ? 'text' : 'password'" 
+                  placeholder="Password" [(ngModel)]="user.password" name="password" required/>
+          </nz-input-group>
+          <ng-template #suffixTemplate>
+              <i nz-icon [nzType]="view ? 'eye-invisible' : 'eye'" (click)="view = !view"
+                  class="pointer"></i>
+          </ng-template>
           </nz-form-control>
         </nz-form-item>
         <div nz-row class="login-form-margin">

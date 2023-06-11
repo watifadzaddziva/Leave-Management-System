@@ -49,9 +49,9 @@ toggleWeekends() {
 getEventColor(leaveType:string):string{
   switch (leaveType) {
     case 'VACATION':
-      return '#2db7f5'; 
+      return '#141c4c'; 
     case 'UNPAID_LEAVE':
-      return '#ED2B2A'; 
+      return '#9c1c1c'; 
     case 'SICK_LEAVE':
       return '#F79327'; 
     default:

@@ -1,15 +1,20 @@
 import { FormlyFieldConfig } from "@ngx-formly/core";
 
 export const EmployeesReportFields = function (
-  events: Array<any>,
+  
 ): FormlyFieldConfig[] {
   return [
     {
-      key: 'eventName',
+      key: 'status',
       type: 'select',
       templateOptions: {
-        label: 'Event',
-        options: events,
+        label: 'Leave Status',
+        options: [
+          { value: 'APPROVED', label: 'Approved' },
+          { value: 'PENDING', label: 'Pending' },,
+          { value: 'REJECTED', label: 'Rejected' },
+         
+        ]
 
       },
     },

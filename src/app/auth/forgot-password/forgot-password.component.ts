@@ -26,7 +26,11 @@ export class ForgotPasswordComponent implements OnInit {
   this.authService.sendPasswordResetEmail(this.form.value).subscribe(res=>{
   this.notification.success("Verification code has been successfully sent to your email","")
   this.router.navigate(['/verify-password'])
-})
+},error=>{
+  if (error && error.error && error.error.message) {
+    this.notification.error('Error', error.error.message);
+  }
+});
   }else{
     this.notification.error("Error while sending the email",'')
   }

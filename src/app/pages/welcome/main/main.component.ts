@@ -41,28 +41,30 @@ this.fields= ApplyLeaveFieldsFields();
 toggle(visible: boolean): void {
   this.visible = visible;
 }
-  submit(){
-
-    if (this.form.valid) {
-      const dataToSend = this.form.value as {employeeId:number};
-      const tokenData=JSON.parse(sessionStorage.getItem('user_data') ?? '{}')  
-      dataToSend.employeeId = tokenData.user.employee.id;
-      this.id=tokenData.user.employee.id;
-     var svc; 
-     this.leave.id? svc=this.defaultService.updateLeave(this.leave.id,this.id, this.form.value):
+submit() {
+  if (this.form.valid) {
+    const dataToSend = this.form.value as { employeeId: number };
+    const tokenData = JSON.parse(sessionStorage.getItem('user_data') ?? '{}');
+    dataToSend.employeeId = tokenData.user.employee.id;
+    this.id = tokenData.user.employee.id;
+    var svc;
+    this.leave.id ? svc = this.defaultService.updateLeave(this.leave.id, this.id, this.form.value) :
       svc = this.defaultService.applyForLeave(dataToSend);
-      svc.subscribe(res => {
-        this.notification.success('Saved', 'leave application Succescfully!', { nzDuration: 10000 });
-        this.output.emit(res)
-        this.leavesToApproveCount++;
-        this.leaveToApproveCountChange.emit(this.leavesToApproveCount)
-        this.toggle(false)
-        this.fileList=[];
-      },err=>{
-        this.notification.error('Error while applying leave', '', { nzDuration: 10000 });
-      });
-    }
+    svc.subscribe(res => {
+      this.notification.success('Saved', 'Leave application successful!', { nzDuration: 10000 });
+      this.output.emit(res);
+      this.leavesToApproveCount++;
+      this.leaveToApproveCountChange.emit(this.leavesToApproveCount);
+      this.toggle(false);
+      this.fileList = [];
+    }, error => {
+      // if (error && error.error && error.error.message) {
+        this.notification.error('Error while applying for Leave','' );
+      // }
+    });
   }
+}
+
 
 
 }

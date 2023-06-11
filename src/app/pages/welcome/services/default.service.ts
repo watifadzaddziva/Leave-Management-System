@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, Observer } from 'rxjs';
+import { Observable, Observer, map } from 'rxjs';
 import { Employee } from '../models/employee';
 import { EmployeeLeave } from '../models/employee-leave';
 
@@ -46,6 +46,19 @@ getAllEmployees(): Observable<any>{
    // employee leave
   getMyLeaves(id:any){
     return this.http.get(`${this.baseUrl}leave/myleaves/${id}`)
+  }
+  
+  employeesReport():Observable<any>{
+    return this.http.get(`${this.baseUrl}employee/employees/report`,{responseType:'blob' as 'json'}).pipe(map(data=>{
+      return data;
+    }))
+  }
+
+  leavesReport():Observable<any>{
+    return this.http.get(`${this.baseUrl}employee/leave/report`, {responseType:'blob' as 'json'}).pipe(map(data=>{
+      return data;
+    }))
+
   }
  
   applyForLeave(data : any){

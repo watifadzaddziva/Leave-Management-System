@@ -1,7 +1,7 @@
 <body>
   <form nz-form nzLayout='vertical' style="width: 450px;" class="login-form"  [formGroup]="registrationForm" (ngSubmit)="submitForm()">
     <img src="/assets/logo.png" alt="Logo" style="width: 500px; margin-bottom: 25px;">
-    <h3 class="text-center">COMPANY REGISTRATION</h3>
+    <h3 class="text-center">REGISTRATION</h3>
     <div style="display: flex; justify-content: space-between;">
       <div style="width: 48%;">
         <nz-form-item>
@@ -46,9 +46,11 @@
 
     <nz-form-item>
       <nz-form-label nzFor="password" nzRequired>Password</nz-form-label>
-      <nz-form-control nzHasFeedback [nzErrorTip]="errorTpl">
-        <input nz-input type="password" id="password" formControlName="password" [(ngModel)]="user.password" name="password" (ngModelChange)="updateConfirmValidator()">
-        <ng-template #errorTpl let-control>
+      <nz-form-control  [nzErrorTip]="errorTpl">
+        <div class="password-input-wrapper">
+          <input nz-input [type]="passwordVisible ? 'text' : 'password'" id="password" formControlName="password" [(ngModel)]="user.password" name="password" (ngModelChange)="updateConfirmValidator()">
+          <i nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'" (click)="togglePasswordVisibility()"></i>
+        </div>   <ng-template #errorTpl let-control>
           <ng-container *ngIf="control.hasError('minlength')">Password too short!</ng-container>
           <ng-container *ngIf="control.hasError('required')">Please input your password!</ng-container>
           <ng-container *ngIf="control.hasError('pattern')">
@@ -67,9 +69,11 @@
 
     <nz-form-item>
       <nz-form-label nzFor="checkPassword" nzRequired>Confirm Password</nz-form-label>
-      <nz-form-control [nzErrorTip]="errorTpl" nzHasFeedback>
-        <input nz-input type="password" formControlName="checkPassword" id="checkPassword">
-        <ng-template #errorTpl let-control>
+      <nz-form-control [nzErrorTip]="errorTpl" >
+        <div class="password-input-wrapper">
+          <input nz-input [type]="passwordVisible ? 'text' : 'password'" id="checkPassword" formControlName="checkPassword" >
+          <i nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'" (click)="togglePasswordVisibility()"></i>
+        </div>   <ng-template #errorTpl let-control>
           <ng-container *ngIf="control.hasError('required')">Please confirm your password!</ng-container>
           <ng-container *ngIf="control.hasError('confirm')">Two passwords do not match!</ng-container>
         </ng-template>
@@ -78,7 +82,7 @@
 
     <nz-form-item nz-row class="register-area">
       <nz-form-control>
-        <button nz-button type="submit" [disabled]="registrationForm.invalid" nzType="primary">Register Company</button>&nbsp;&nbsp;
+        <button nz-button type="submit" [disabled]="registrationForm.invalid" nzType="primary">Register</button>&nbsp;&nbsp;
         <button nz-button (click)="resetForm($event)" nzType="primary">Reset</button><br>
         Already Registered? <a style="color:rgb(0, 38, 255);" routerLink="/login">Go to Login</a>
       </nz-form-control>

@@ -11,6 +11,7 @@ import { ReportsComponent } from './reports/reports.component';
 import { WelcomeComponent } from './welcome.component';
 import { AllLeavesComponent } from './all-leaves/all-leaves.component';
 import { AllEmployeesComponent } from './reports/all-employees/all-employees.component';
+import { AllLeavesReportsComponent } from './reports/all-leaves-reports/all-leaves-reports.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent, 
@@ -23,7 +24,9 @@ const routes: Routes = [
     {path: 'reports', component: ReportsComponent,
     children:
     [
-      {path:'all-employees-report',component:AllEmployeesComponent}
+      {path:'all-employees-report',component:AllEmployeesComponent},
+      {path:'all-leaves-report',component:AllLeavesReportsComponent},
+
     ]
   },
     {path : 'myAccount', component: MyAccountComponent},

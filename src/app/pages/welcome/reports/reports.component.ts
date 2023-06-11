@@ -19,11 +19,7 @@ export class ReportsComponent  implements OnInit{
 constructor(private defaultService: DefaultService){}
 
   ngOnInit(): void {
-    this.load();
-    this.getApproved();
-    this.getPending();
-    this.getRejected();
-    this.getLeaves();
+ 
   }
 
 

@@ -1,13 +1,12 @@
-<div id='calendar-container' style="display: flex; flex-direction: column;">
+<div id='calendar-container'>
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-        <p style="display: flex; align-items: center; margin: 0;">
-            <i><nz-badge nzColor="#f50"></nz-badge>UNPAID LEAVE</i><br>
-            <i><nz-badge nzColor="#2db7f5"></nz-badge>VACATION</i>
-            <i><nz-badge nzStatus="warning"></nz-badge>SICK LEAVE</i>
+        <p style="display: flex; flex-direction: column;">
+           <span><nz-badge nzColor="#9c1c1c"></nz-badge><b>UNPAID LEAVE</b></span> 
+            <span><nz-badge nzColor="#141c4c"></nz-badge><b>VACATION</b></span>
+           <span><nz-badge nzStatus="warning"></nz-badge><b>SICK LEAVE</b></span> 
         </p>
         <button nzType="primary" nz-button (click)="toggleWeekends()">toggle weekends</button>
     </div>
-
     <full-calendar [options]="calendarOptions">
         <ng-template #eventContent let-arg>
             <i>{{arg.event.title}}</i>

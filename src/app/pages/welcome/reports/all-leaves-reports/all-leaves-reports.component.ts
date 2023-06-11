@@ -1,57 +1,57 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormlyFieldConfig } from '@ngx-formly/core';
-import { EmployeesReportFields } from '../report forms/all-employees';
-import { DatePipe } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { DefaultTitleStrategy } from '@angular/router';
 import { DefaultService } from '../../services/default.service';
-
+import { FormlyFieldConfig } from '@ngx-formly/core';
+import { EmployeesReportFields } from '../report forms/all-employees';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-all-employees',
-  templateUrl: './all-employees.component.html',
-  styleUrls: ['./all-employees.component.css']
+  selector: 'app-all-leaves-reports',
+  templateUrl: './all-leaves-reports.component.html',
+  styleUrls: ['./all-leaves-reports.component.css']
 })
-export class AllEmployeesComponent implements OnInit {
+export class AllLeavesReportsComponent implements OnInit {
 
   url!: string;
+  dates:any;
   disabled = true;
   loading: boolean = false;
   visible!: boolean;
   form = new FormGroup({});
   fields!: FormlyFieldConfig[];
-  dates:any;
   pdfSrc!: string;
   safeUrl: any;
   isLoaded:boolean =false;
-  options:any
+  baseUrl = 'http://192.168.10.146:8085/'
 
-  constructor(private nzNotification: NzNotificationService,
+  constructor(
+    private service: DefaultService,
+    private nzNotification: NzNotificationService,private http:HttpClient,
     private dp: DatePipe,
     private domSanitizer: DomSanitizer,
-    private service:DefaultService){
-
-  }
-
-  ngOnInit(): void {  
+  ) {}
+  
+  ngOnInit(): void {
+    this.fields= EmployeesReportFields();
   }
 
   toggle(visible: boolean) {
     this.visible = visible;
   }
 
+ 
 
   submit() {
     this.loading= true;
-    this.service.employeesReport()
+    this.service.leavesReport()
       .subscribe(
          (res:any) => {
           console.log(res)
           const file = new Blob([res], { type: 'application/pdf' });
           const fileURL = URL.createObjectURL(file);
-          // window.open(fileURL, '_blank');
           this.safeUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(fileURL);
           this.isLoaded = true;
           this.loading=false;
@@ -62,4 +62,5 @@ export class AllEmployeesComponent implements OnInit {
         }
       );
   }
+
 }

@@ -14,11 +14,7 @@ export class RegisterComponent implements OnInit {
 
   
   user = new User();
- 
-  inputValue: string | null = null;
-  textValue: string | null = null;
   passwordVisible = false;
-  password?: string;
   registrationForm!: FormGroup
 
   constructor(private fb: UntypedFormBuilder,
@@ -28,25 +24,26 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
    this.registrationForm = this.fb.group({
-    firstName: [null, [Validators.required, Validators.minLength(3)]],
-    lastName: [null, [Validators.required,Validators.minLength(3)]],
-    username: [null, [Validators.required, Validators.minLength(3)]],
-    email: [null, [Validators.email, Validators.required]],
-    password: [null, [Validators.required, Validators.minLength(5), Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{6,}')]],
-    checkPassword: [null, [Validators.required, this.confirmationValidator]],
-
+    firstName: ['', [Validators.required, Validators.minLength(3)]],
+    lastName: ['', [Validators.required,Validators.minLength(3)]],
+    username: ['', [Validators.required, Validators.minLength(3)]],
+    email: ['', [Validators.email, Validators.required]],
+    password: ['', [Validators.required, Validators.minLength(5), Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{6,}')]],
+    checkPassword: ['', [Validators.required, this.confirmationValidator]],
    })
   }
 
 
-  submitForm(){
+  submitForm() {
     if (this.registrationForm.valid) {
-      this.authService.registerUserFromServer(this.user).subscribe((res)=>{
-        this.notification.success("Registered Succescfully" ,"")
-     this.router.navigate(['/login']);
-        
-      })
-      
+      this.authService.registerUserFromServer(this.user).subscribe((res) => {
+        this.notification.success("Registered Successfully", "");
+        this.router.navigate(['/login']);
+      }, error => {
+        if (error && error.error && error.error.message) {
+          this.notification.error('Error', error.error.message);
+        }
+      });
     } else {
       Object.values(this.registrationForm.controls).forEach(control => {
         if (control.invalid) {
@@ -56,10 +53,15 @@ export class RegisterComponent implements OnInit {
       });
     }
   }
+  
 
   updateConfirmValidator(): void {
     /** wait for refresh value */
     Promise.resolve().then(() => this.registrationForm.controls['checkPassword'].updateValueAndValidity());
+  }
+
+  togglePasswordVisibility(){
+    this.passwordVisible=!this.passwordVisible;
   }
 
 

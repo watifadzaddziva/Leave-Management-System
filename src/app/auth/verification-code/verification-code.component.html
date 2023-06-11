@@ -7,44 +7,42 @@
             <nz-form-label nzRequired>Verification Code</nz-form-label>
             <nz-form-control nzErrorTip="Please input the code shared via your email!">
               <nz-input-group nzPrefixIcon="lock">
-                <input formControlName="code" type="password"  nz-input placeholder="code" />
+                <input formControlName="code" type="text"  nz-input placeholder="code" />
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
-           <nz-form-item>
+          <nz-form-item>
             <nz-form-label nzFor="newPassword" nzRequired>New Password</nz-form-label>
-            <nz-form-control nzHasFeedback  [nzErrorTip]="errorTpl">
-              <input
-              type="password"
-                nz-input
-                formControlName="newPassword"
-                placeholder="new password"
-                (ngModelChange)="updateConfirmValidator()"/>
-                <ng-template #errorTpl let-control>
-                    <ng-container *ngIf="control.hasError('minlength')">Password too short !!!</ng-container>
-                    <ng-container *ngIf="control.hasError('required')">Please input your password!</ng-container>
-                    <ng-container *ngIf="control.hasError('pattern')">
-                      <small>
-                        Please include all of the following <br>
-                        At least 6 characters in length<br>
-                        -Lowercase letters<br>
-                        -Uppercase letters<br>
-                        -Numbers<br>
-                        -Special characters
-                      </small>  
-                     </ng-container>
-                  </ng-template>
+            <nz-form-control  [nzErrorTip]="errorTpl">
+              <div class="password-input-wrapper">
+                <input nz-input [type]="passwordVisible ? 'text' : 'password'"  formControlName="newPassword"  name="newPassword" (ngModelChange)="updateConfirmValidator()">
+                <i nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'" (click)="togglePasswordVisibility()"></i>
+              </div>   <ng-template #errorTpl let-control>
+                <ng-container *ngIf="control.hasError('minlength')">Password too short!</ng-container>
+                <ng-container *ngIf="control.hasError('required')">Please input your password!</ng-container>
+                <ng-container *ngIf="control.hasError('pattern')">
+                  <small>
+                    Please include all of the following:<br>
+                    - At least 6 characters in length<br>
+                    - Lowercase letters<br>
+                    - Uppercase letters<br>
+                    - Numbers<br>
+                    - Special characters
+                  </small>
+                </ng-container>
+              </ng-template>
             </nz-form-control>
           </nz-form-item>
+      
           <nz-form-item>
             <nz-form-label nzFor="confirmPassword" nzRequired>Confirm Password</nz-form-label>
-            <nz-form-control [nzErrorTip]="errorTpl"  nzHasFeedback>
-              <input type="password" nz-input  formControlName="confirmPassword"  placeholder="confirm password" />
-              <ng-template #errorTpl let-control>
+            <nz-form-control [nzErrorTip]="errorTpl" >
+              <div class="password-input-wrapper">
+                <input nz-input [type]="passwordVisible ? 'text' : 'password'" id="confirmPassword" formControlName="confirmPassword" >
+                <i nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'" (click)="togglePasswordVisibility()"></i>
+              </div>   <ng-template #errorTpl let-control>
                 <ng-container *ngIf="control.hasError('required')">Please confirm your password!</ng-container>
-                <ng-container *ngIf="control.hasError('confirm')">
-                  Two passwords do not match!!
-                </ng-container>
+                <ng-container *ngIf="control.hasError('confirm')">Two passwords do not match!</ng-container>
               </ng-template>
             </nz-form-control>
           </nz-form-item>

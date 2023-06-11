@@ -49,8 +49,13 @@ submit() {
       this.notification.success('Saved', 'Employee Saved Successfully!', { nzDuration: 10000 });
       this.output.emit(res);
       this.toggle(false);
-      console.log(res)
       this.fileList = []
+    },error=>{
+      if(error && error.error && error.error.message){
+        this.notification.error('Error', error.error.message);
+      }
+
+  
     });
   }
 }

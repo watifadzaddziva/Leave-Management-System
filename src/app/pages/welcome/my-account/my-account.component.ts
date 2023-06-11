@@ -44,7 +44,7 @@ this.UseDet();
   UseDet(){ 
     
       const tokenData=JSON.parse(sessionStorage.getItem('user_data') ?? '{}')  
-      this.userInfo=tokenData.user.employee
+      this.userInfo=tokenData.user
       const id= tokenData.user.employee.id
       this.defaultService.getRemainingLeaveDays(id).subscribe((res)=>{
       this.userDetails=res

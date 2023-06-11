@@ -96,6 +96,18 @@ button {
     float: right;
   }
 
+
+  .password-input-wrapper {
+    position: relative;
+  }
+  
+  .password-input-wrapper i {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
  
 
  

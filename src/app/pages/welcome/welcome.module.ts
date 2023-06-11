@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu'
-import { registerLocaleData } from '@angular/common';
+import { DatePipe, registerLocaleData } from '@angular/common';
 
 import { WelcomeComponent } from './welcome.component';
 import { MainComponent } from './main/main.component';
@@ -45,6 +45,7 @@ import { AllLeavesComponent } from './all-leaves/all-leaves.component';
 import { AdminsComponent } from './admins/admins.component';
 import { LoaderComponent } from './loader/loader.component';
 import { AllEmployeesComponent } from './reports/all-employees/all-employees.component';
+import { AllLeavesReportsComponent } from './reports/all-leaves-reports/all-leaves-reports.component';
 
 
 registerLocaleData(en);
@@ -85,9 +86,9 @@ registerLocaleData(en);
 
 
   declarations: [WelcomeComponent, MainComponent, CalendarComponent, MyLeaveComponent, LeavesToApproveComponent,
-  ReportsComponent, MyAccountComponent, EmployeesComponent, EmployeeDetailsComponent, SetEmployeesComponent, AllLeavesComponent, AdminsComponent, LoaderComponent, AllEmployeesComponent, ],
+  ReportsComponent, MyAccountComponent, EmployeesComponent, EmployeeDetailsComponent, SetEmployeesComponent, AllLeavesComponent, AdminsComponent, LoaderComponent, AllEmployeesComponent, AllLeavesReportsComponent, ],
 
-  providers: [NzMessageService,NgxPermissionsService,
+  providers: [NzMessageService,NgxPermissionsService,DatePipe,
     { provide: NZ_I18N, useValue: en_US }
   ],
   bootstrap: [AppComponent],
