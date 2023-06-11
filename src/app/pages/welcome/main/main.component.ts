@@ -59,7 +59,7 @@ submit() {
       this.fileList = [];
     }, error => {
       // if (error && error.error && error.error.message) {
-        this.notification.error('Error while applying for Leave','' );
+        this.notification.error('Error ,Invalid Dates','' );
       // }
     });
   }
