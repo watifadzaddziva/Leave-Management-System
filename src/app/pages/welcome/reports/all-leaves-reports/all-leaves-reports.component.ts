@@ -25,7 +25,7 @@ export class AllLeavesReportsComponent implements OnInit {
   pdfSrc!: string;
   safeUrl: any;
   isLoaded:boolean =false;
-  baseUrl = 'http://192.168.10.146:8085/'
+  baseUrl = 'http://localhost:8085/'
 
   constructor(
     private service: DefaultService,

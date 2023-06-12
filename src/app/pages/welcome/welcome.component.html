@@ -34,7 +34,7 @@
               <span>Employees</span>
             </li>
             
-            <li   nz-menu-item routerLink="/welcome/reports">
+            <li *ngxPermissionsOnly="['ADMIN']"  nz-menu-item routerLink="/welcome/reports">
               <i nz-icon nzType='bar-chart'></i>
               <span>Reports</span>
             </li>

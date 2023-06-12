@@ -9,7 +9,7 @@ import { EmployeeLeave } from '../models/employee-leave';
   providedIn: 'root'
 })
 export class DefaultService {
-  baseUrl = 'http://192.168.10.146:8085/'
+  baseUrl = 'http://localhost:8085/'
 
 
   constructor(private http: HttpClient, private router: Router) { }

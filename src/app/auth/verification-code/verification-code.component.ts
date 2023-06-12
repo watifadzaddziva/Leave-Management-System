@@ -30,9 +30,9 @@ constructor(private fb:UntypedFormBuilder,private router:Router,
       this.notification.success("Password changed successfully", "");
       this.router.navigate(['/login']);
     }, error => {
-      if (error && error.error && error.error.message) {
-        this.notification.error('Error', error.error.message);
-      }
+    
+        this.notification.error('Error', 'Invalid Verification Code');
+    
     });
   }
   

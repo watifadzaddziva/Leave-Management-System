@@ -27,9 +27,9 @@ export class ForgotPasswordComponent implements OnInit {
   this.notification.success("Verification code has been successfully sent to your email","")
   this.router.navigate(['/verify-password'])
 },error=>{
-  if (error && error.error && error.error.message) {
-    this.notification.error('Error', error.error.message);
-  }
+ 
+    this.notification.error('Error', 'Email Not Found');
+  
 });
   }else{
     this.notification.error("Error while sending the email",'')
