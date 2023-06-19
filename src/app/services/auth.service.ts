@@ -46,7 +46,7 @@ public setTokenPayload() {
 }
 
 public clearToken() {
-    sessionStorage.clear()
+    sessionStorage.clear();
 }
 
 public decodeToken() {
@@ -54,13 +54,15 @@ public decodeToken() {
     return decodedToken;
 }
 
-public isAuthenticated() {
+public isAuthenticated():boolean {
     return !this.jwtHelper.isTokenExpired(this.token);
 }
 
 public isLoggedIn(){
     return this.getToken() ? true : false
 }
+
+
 
   loginUserFromServer(user :any):Observable<any>{
     return this.http.post<any>(`${this.baseUrl}/login`,user)

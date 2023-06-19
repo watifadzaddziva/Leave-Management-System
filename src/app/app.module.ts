@@ -25,6 +25,7 @@ import { AuthService } from './services/auth.service';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { FormlyModule } from '@ngx-formly/core';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormlyNgZorroAntdModule } from '@ngx-formly/ng-zorro-antd';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { FullCalendarModule } from '@fullcalendar/angular';
@@ -35,6 +36,7 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
 import { PageNotFoundComponent } from './auth/page-not-found/page-not-found.component';
 import { VerificationCodeComponent } from './auth/verification-code/verification-code.component';
 import { SetNewPasswordComponent } from './auth/set-new-password/set-new-password.component';
+import { CacheInterceptor } from './models/cache.interceptor';
 registerLocaleData(en);
 
 @NgModule({
@@ -77,7 +79,8 @@ registerLocaleData(en);
   providers: [
     NzNotificationService, AuthService, JwtHelperService,NgxPermissionsService,DatePipe,
     { provide:  JWT_OPTIONS, useValue: JWT_OPTIONS},
-    { provide: NZ_I18N, useValue: en_US }
+    { provide: NZ_I18N, useValue: en_US },
+    {provide: HTTP_INTERCEPTORS, useClass:CacheInterceptor,multi:true}
   ],
   bootstrap: [AppComponent]
 })

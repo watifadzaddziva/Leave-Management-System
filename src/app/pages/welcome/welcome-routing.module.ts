@@ -12,9 +12,10 @@ import { WelcomeComponent } from './welcome.component';
 import { AllLeavesComponent } from './all-leaves/all-leaves.component';
 import { AllEmployeesComponent } from './reports/all-employees/all-employees.component';
 import { AllLeavesReportsComponent } from './reports/all-leaves-reports/all-leaves-reports.component';
+import { AuthGuard } from 'src/app/guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: WelcomeComponent, 
+  { path: '', component: WelcomeComponent, canActivate:[AuthGuard], 
   children: [
     {path: '', component: MyLeaveComponent},
     {path : 'calendar', component: CalendarComponent},
@@ -40,5 +41,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
+  
 })
 export class WelcomeRoutingModule { }

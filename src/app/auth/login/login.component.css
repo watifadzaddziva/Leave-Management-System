@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 body {
     background-color: #d6d9e2;
+    border-left:  35px solid #29235a;
+    border-right:  35px solid #29235a;
      margin: 0;
     padding: 0;
     height: 100vh;

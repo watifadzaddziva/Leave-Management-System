@@ -46,6 +46,8 @@ import { AdminsComponent } from './admins/admins.component';
 import { LoaderComponent } from './loader/loader.component';
 import { AllEmployeesComponent } from './reports/all-employees/all-employees.component';
 import { AllLeavesReportsComponent } from './reports/all-leaves-reports/all-leaves-reports.component';
+import { AuthGuard } from 'src/app/guards/auth.guard';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 registerLocaleData(en);

@@ -18,7 +18,7 @@ export class LoginComponent  implements OnInit {
 
   user  = new User();
   view!: boolean;
-  returnUrl: any;
+  returnUrl!: string;
   passwordVisible: boolean = false;;
   loginForm = new FormGroup({
     username: new FormControl(''),
@@ -36,8 +36,10 @@ constructor(private fb: UntypedFormBuilder,  private router : Router,
  
 
   ngOnInit(): void {
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '';
-   }
+  this.authService.clearToken();
+if(sessionStorage.getItem('refresh-session'))
+    sessionStorage.removeItem('refresh-session')  
+  }
 
   submitForm() {
     this.authService.loginUserFromServer(this.user).subscribe((data )=>{
@@ -45,8 +47,8 @@ constructor(private fb: UntypedFormBuilder,  private router : Router,
     let userData: {};
     userData=data
     this.authService.setToken(tok)
-    sessionStorage.setItem('user_data', JSON.stringify((userData)))
-    this.router.navigate(['/welcome']); 
+    sessionStorage.setItem('user_data', JSON.stringify((userData)));
+    this.navigateToReturnUrl();
     }, (error: HttpErrorResponse) => {
       this.authService.clearToken();
       if (error.status == 401 || error.status==400){
@@ -57,14 +59,19 @@ constructor(private fb: UntypedFormBuilder,  private router : Router,
 
     });
    }
-   togglePasswordVisibility(): void {
-    this.passwordVisible = !this.passwordVisible;
-  }
+ 
 
   toggleView() {
     this.view = !this.view;
   }
 
+  navigateToReturnUrl(): void{
+    if(this.returnUrl){
+      this.router.navigateByUrl(this.returnUrl);
+    }else{
+      this.router.navigate(['/welcome'])
+    }
+  }
     
    }
 
