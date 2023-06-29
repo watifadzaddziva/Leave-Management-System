@@ -44,6 +44,21 @@
             </li>
           </ul>
         </li>
+        <li nz-submenu nzTitle='Departments' nzIcon='form' [(nzOpen)]="openMap['sub']" (nzOpenChange)="openHandler('sub')" >
+          <ul>
+    
+            <li  nz-menu-item routerLink="/welcome/departments">
+              <i nz-icon nzType='form'></i>
+              <span>Departments</span>
+            </li>
+            
+            <li nz-menu-item routerLink='/welcome/hod'>
+              <i nz-icon nzType='usergroup-add'></i>
+              <span>H.O.Ds</span>
+            </li>
+    
+          </ul>
+        </li>
       </ul>
       <div class="sidebar-footer">
         <button nz-button nzType="primary" class="logout-button" (click)="logout()"><i nz-icon nzType="logout"></i>Logout</button>

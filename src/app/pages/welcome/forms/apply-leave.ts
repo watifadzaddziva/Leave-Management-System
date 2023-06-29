@@ -1,8 +1,6 @@
 import { FormlyFieldConfig } from '@ngx-formly/core';
 
 export const ApplyLeaveFieldsFields = function (): FormlyFieldConfig[] {
-  const currentDate= new Date();
-  const currentDateString = currentDate.toISOString().split('T')[0];
     return [
         {
                 key: 'employeeId',
@@ -45,9 +43,12 @@ export const ApplyLeaveFieldsFields = function (): FormlyFieldConfig[] {
           placeholder: '',
           required: true,
           options: [
-            { value: "SICK_LEAVE", label: 'Sick Leave' },
-            { value: 'VACATION', label: 'Vacation' },
-            { value: 'UNPAID_LEAVE', label: 'Unpaid Leave' },
+            { value: "Sick", label: 'Sick' },
+            { value: 'Annual', label: 'Annual' },
+            { value: 'Unpaid', label: 'Unpaid' },
+            { value: "Maternity", label: 'Maternity' },
+            { value: 'Study', label: 'Study' },
+            { value: 'Special', label: 'Special' },
            
           ]
         }

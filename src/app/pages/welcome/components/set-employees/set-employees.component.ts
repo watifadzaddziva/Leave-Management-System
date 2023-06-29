@@ -19,6 +19,7 @@ export class SetEmployeesComponent implements OnInit {
   @Output() output = new EventEmitter();
   fileList: any = [];
   options: any;
+  departments:any;
 
 
   constructor(private defaultService: DefaultService, 
@@ -27,12 +28,13 @@ export class SetEmployeesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fields = EmployeesFields();
+    this.getDepartments();
+    this.fields = EmployeesFields(this.departments);
   }
 
   ngOnChanges() {
     this.employee = { ...this.employee };
-    this.fields = EmployeesFields();
+    this.fields = EmployeesFields(this.departments);
   }
 
   toggle(visible: boolean): void {
@@ -58,6 +60,15 @@ submit() {
   
     });
   }
+}
+
+getDepartments(){
+  this.defaultService.getDepartments().subscribe((res)=>{
+    this.departments= res.map((department:any)=>{
+      return {label:department.name,value:department.id}
+    });
+    this.fields=EmployeesFields(this.departments);
+  })
 }
 
 

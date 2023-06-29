@@ -46,8 +46,13 @@ import { AdminsComponent } from './admins/admins.component';
 import { LoaderComponent } from './loader/loader.component';
 import { AllEmployeesComponent } from './reports/all-employees/all-employees.component';
 import { AllLeavesReportsComponent } from './reports/all-leaves-reports/all-leaves-reports.component';
-import { AuthGuard } from 'src/app/guards/auth.guard';
-import { AuthService } from 'src/app/services/auth.service';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { SetDepartmentComponent } from './components/set-department/set-department.component';
+import { DepartmentsComponent } from '../departments/departments.component';
+import { DepartmentsDetailsComponent } from '../departments-details/departments-details.component';
+import { SetHodComponent } from './components/set-hod/set-hod.component';
+import { HodPageComponent } from '../hod-page/hod-page.component';
 
 
 registerLocaleData(en);
@@ -76,8 +81,10 @@ registerLocaleData(en);
  NzCardModule,
  NzPopoverModule,
  NzAlertModule ,
+ NzModalModule,
  FormlyNgZorroAntdModule,
  FormlyModule,
+ NzUploadModule,
  NzPopconfirmModule,
  FullCalendarModule,
  NgxPermissionsModule
@@ -88,7 +95,7 @@ registerLocaleData(en);
 
 
   declarations: [WelcomeComponent, MainComponent, CalendarComponent, MyLeaveComponent, LeavesToApproveComponent,
-  ReportsComponent, MyAccountComponent, EmployeesComponent, EmployeeDetailsComponent, SetEmployeesComponent, AllLeavesComponent, AdminsComponent, LoaderComponent, AllEmployeesComponent, AllLeavesReportsComponent, ],
+  ReportsComponent, MyAccountComponent, EmployeesComponent, EmployeeDetailsComponent, SetEmployeesComponent, AllLeavesComponent, AdminsComponent, LoaderComponent, AllEmployeesComponent, AllLeavesReportsComponent, SetDepartmentComponent,DepartmentsComponent, DepartmentsDetailsComponent, SetHodComponent ,HodPageComponent],
 
   providers: [NzMessageService,NgxPermissionsService,DatePipe,
     { provide: NZ_I18N, useValue: en_US }

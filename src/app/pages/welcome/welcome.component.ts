@@ -19,6 +19,10 @@ export class WelcomeComponent implements OnInit {
    
    }
 
+   openMap:{[name:string]:boolean}={
+    sub:false
+   }
+
   ngOnInit() {
 
 if (this.authService.isAuthenticated()) {
@@ -27,7 +31,13 @@ if (this.authService.isAuthenticated()) {
   }
 
   }
-
+  openHandler(value: string): void {
+    for (const key in this.openMap) {
+      if (key !== value) {
+        this.openMap[key] = false;
+      }
+    }
+  }
 
 
   logout(){

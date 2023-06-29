@@ -1,6 +1,6 @@
 import { FormlyFieldConfig } from '@ngx-formly/core';
 
-export const EmployeesFields = function (): FormlyFieldConfig[] {
+export const EmployeesFields = function get(departments:Array<any>): FormlyFieldConfig[] {
     return [
       {
         key: 'firstName',
@@ -63,6 +63,17 @@ export const EmployeesFields = function (): FormlyFieldConfig[] {
             { value: 'Male', label: 'Male' },
            
           ]
+        }
+      },
+      {
+        key: 'departmentId',
+        type: 'select',
+        templateOptions: {
+          label: 'Department',
+          placeholder: 'select Department',
+          required: true,
+          options: departments,
+
         }
       },
   

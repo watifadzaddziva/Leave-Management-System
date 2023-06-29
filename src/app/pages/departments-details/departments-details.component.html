@@ -1,0 +1,29 @@
+<div class='container'>
+    <div class='row text-center mb-4'>
+        <h4 class='text-center mt-3'>{{departments?.name}}</h4>     
+    </div>
+    <hr class="mb-3">
+    
+    <nz-table #basicTable [nzData]='data' [nzPageSize]="6">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Surname </th>
+                <th>Gender</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let data of basicTable.data'>
+                <td>{{data.firstName | titlecase}}   </td>
+                <td> {{data.lastName | titlecase}}</td>
+                <td> {{data.gender}}</td>
+                <td> {{data.email}}</td>
+
+            </tr>
+        </tbody>
+    </nz-table>
+
+</div>
+
+

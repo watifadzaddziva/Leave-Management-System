@@ -13,6 +13,9 @@ import { AllLeavesComponent } from './all-leaves/all-leaves.component';
 import { AllEmployeesComponent } from './reports/all-employees/all-employees.component';
 import { AllLeavesReportsComponent } from './reports/all-leaves-reports/all-leaves-reports.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
+import { DepartmentsComponent } from '../departments/departments.component';
+import { DepartmentsDetailsComponent } from '../departments-details/departments-details.component';
+import { HodPageComponent } from '../hod-page/hod-page.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent, canActivate:[AuthGuard], 
@@ -33,6 +36,9 @@ const routes: Routes = [
     {path : 'myAccount', component: MyAccountComponent},
     {path: 'employees', component: EmployeesComponent},
     {path: 'employee-details/:id', component: EmployeeDetailsComponent},
+    {path:'departments', component:DepartmentsComponent},
+    {path:'department-details/:id', component:DepartmentsDetailsComponent},
+    {path:'hod', component:HodPageComponent}
  
   ]
   },

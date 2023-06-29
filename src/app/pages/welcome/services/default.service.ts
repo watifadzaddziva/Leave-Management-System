@@ -9,7 +9,7 @@ import { EmployeeLeave } from '../models/employee-leave';
   providedIn: 'root'
 })
 export class DefaultService {
-  baseUrl = 'http://localhost:8085/'
+  baseUrl = 'http://192.168.10.146:8085/'
 
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -92,6 +92,9 @@ return this.http.put(`${this.baseUrl}leave/updateLeave/${leaveId}/${employeeId}`
   return this.http.get(`${this.baseUrl}leave/getAllRemainingLeaveDays/${id}`)
  }
  
+ getLeaveTypes():Observable<any>{
+  return this.http.get(`${this.baseUrl}leave/get_leave_types`)
+ }
 
 //  get Count
 
@@ -122,4 +125,37 @@ getAdmins():Observable<any>{
 return this.http.get(`${this.baseUrl}/register`)
 }
 
+// departments
+
+postDepartments(data:any):Observable<any>{
+return this.http.post(`${this.baseUrl}department/create`,data)
+}
+
+updateDepartment(id: number, data:any):Observable<any>{
+  return this.http.put<any>(`${this.baseUrl}department/update/${id}`,data)
+}
+
+getDepartmentnyId(id:number):Observable<any>{
+  return this.http.get(`${this.baseUrl}department/getDepartmentById/${id}`)
+}
+
+getDepartments():Observable<any>{
+  return this.http.get(`${this.baseUrl}department/getAll`)
+}
+
+deleteDepartment(id : number):Observable<any>{
+  return this.http.delete(`${this.baseUrl}department/delete/${id}`)
+}
+// HODs
+createHOD(empId :any, dptId: any, data:any):Observable<any>{
+  return this.http.post(`${this.baseUrl}headOfDepartment/create/${dptId}/${empId}`, data)
+
+}
+getHODs():Observable<any>{
+  return this.http.get(`${this.baseUrl}headOfDepartment/getAll`)
+}
+
+deleteHOD(id:number):Observable<any>{
+  return this.http.delete(`${this.baseUrl}headOfDepartment/delete/${id}`)
+}
 }

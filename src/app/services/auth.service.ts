@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Inject, Injectable } from '@angular/core';
 import { Router, UrlSerializer } from '@angular/router';
 import { BehaviorSubject, map, Observable, of, Subject, throwError } from 'rxjs';
@@ -6,10 +6,11 @@ import { User } from '../models/user';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { TokenPayload } from '../pages/welcome/models/token-payload';
 import { NgxPermissionsService } from 'ngx-permissions';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
-  baseUrl='http://localhost:8085'
+  baseUrl='http://192.168.10.146:8085'
   static NAME = 'token';
   static TOKEN: string;
   token: string;

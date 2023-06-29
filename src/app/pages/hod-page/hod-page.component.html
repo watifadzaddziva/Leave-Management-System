@@ -1,0 +1,34 @@
+
+<div class='container'>
+    <div >
+        <app-set-hod style="float:right" [hod]='hod' (output)='reload($event)'></app-set-hod>
+      </div>
+     <nz-table  #basicTable [nzData]='departments' [nzPageSize]='6'>
+       <thead>
+       <tr>
+         <th>Department</th>
+         <th>H O D</th>
+         <th></th>
+       </tr>
+       </thead>
+       <tbody>
+       <tr *ngFor='let data of basicTable.data'>
+         <td>{{data.department | titlecase}} </td>
+         <td>{{data.lastname | titlecase}} {{data.firstname | titlecase}} </td>
+         <td>
+           <nz-button-group>
+          <a
+          nz-popconfirm
+          nzPopconfirmTitle="Are you sure delete this department ?"
+          nzPopconfirmPlacement="bottom"
+          (nzOnConfirm)="confirm(data.id)"
+          nz-butto>&nbsp;
+          <button nz-button nzType="default" nzDanger><i nz-icon nzType="delete" nzTheme="outline"></i></button>
+        </a>
+           </nz-button-group>
+         </td>
+       </tr>
+       </tbody>
+     </nz-table>
+   </div>
+   

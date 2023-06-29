@@ -21,13 +21,14 @@
       </div>
 <br>
         <nz-table 
-                 #basicTable [nzData]='employees' [nzPageSize]='7'
+                 #basicTable [nzData]='employees' [nzPageSize]='6'
                   >
           <thead>
           <tr>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Username</th>
+            <th>Department</th>
             <th>Email</th>
             <th>Gender</th>
             <th>Date Of Birth</th>
@@ -39,7 +40,8 @@
          <td> <a style="color:rgb(0, 38, 255);"   routerLink='/welcome/employee-details/{{data.id}}'>{{data.firstName | titlecase}} </a></td>   
            <td><a style="color:rgb(0, 38, 255);"  routerLink='/welcome/employee-details/{{data.id}}'>{{data.lastName | titlecase}} </a></td>
             <td>{{data.username }}</td>
-           <td>{{data.email}} </td>
+            <td>{{data.department}}</td>
+            <td>{{data.email}} </td>
             <td>{{data.gender}} </td>
             <td>{{data.dateOfBirth}} </td>
             <td>
@@ -50,7 +52,7 @@
                 nzPopconfirmTitle="Are you sure delete this employee?"
                 nzPopconfirmPlacement="bottom"
                 (nzOnConfirm)="confirm(data.id)"
-                nz-butto>
+                nz-butto>&nbsp;
                 <button nz-button nzType="default" nzDanger><i nz-icon nzType="delete" nzTheme="outline"></i></button>
               </a>
               </nz-button-group>

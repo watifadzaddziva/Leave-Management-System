@@ -1,0 +1,36 @@
+
+<div class='container'>
+    <div >
+        <app-set-department style="float:right" [department]='department' (output)='reload($event)'></app-set-department>
+      </div>
+     <nz-table  #basicTable [nzData]='departments' [nzPageSize]='6'>
+       <thead>
+       <tr>
+         <th>Name</th>
+         <th></th>
+       </tr>
+       </thead>
+       <tbody>
+       <tr *ngFor='let data of basicTable.data'>
+         <td>{{data.name | titlecase}} </td>
+         <td>
+           <nz-button-group>
+            <button nz-button nzType="primary"  routerLink='/welcome/department-details/{{data.id}}' nzGhost>
+              <i nz-icon nzType='folder-open' nzTheme='outline'></i>
+          </button>&nbsp;
+          <app-set-department [department]='data' (output)='load($event)'></app-set-department>
+          <a
+          nz-popconfirm
+          nzPopconfirmTitle="Are you sure delete this department ?"
+          nzPopconfirmPlacement="bottom"
+          (nzOnConfirm)="confirm(data.id)"
+          nz-butto>&nbsp;
+          <button nz-button nzType="default" nzDanger><i nz-icon nzType="delete" nzTheme="outline"></i></button>
+        </a>
+           </nz-button-group>
+         </td>
+       </tr>
+       </tbody>
+     </nz-table>
+   </div>
+   

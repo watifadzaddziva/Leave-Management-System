@@ -1,13 +1,44 @@
-<button class='mb-2 ml-3' nz-button (click)='toggle(true)' nzType='primary' >
+<button class='mb-2 ml-3' nz-button (click)='toggle(true)' nzType='primary'>
   <i nz-icon nzType='edit' nzTheme='outline' *ngIf="leave.id"></i>
   <span *ngIf="!leave.id">Apply Leave</span>
-  
 </button><br>
+
 <nz-drawer [nzClosable]='false' [nzWidth]='400' [nzVisible]='visible' nzPlacement='right'
            [nzTitle]='leave.id? "Edit Leave":"Apply Leave"' (nzOnClose)='toggle(false)'>
   <ng-container *nzDrawerContent>
     <form nz-form [formGroup]='form' nzLayout='vertical' (ngSubmit)='submit()'>
-      <formly-form [model]="leave"  [fields]='fields' [options]="options"  [form]='form' ></formly-form>
+      <formly-form [model]="leave" [fields]='fields' [options]="options" [form]='form'></formly-form>
+
+      <div class="clearfix">
+        <ng-container *ngIf="isUploadFieldVisible">
+          <nz-upload
+            [nzAction]="baseUrl+'/file/upload'"
+            nzListType="picture-card"
+            [(nzFileList)]="fileList"
+            [nzShowButton]="fileList.length < 1"
+            [nzPreview]="handlePreview"
+            nzAccept=".png,.jpg, .jpeg, .gif, .bmp"
+            [nzRemove]="handleRemove"
+            [nzWithCredentials]="true"
+            (nzChange)="uploadedFile($event)"
+          >
+            <div>
+              <i nz-icon nzType="plus"></i>
+              <div style="margin-top: 8px">Upload</div>
+            </div>
+          </nz-upload>
+        </ng-container>
+
+        <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null" (nzOnCancel)="previewVisible = false">
+          <ng-template #modalContent>
+            <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />
+          </ng-template>
+        </nz-modal>
+        <em style="float: right; top: -5em; position: relative; color: darkgreen; font-size: smaller;">
+          {{leave.success ? 'Uploaded Successfully' : ''}}
+        </em>
+      </div>
+
       <nz-button-group class='mt-1'>
         <button nz-button nzType='primary' type='submit' [disabled]="form.invalid">Save</button>
         <button nz-button nzType='primary' (click)='toggle(false)' nzGhost type='reset'>Cancel</button>
@@ -15,8 +46,3 @@
     </form>
   </ng-container>
 </nz-drawer>
-
-
-
-    
-

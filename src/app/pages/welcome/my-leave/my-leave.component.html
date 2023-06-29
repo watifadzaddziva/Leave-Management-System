@@ -20,9 +20,7 @@
     <tbody>
     <tr *ngFor='let data of basicTable.data'>
      <td>
-      <p *ngIf="data.leaveType=='SICK_LEAVE'" class='mx-3' >Sick Leave</p>
-        <p *ngIf="data.leaveType=='VACATION'" class='mx-3' >Vacation</p>
-        <p *ngIf="data.leaveType=='UNPAID_LEAVE'" class='mx-3' >Unpaid Leave</p>
+      {{data.leaveType}}
          </td>
       <td>{{data.reason}} </td>
       <td>
@@ -35,7 +33,7 @@
       <td>{{data.toDate}} </td>
       <td>
         <nz-button-group>
-        <app-main [leave]='data' (output)='load($event)'></app-main>
+        <app-main [leave]='data' (output)='load($event)'></app-main>&nbsp;
         <a
           nz-popconfirm
           nzPopconfirmTitle="Are you sure delete this leave?"
