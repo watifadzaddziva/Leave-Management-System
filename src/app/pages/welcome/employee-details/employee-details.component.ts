@@ -24,10 +24,6 @@ export class EmployeeDetailsComponent implements OnInit {
        this.employeeService.getEmployeeById(this.id).subscribe(data=>{
         this.employeeDetails=data;
       });
-    
-   
   }
-
-
 
 }

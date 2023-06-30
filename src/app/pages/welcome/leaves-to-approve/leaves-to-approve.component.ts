@@ -19,39 +19,31 @@ export class LeavesToApproveComponent implements OnInit {
 
   constructor(private fb: UntypedFormBuilder,
     private defaultService: DefaultService,
-   private notification : NzNotificationService,
+    private notification : NzNotificationService,
     private router: Router ) {}
-
-
-
 
   ngOnInit(): void {
     this.getAllPendingLeaves();
   }
 
-
-
   approveLeave(id: number){
     this.defaultService.approveLeave(id,this.employeeLeave).subscribe(res=>{
-     this.notification.success("leave have been approved ","")
-     this.ngOnInit();
+    this.notification.success("leave have been approved ","")
+    this.ngOnInit();
     })
   }
 
   rejectLeave(id: number): void {
     this.defaultService.rejectLeave(id,this.employeeLeave).subscribe(res=>{
-      this.notification.error("leave have been rejected ","")
-      this.ngOnInit();
+    this.notification.error("leave have been rejected ","")
+    this.ngOnInit();
      })
   }
 
   getAllPendingLeaves(){
-this.defaultService.getAllAppliedLeaves().subscribe((res)=>{
-  this.data = res
-  console.log(this.data)
+  this.defaultService.getAllAppliedLeaves().subscribe((res)=>{
+  this.data = res;
 })
   }
-
-
 
 }

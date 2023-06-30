@@ -23,7 +23,6 @@ constructor(private defaultService: DefaultService, private http:HttpClient){}
 
   getAllEvents() {
     this.defaultService.getAllEvents().subscribe(res => {
-      console.log(res)
       this.calendarOptions.events = res.map((event: any) => ({
         title: event.title,
         start: new Date(event.start),
@@ -48,11 +47,11 @@ toggleWeekends() {
 
 getEventColor(leaveType:string):string{
   switch (leaveType) {
-    case 'VACATION':
+    case 'Annual':
       return '#141c4c'; 
-    case 'UNPAID_LEAVE':
+    case 'Unpaid':
       return '#9c1c1c'; 
-    case 'SICK_LEAVE':
+    case 'Sick':
       return '#F79327'; 
     default:
       return '#000000'; 

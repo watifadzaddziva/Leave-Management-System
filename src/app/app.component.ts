@@ -24,7 +24,7 @@ ngOnInit(){
 
  this.responsive.observe([Breakpoints.HandsetPortrait]).subscribe((state:BreakpointState)=>{
   if(state.matches){
-    console.log('hellow')
+
   }
  })
 }

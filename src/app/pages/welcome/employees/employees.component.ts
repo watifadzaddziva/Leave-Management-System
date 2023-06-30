@@ -29,10 +29,7 @@ export class EmployeesComponent implements OnInit {
 
   ngOnInit(): void {
     this.load();
-   
-  }
-
- 
+   }
 
   toggle(visible: boolean): void {
     this.visible = visible;
@@ -56,15 +53,10 @@ export class EmployeesComponent implements OnInit {
     });
   }
 
-
   search(username: string): void {
     this.defaultService.findByName(username).subscribe(result => {
       this.employees = result
-      
-  
-    });
-  
-  }
+    });}
 
  
 }

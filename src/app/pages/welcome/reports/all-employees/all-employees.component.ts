@@ -48,7 +48,6 @@ export class AllEmployeesComponent implements OnInit {
     this.service.employeesReport()
       .subscribe(
          (res:any) => {
-          console.log(res)
           const file = new Blob([res], { type: 'application/pdf' });
           const fileURL = URL.createObjectURL(file);
           // window.open(fileURL, '_blank');
