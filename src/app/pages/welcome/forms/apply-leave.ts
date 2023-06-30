@@ -20,7 +20,6 @@ export const ApplyLeaveFieldsFields = function (): FormlyFieldConfig[] {
               placeholder: '',
               type: 'date',
               required: true,
-              // min: currentDateString,
   
             }
           },
@@ -34,36 +33,6 @@ export const ApplyLeaveFieldsFields = function (): FormlyFieldConfig[] {
               required: true,
             }
           },
-          
-      {
-        key: 'leaveType',
-        type: 'select',
-        templateOptions: {
-          label: 'Leave Type',
-          placeholder: '',
-          required: true,
-          options: [
-            { value: "Sick", label: 'Sick' },
-            { value: 'Annual', label: 'Annual' },
-            { value: 'Unpaid', label: 'Unpaid' },
-            { value: "Maternity", label: 'Maternity' },
-            { value: 'Study', label: 'Study' },
-            { value: 'Special', label: 'Special' },
-           
-          ]
-        }
-      },
-     
-      {
-        key: 'reason',
-        type: 'textarea',
-        templateOptions: {
-          label: 'Reason',
-          placeholder: '',
-          required: true,
-        }
-      },
-     
     ]
   }
   

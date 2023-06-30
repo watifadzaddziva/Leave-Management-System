@@ -26,15 +26,10 @@ export class DepartmentsDetailsComponent {
 
   ngOnInit(){
     this.id= this.route.snapshot.params['id'];
-    this.service.getDepartments().subscribe((res)=>{
       this.service.getDepartmentnyId(this.id).subscribe((res)=>{
         this.departments=res;
         this.data=res.employees;
-        console.log(res)
       })
-    })
-
-
   }
 
 }

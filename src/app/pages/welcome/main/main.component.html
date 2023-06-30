@@ -8,9 +8,29 @@
   <ng-container *nzDrawerContent>
     <form nz-form [formGroup]='form' nzLayout='vertical' (ngSubmit)='submit()'>
       <formly-form [model]="leave" [fields]='fields' [options]="options" [form]='form'></formly-form>
-
+      <nz-form-item>
+        <nz-form-label  nzFor="email">Leave Type</nz-form-label>
+        <nz-form-control>
+          <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a leave " formControlName="leaveType" (ngModelChange)="handleLeaveTypeChange($event)">
+            <nz-option nzLabel="Sick" nzValue="Sick"></nz-option>
+            <nz-option nzLabel="Special" nzValue="Special"></nz-option>
+            <nz-option nzLabel="Study" nzValue="Study"></nz-option>
+            <nz-option nzLabel="Maternity" nzValue="Maternity"></nz-option>
+            <nz-option nzLabel="Annual" nzValue="Annual"></nz-option>
+            <nz-option nzLabel="Unpaid" nzValue="Unpaid"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label  nzRequired>Reason</nz-form-label>
+        <nz-form-control  nzHasFeedback nzErrorTip="Please write something here!">
+          <nz-textarea-count [nzMaxCharacterCount]="2000">
+            <textarea formControlName="reason" nz-input rows="2" placeholder="write any thing"></textarea>
+          </nz-textarea-count>
+        </nz-form-control>
+      </nz-form-item>
       <div class="clearfix">
-        <ng-container *ngIf="isUploadFieldVisible">
+        <ng-container *ngIf="showUpload"   >
           <nz-upload
             [nzAction]="baseUrl+'/file/upload'"
             nzListType="picture-card"
