@@ -7,7 +7,7 @@ export const HODFields = function get(departments:Array<any>, employees:Array<an
             type: 'select',
             templateOptions: {
               label: 'Department',
-              placeholder: 'Enter name',
+              placeholder: 'Select name',
               required: true,
               options:departments
             }
@@ -17,7 +17,7 @@ export const HODFields = function get(departments:Array<any>, employees:Array<an
         type: 'select',
         templateOptions: {
           label: 'Employee',
-          placeholder: 'Enter name',
+          placeholder: 'Select name',
           required: true,
           options:employees
         }

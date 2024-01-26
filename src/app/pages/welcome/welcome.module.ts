@@ -53,6 +53,11 @@ import { DepartmentsComponent } from '../departments/departments.component';
 import { DepartmentsDetailsComponent } from '../departments-details/departments-details.component';
 import { SetHodComponent } from './components/set-hod/set-hod.component';
 import { HodPageComponent } from '../hod-page/hod-page.component';
+import { AllPayslipsComponent } from './all-payslips/all-payslips.component';
+import { SetPayslipComponent } from './components/set-payslip/set-payslip.component';
+import { ViewPayslipComponent } from './view-payslip/view-payslip.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 
 
 registerLocaleData(en);
@@ -87,7 +92,10 @@ registerLocaleData(en);
  NzUploadModule,
  NzPopconfirmModule,
  FullCalendarModule,
- NgxPermissionsModule
+ NgxPermissionsModule,
+ FlexLayoutModule,
+ NzInputNumberModule
+
  
 
  ],
@@ -95,7 +103,7 @@ registerLocaleData(en);
 
 
   declarations: [WelcomeComponent, MainComponent, CalendarComponent, MyLeaveComponent, LeavesToApproveComponent,
-  ReportsComponent, MyAccountComponent, EmployeesComponent, EmployeeDetailsComponent, SetEmployeesComponent, AllLeavesComponent, AdminsComponent, LoaderComponent, AllEmployeesComponent, AllLeavesReportsComponent, SetDepartmentComponent,DepartmentsComponent, DepartmentsDetailsComponent, SetHodComponent ,HodPageComponent],
+  ReportsComponent, MyAccountComponent, EmployeesComponent, EmployeeDetailsComponent, SetEmployeesComponent, AllLeavesComponent, AdminsComponent, LoaderComponent, AllEmployeesComponent, AllLeavesReportsComponent, SetDepartmentComponent,DepartmentsComponent, DepartmentsDetailsComponent, SetHodComponent ,HodPageComponent, AllPayslipsComponent, SetPayslipComponent, ViewPayslipComponent],
 
   providers: [NzMessageService,NgxPermissionsService,DatePipe,
     { provide: NZ_I18N, useValue: en_US }

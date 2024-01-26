@@ -1,0 +1,59 @@
+<button class='mb-2 ml-3' nz-button (click)='toggle(true)' nzType='primary' >
+    <i nz-icon nzType='edit' nzTheme='outline' *ngIf="payslip.id"></i>
+    <span *ngIf="!payslip.id">Add Payslip</span>
+    
+  </button><br>
+  <nz-drawer [nzClosable]='false' [nzWidth]='400' [nzVisible]='visible' nzPlacement='right'
+             [nzTitle]='payslip.id ? "Edit Payslip" : "Add Payslip"' (nzOnClose)='toggle(false)'>
+    <ng-container *nzDrawerContent>
+      <form nz-form [formGroup]='form' nzLayout='vertical' (ngSubmit)='submit()'>
+        <formly-form [model]='payslip' [fields]='fields' [options]="options"  [form]='form' ></formly-form>
+       <div class="row">
+        <div class="col">
+          <nz-form-item>
+            <nz-form-label>Number of Days</nz-form-label>
+            <nz-form-control>
+              <!-- <nz-input-group type="number">
+   <nz-input-number [nzMin]="0" formControlName="no_of_days" ></nz-input-number>
+              </nz-input-group> -->
+              <input type="number" formControlName="no_of_days">
+              <!-- <nz-input-number [nzMin]="0" formControlName="no_of_days" ></nz-input-number> -->
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div class="col">
+          <nz-form-item>
+            <nz-form-label nzRequired>Basic Salary</nz-form-label>
+            <nz-form-control>
+              <nz-input-number [nzMin]="0" formControlName="basic_salary" ></nz-input-number>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+        <div class="row">
+        <div class="col">
+          <nz-form-item>
+            <nz-form-label>Allowances</nz-form-label>
+            <nz-form-control>
+              <nz-input-number [nzMin]="0" formControlName="allowance" ></nz-input-number>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div class="col">
+          <nz-form-item>
+            <nz-form-label>Deductions</nz-form-label>
+            <nz-form-control>
+              <nz-input-number  [nzMin]="0" formControlName="other_deductions" ></nz-input-number>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+       </div> 
+        <nz-button-group class='mt-1'>
+          <button nz-button nzType='primary' type='submit' [disabled]="form.invalid">Save</button>
+          <button nz-button nzType='primary' (click)='toggle(false)' nzGhost type='reset'>Cancel</button>
+        </nz-button-group>
+      </form>
+    </ng-container>
+  </nz-drawer>
+  
+

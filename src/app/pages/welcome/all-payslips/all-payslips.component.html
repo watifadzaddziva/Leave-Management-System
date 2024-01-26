@@ -1,0 +1,36 @@
+<div class='container'>
+    <div class="row right">
+<div class="col-6">
+
+</div>
+    <div class='col' >
+      <app-set-payslip style="float:right" [payslip]='payslip' (output)='reload($event)'></app-set-payslip>
+    </div>
+  </div>
+<br>
+    <nz-table 
+             #basicTable [nzData]='payslips' [nzPageSize]='6'
+              >
+      <thead>
+      <tr>
+        <th>Full Name</th>
+        <th>Basic Salary</th>
+        <th>Allowances</th>
+        <th>Deductions</th>
+        <th>Period</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor='let data of basicTable.data'>
+     <td> {{data.lastName | titlecase}} {{data.firstName | titlecase}}</td>   
+        <td>{{data.basic_salary }}</td>
+        <td>{{data.allowances}} </td>
+        <td>{{data.deductions}} </td>
+        <td>{{data.period}} </td>
+      </tr>
+      </tbody>
+    </nz-table>
+
+  
+  
+

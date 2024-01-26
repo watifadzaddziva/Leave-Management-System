@@ -1,46 +1,39 @@
 <body>
-<div >
-<div class="container">
-    <form nz-form nzLayout='vertical' style="width:400px;" class="login-form"   (ngSubmit)="submitForm()">
-      <img src="/assets/artBoard.png" alt="Logo" style="width: 400px; margin-bottom: 25px;">
-      <nz-form-item>
-          <nz-form-label nzRequired >  Username</nz-form-label>
-          <nz-form-control nzErrorTip="Please input your email!">
-            <nz-input-group nzPrefixIcon="user">
-              <input [(ngModel)]="user.username" name="username"   nz-input  placeholder="userName" />
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item>
-          <nz-form-label nzRequired>Password</nz-form-label>
-          <nz-form-control nzErrorTip="Please input your Password!">
-            <nz-input-group nzPrefixIcon="lock" [nzSuffix]="suffixTemplate">
-              <input style="width: 100%" nz-input [type]="view ? 'text' : 'password'" 
-                  placeholder="Password" [(ngModel)]="user.password" name="password" required/>
-          </nz-input-group>
-          <ng-template #suffixTemplate>
-              <i nz-icon [nzType]="view ? 'eye-invisible' : 'eye'" (click)="view = !view"
-                  class="pointer"></i>
-          </ng-template>
-          </nz-form-control>
-        </nz-form-item>
-        <div nz-row class="login-form-margin">
-          <div nz-col [nzSpan]="16">
-            <a style="color:rgb(0, 38, 255);"  routerLink="/forgot-password"   class="login-form-forgot">Forgot password</a>
-          </div>
-        </div>
-        <button nz-button type="sumbit"  class="login-form-button " nzType="primary">Log in</button>
-       <p> No Account ?   <a style="color:rgb(0, 38, 255);"    routerLink="/register">Register now!</a></p> 
-      </form>
-</div>
-</div>
-</body> 
+  <div class="container">
+      <div >
+                  <form nz-form nzLayout='vertical'  class="login-form" (ngSubmit)="submitForm()">
+                    <h3 class="text-center">LOGIN</h3>
+              <nz-form-item>
+                  <nz-form-label nzRequired >  Username</nz-form-label>
+                  <nz-form-control nzErrorTip="Please input your email!">
+                      <nz-input-group nzPrefixIcon="user">
+                          <input [(ngModel)]="user.username" name="username" nz-input placeholder="userName" />
+                      </nz-input-group>
+                  </nz-form-control>
+              </nz-form-item>
+              <nz-form-item>
+                  <nz-form-label nzRequired>Password</nz-form-label>
+                  <nz-form-control nzErrorTip="Please input your Password!">
+                      <nz-input-group nzPrefixIcon="lock" [nzSuffix]="suffixTemplate">
+                          <input style="width: 100%" nz-input [type]="view ? 'text' : 'password'" 
+                              placeholder="Password" [(ngModel)]="user.password" name="password" required/>
+                      </nz-input-group>
+                      <ng-template #suffixTemplate>
+                          <i nz-icon [nzType]="view ? 'eye-invisible' : 'eye'" (click)="view = !view"
+                              class="pointer"></i>
+                      </ng-template>
+                  </nz-form-control>
+              </nz-form-item>
+              <div nz-row class="login-form-margin">
+                  <div nz-col [nzSpan]="16">
+                      <a style="color:rgb(0, 38, 255);"  routerLink="/forgot-password" class="login-form-forgot">Forgot password ?</a>
+                  </div>
+              </div>
+              <button nz-button type="sumbit"  class="login-form-button " nzType="primary">Log in</button>
+              <p> No Account ?   <a style="color:rgb(0, 38, 255);"    routerLink="/register">Register now!</a></p> 
+          </form>
+          <!-- <img src="/assets/newlaptop.jpg"  class="background-image" style="clip-path: polygon(25% 0, 100% 0%, 100% 100%, 0 100%);width:123%"> -->
+      </div>
+  </div>
+  </body>
   
-    
-    
-    
-    
-
-  
-
-   

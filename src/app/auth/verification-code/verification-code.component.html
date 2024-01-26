@@ -1,8 +1,8 @@
 <body>
     <div class="container">
+      <div class="grid-container">
         <form [formGroup]="form" nz-form nzLayout='vertical'style="width: 450px;" class="login-form" (ngSubmit)="submitForm()">
-          <img src="/assets/logo.png" alt="Logo" style="width: 500px; margin-bottom: 25px;">
-          <h3 class="text-center">SET NEW PASSWORD</h3>
+              <h3 class="text-center">SET NEW PASSWORD</h3>
           <nz-form-item>
             <nz-form-label nzRequired>Verification Code</nz-form-label>
             <nz-form-control nzErrorTip="Please input the code shared via your email!">
@@ -53,6 +53,8 @@
             <a style="color: rgb(0, 38, 255); float:inline-end" routerLink="/login" class="login-form-forgot">Back To Login</a>
           </div><br>
               </form>
+              <img src="/assets/laptop1.jpg"  class="background-image" style="clip-path: polygon(25% 0, 100% 0%, 100% 100%, 0 100%);width:123%">
+      </div>
       </div>
     </body> 
       

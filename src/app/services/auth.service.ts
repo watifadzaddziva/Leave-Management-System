@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
-  baseUrl='http://192.168.10.146:8085'
+  baseUrl='http://localhost:8085'
   static NAME = 'token';
   static TOKEN: string;
   token: string;

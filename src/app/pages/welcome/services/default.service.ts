@@ -9,7 +9,7 @@ import { EmployeeLeave } from '../models/employee-leave';
   providedIn: 'root'
 })
 export class DefaultService {
-  baseUrl = 'http://192.168.10.146:8085/'
+  baseUrl = 'http://localhost:8085/'
 
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -158,4 +158,25 @@ getHODs():Observable<any>{
 deleteHOD(id:number):Observable<any>{
   return this.http.delete(`${this.baseUrl}headOfDepartment/delete/${id}`)
 }
+
+// payslips
+getAllPayslips(): Observable<any>{
+  return this.http.get(`${this.baseUrl}employee/getAllEmployees?offset=0&size=100`)
+  }
+
+  getPayslipById(id: number): Observable<any>{
+    return this.http.get<any>(`${this.baseUrl}employee/getById/${id}`)
+  }
+  updatePayslip(id: number, data: any ): Observable<any>{
+    return this.http.put<any>(`${this.baseUrl}employee/update/${id}`, data)
+  }
+
+  createPayslip(data: any): Observable<any>{
+    return  this.http.post(`${this.baseUrl}employee/create`, data)
+  }
+
+  deletePayslip(id: number):Observable<any>{
+    return this.http.delete<any>(`${this.baseUrl}employee/delete/${id}`)
+
+  }
 }

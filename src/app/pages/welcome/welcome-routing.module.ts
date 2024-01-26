@@ -16,6 +16,9 @@ import { AuthGuard } from 'src/app/guards/auth.guard';
 import { DepartmentsComponent } from '../departments/departments.component';
 import { DepartmentsDetailsComponent } from '../departments-details/departments-details.component';
 import { HodPageComponent } from '../hod-page/hod-page.component';
+import { SetPayslipComponent } from './components/set-payslip/set-payslip.component';
+import { AllPayslipsComponent } from './all-payslips/all-payslips.component';
+import { ViewPayslipComponent } from './view-payslip/view-payslip.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent, canActivate:[AuthGuard], 
@@ -38,7 +41,10 @@ const routes: Routes = [
     {path: 'employee-details/:id', component: EmployeeDetailsComponent},
     {path:'departments', component:DepartmentsComponent},
     {path:'department-details/:id', component:DepartmentsDetailsComponent},
-    {path:'hod', component:HodPageComponent}
+    {path:'hod', component:HodPageComponent},
+    {path: 'create-payslip', component:SetPayslipComponent},
+    {path:'all-payslips', component:AllPayslipsComponent},
+    {path:'view-payslip', component:ViewPayslipComponent}
  
   ]
   },

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Injector, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -24,7 +24,7 @@ export class EmployeesComponent implements OnInit {
   emp!: any;
 
   constructor(private defaultService: DefaultService, private router : Router,
-    private injector: Injector, private nzMessageService: NzMessageService) {
+    private injector: Injector, private nzMessageService: NzMessageService, private notification: NzNotificationService) {
   }
 
   ngOnInit(): void {
@@ -55,7 +55,12 @@ export class EmployeesComponent implements OnInit {
 
   search(username: string): void {
     this.defaultService.findByName(username).subscribe(result => {
-      this.employees = result
+      this.employees = result,
+      (error:HttpErrorResponse)=>{
+        if(error.status == 400){
+          this.notification.error('employeee not found','')
+        }
+      }
     });}
 
  

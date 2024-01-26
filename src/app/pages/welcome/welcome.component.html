@@ -2,7 +2,7 @@
 <nz-layout class="app-layout" nzTheme="light">
   <nz-sider class="menu-sidebar" nzTheme="light" nzCollapsible  [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
     <div class="logo-container">
-      <img src="/assets/title1.png" alt="Logo" class="text-center" style="width: 100px;margin-left:27px">
+      <!-- <img src="/assets/title1.png" alt="Logo" class="text-center" style="width: 100px;margin-left:27px"> -->
     </div>
       <ul nz-menu   nzMode="inline" [nzInlineCollapsed]="isCollapsed">
         <li nz-submenu nzOpen nzTitle="Dashboard" >
@@ -37,10 +37,22 @@
             <li *ngxPermissionsOnly="['ADMIN']"  nz-menu-item routerLink="/welcome/reports">
               <i nz-icon nzType='bar-chart'></i>
               <span>Reports</span>
-            </li>
+            </li>           
           <li nz-menu-item routerLink="/welcome/myAccount">
-              <i nz-icon nzType='user'></i>
-              <span>My Account</span>
+            <i nz-icon nzType='user'></i>
+            <span>My Account</span>
+          </li>
+            <li nz-submenu nzTitle="Payslips" nzIcon="form" [(nzOpen)]="openMap['sub']" (nzOpenChange)="openHandler('sub')">
+              <ul>
+                <li *ngxPermissionsOnly="['ADMIN']"  nz-menu-item routerLink="/welcome/all-payslips">
+                  <i nz-icon nzType='bar-chart'></i>
+                  <span>Create</span>
+                </li>
+                <li *ngxPermissionsOnly="['USER']"  nz-menu-item routerLink="/welcome/view-payslip">
+                  <i nz-icon nzType='bar-chart'></i>
+                  <span>View</span>
+                </li>
+              </ul>
             </li>
           </ul>
         </li>

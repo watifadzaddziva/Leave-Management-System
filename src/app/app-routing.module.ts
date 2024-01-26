@@ -8,7 +8,6 @@ import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { RoleGuardService } from './services/role-guard.service';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { VerificationCodeComponent } from './auth/verification-code/verification-code.component';
-import { SetNewPasswordComponent } from './auth/set-new-password/set-new-password.component';
 import { AuthService } from './services/auth.service';
 
 const routes: Routes = [
