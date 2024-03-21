@@ -13,11 +13,7 @@
           <nz-form-item>
             <nz-form-label>Number of Days</nz-form-label>
             <nz-form-control>
-              <!-- <nz-input-group type="number">
-   <nz-input-number [nzMin]="0" formControlName="no_of_days" ></nz-input-number>
-              </nz-input-group> -->
-              <input type="number" formControlName="no_of_days">
-              <!-- <nz-input-number [nzMin]="0" formControlName="no_of_days" ></nz-input-number> -->
+              <nz-input-number [nzMin]="0" formControlName="leaveDays" ></nz-input-number>
             </nz-form-control>
           </nz-form-item>
         </div>
@@ -35,7 +31,7 @@
           <nz-form-item>
             <nz-form-label>Allowances</nz-form-label>
             <nz-form-control>
-              <nz-input-number [nzMin]="0" formControlName="allowance" ></nz-input-number>
+              <nz-input-number [nzMin]="0" formControlName="allowances" ></nz-input-number>
             </nz-form-control>
           </nz-form-item>
         </div>
@@ -43,7 +39,7 @@
           <nz-form-item>
             <nz-form-label>Deductions</nz-form-label>
             <nz-form-control>
-              <nz-input-number  [nzMin]="0" formControlName="other_deductions" ></nz-input-number>
+              <nz-input-number  [nzMin]="0" formControlName="otherDeductions" ></nz-input-number>
             </nz-form-control>
           </nz-form-item>
         </div>

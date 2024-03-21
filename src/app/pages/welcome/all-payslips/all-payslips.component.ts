@@ -29,8 +29,8 @@ export class AllPayslipsComponent {
   }
 
   load( event?: number): void {
-    this.defaultService.getAllEmployees().subscribe((res: { content: any; })=>{
-      this.payslips= res.content
+    this.defaultService.getAllPayslips().subscribe((res: { content: any; })=>{
+      this.payslips= res
      })
   }
 

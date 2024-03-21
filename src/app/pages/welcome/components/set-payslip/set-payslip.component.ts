@@ -32,10 +32,11 @@ export class SetPayslipComponent {
     this.getEmployees();
     this.fields = CreatePayslipFields(this.employees);
     this.form= this.fb.group({
-    no_of_days:[''],
+    period:[''],
     basic_salary:['',[Validators.required]],
-    allowance:['',Validators.required],
-    other_deductions:['',Validators.required]
+    allowances:['',Validators.required],
+    leaveDays:['',Validators.required],
+    otherDeductions:['',Validators.required]
 
     })
   }
@@ -52,9 +53,10 @@ export class SetPayslipComponent {
  
 submit() {
   if (this.form.valid) {
+    const dataToSend= this.form.value;
     var svc;
-    this.payslip.id ? svc = this.defaultService.updatePayslip(this.payslip.id, this.payslip) : 
-    svc = this.defaultService.createPayslip( this.payslip);
+    this.payslip.id ? svc = this.defaultService.updatePayslip(this.payslip.id, dataToSend) : 
+    svc = this.defaultService.createPayslip(dataToSend);
     svc.subscribe(res => {
       this.notification.success('Saved', 'Payslip Saved Successfully!', { nzDuration: 10000 });
       this.output.emit(res);

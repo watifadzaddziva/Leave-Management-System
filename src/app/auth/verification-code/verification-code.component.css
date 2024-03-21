@@ -1,10 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-    background-color: #d6d9e2;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-  }
+  background: url('src/assets/laptop2.jpg') no-repeat ; 
+  background-attachment: fixed;
+  background-size:cover;
+  background-size: 100%  100%;
+  width:100%;
+  min-height: 100vh; 
+}
 
   .container {
     display: flex;
@@ -28,11 +30,15 @@ body {
     /* object-fit: cover; */
   
   }
-.login-form {
+  .login-form {
     margin: auto;
-    padding-top: 50px;
-
- }
+    padding-top: 100px;
+    width: 300px;
+    background-color: #9fa2a33c;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
  .text-center{
   color:#8e8ebb
   

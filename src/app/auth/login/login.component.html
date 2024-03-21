@@ -1,10 +1,10 @@
 <body>
   <div class="container">
-      <div >
+      <div>
                   <form nz-form nzLayout='vertical'  class="login-form" (ngSubmit)="submitForm()">
                     <h3 class="text-center">LOGIN</h3>
               <nz-form-item>
-                  <nz-form-label nzRequired >  Username</nz-form-label>
+                  <nz-form-label nzRequired > <b>Username</b> </nz-form-label>
                   <nz-form-control nzErrorTip="Please input your email!">
                       <nz-input-group nzPrefixIcon="user">
                           <input [(ngModel)]="user.username" name="username" nz-input placeholder="userName" />
@@ -12,7 +12,7 @@
                   </nz-form-control>
               </nz-form-item>
               <nz-form-item>
-                  <nz-form-label nzRequired>Password</nz-form-label>
+                  <nz-form-label nzRequired><b>Password</b></nz-form-label>
                   <nz-form-control nzErrorTip="Please input your Password!">
                       <nz-input-group nzPrefixIcon="lock" [nzSuffix]="suffixTemplate">
                           <input style="width: 100%" nz-input [type]="view ? 'text' : 'password'" 
@@ -32,8 +32,7 @@
               <button nz-button type="sumbit"  class="login-form-button " nzType="primary">Log in</button>
               <p> No Account ?   <a style="color:rgb(0, 38, 255);"    routerLink="/register">Register now!</a></p> 
           </form>
-          <!-- <img src="/assets/newlaptop.jpg"  class="background-image" style="clip-path: polygon(25% 0, 100% 0%, 100% 100%, 0 100%);width:123%"> -->
-      </div>
+              </div>
   </div>
   </body>
   

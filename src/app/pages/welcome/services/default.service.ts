@@ -60,6 +60,12 @@ getAllEmployees(): Observable<any>{
     }))
 
   }
+
+  payslipReport():Observable<any>{
+    return this.http.get(`${this.baseUrl}payslip/report`,{responseType:'blob' as 'json'}).pipe(map(data=>{
+      return data;
+    }))
+  }
  
   applyForLeave(data : any){
     return this.http.post(`${this.baseUrl}leave/applyLeave`, data)
@@ -161,22 +167,22 @@ deleteHOD(id:number):Observable<any>{
 
 // payslips
 getAllPayslips(): Observable<any>{
-  return this.http.get(`${this.baseUrl}employee/getAllEmployees?offset=0&size=100`)
+  return this.http.get(`${this.baseUrl}payslip/getAll`)
   }
 
   getPayslipById(id: number): Observable<any>{
-    return this.http.get<any>(`${this.baseUrl}employee/getById/${id}`)
+    return this.http.get<any>(`${this.baseUrl}payslip/getById/${id}`)
   }
   updatePayslip(id: number, data: any ): Observable<any>{
-    return this.http.put<any>(`${this.baseUrl}employee/update/${id}`, data)
+    return this.http.put<any>(`${this.baseUrl}payslip/update/${id}`, data)
   }
 
   createPayslip(data: any): Observable<any>{
-    return  this.http.post(`${this.baseUrl}employee/create`, data)
+    return  this.http.post(`${this.baseUrl}payslip/create`, data)
   }
 
   deletePayslip(id: number):Observable<any>{
-    return this.http.delete<any>(`${this.baseUrl}employee/delete/${id}`)
+    return this.http.delete<any>(`${this.baseUrl}payslip/delete/${id}`)
 
   }
 }

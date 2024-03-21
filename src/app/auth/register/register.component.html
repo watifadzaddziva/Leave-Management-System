@@ -1,19 +1,20 @@
 <body>
   <div class="container">
-    <div class="grid-container">
+    <!-- class="grid-container" -->
+    <div >
       <form nz-form nzLayout='vertical' style="width: 450px;" class="login-form"  [formGroup]="registrationForm" (ngSubmit)="submitForm()">
-              <h3 class="text-center">REGISTRATION</h3>
+              <h3 >REGISTRATION</h3>
         <div style="display: flex; justify-content: space-between;">
           <div style="width: 48%;">
             <nz-form-item>
-              <nz-form-label nzRequired>First Name</nz-form-label>
+              <nz-form-label nzRequired><b>First Name</b></nz-form-label>
               <nz-form-control nzHasFeedback nzErrorTip="The input is invalid!">
                 <input nz-input [(ngModel)]="user.firstName" name="firstName" id="firstName" formControlName="firstName">
               </nz-form-control>
             </nz-form-item>
     
             <nz-form-item>
-              <nz-form-label nzRequired nzFor="lastName">Last Name</nz-form-label>
+              <nz-form-label nzRequired nzFor="lastName"><b>Last Name</b></nz-form-label>
               <nz-form-control nzHasFeedback nzErrorTip="The input is invalid!">
                 <input nz-input [(ngModel)]="user.lastName" name="lastName" id="lastName" formControlName="lastName">
               </nz-form-control>
@@ -22,7 +23,7 @@
     
           <div style="width: 48%;">
             <nz-form-item>
-              <nz-form-label nzRequired>E-mail</nz-form-label>
+              <nz-form-label nzRequired><b>E-mail</b></nz-form-label>
               <nz-form-control nzHasFeedback [nzErrorTip]="emailErrorTpl">
                 <input nz-input [(ngModel)]="user.email" name="email" formControlName="email" type="email">
                 <ng-template #emailErrorTpl let-control>
@@ -33,7 +34,7 @@
             </nz-form-item>
     
             <nz-form-item>
-              <nz-form-label nzRequired>Username</nz-form-label>
+              <nz-form-label nzRequired><b>Username</b></nz-form-label>
               <nz-form-control nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
                 <input nz-input [(ngModel)]="user.username" name="username" formControlName="username">
                 <ng-template #userErrorTpl let-control>
@@ -46,7 +47,7 @@
         </div>
     
         <nz-form-item>
-          <nz-form-label nzFor="password" nzRequired>Password</nz-form-label>
+          <nz-form-label nzFor="password" nzRequired><b>Password</b></nz-form-label>
           <nz-form-control  [nzErrorTip]="errorTpl">
             <div class="password-input-wrapper">
               <input nz-input [type]="passwordVisible ? 'text' : 'password'" id="password" formControlName="password" [(ngModel)]="user.password" name="password" (ngModelChange)="updateConfirmValidator()">
@@ -69,7 +70,7 @@
         </nz-form-item>
     
         <nz-form-item>
-          <nz-form-label nzFor="checkPassword" nzRequired>Confirm Password</nz-form-label>
+          <nz-form-label nzFor="checkPassword" nzRequired><b>Confirm Password</b></nz-form-label>
           <nz-form-control [nzErrorTip]="errorTpl" >
             <div class="password-input-wrapper">
               <input nz-input [type]="passwordVisible ? 'text' : 'password'" id="checkPassword" formControlName="checkPassword" >
@@ -89,7 +90,6 @@
           </nz-form-control>
         </nz-form-item>
       </form>
-      <img src="/assets/laptop1.jpg"  class="background-image" style="clip-path: polygon(25% 0, 100% 0%, 100% 100%, 0 100%);width:123%">
-    </div>   
+         </div>   
   </div>
 </body>

@@ -23,7 +23,7 @@ export const CreatePayslipFields = function get(employees:Array<any>): FormlyFie
             }
             ,  
             {
-              key: 'leave_type',
+              key: 'leavetype',
               type: 'select',
               templateOptions: {
                 label: 'Leave Applied(if any)',
@@ -38,46 +38,6 @@ export const CreatePayslipFields = function get(employees:Array<any>): FormlyFie
                 ]
               }
             }, 
-            // {
-              
-          //   key: 'no_of_days',
-          //     type: 'input',
-          //     templateOptions: {
-          //       label: 'Number of Days',
-          //       placeholder: '',
-          //       type:'number',
-          //     }
-          //   },
-          //   {
-          //       key: 'basic_salary',
-          //       type: 'input',
-          //       templateOptions: {
-          //         label: 'Basic Salary',
-          //         placeholder: '',
-          //         type:'number',
-          //         required: true,
-          //       }
-          //     },
-          //     {
-          //       key: 'allowance',
-          //       type: 'input',
-          //       templateOptions: {
-          //         label: 'Allowances',
-          //         placeholder: '',
-          //         type:'number',
-          //         required: true,
-          //       }
-          //     },
-          //     {
-          //   key: 'other_deductions',
-          //   type: 'input',
-          //   templateOptions: {
-          //     label: 'Deductions',
-          //     placeholder: '',
-          //     type: 'number',
-          //     required: true,
-          //   }
-          // },
           
     ]
   }
