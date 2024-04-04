@@ -18,6 +18,7 @@ export class SetDepartmentComponent {
   @Input() department!: any;
   @Output() output = new EventEmitter();
   fileList: any = [];
+  isLoading: boolean=false;
   options: any;
 
 
@@ -42,21 +43,24 @@ export class SetDepartmentComponent {
  
 submit() {
   if (this.form.valid) {
+    this.isLoading=true;
     var svc;
     this.department.id ? svc = this.defaultService.updateDepartment(this.department.id, this.department) : 
     svc = this.defaultService.postDepartments( this.department);
     svc.subscribe(res => {
       this.notification.success('Saved', 'Department Saved Successfully!', { nzDuration: 10000 });
       this.output.emit(res);
+      this.isLoading=false;
       this.toggle(false);
       this.fileList = []
     },error=>{
       if(error && error.error && error.error.message){
         this.notification.error('Error', error.error.message);
+        this.isLoading=false;
       }
-
-  
-    });
+    }).add(() => {
+      this.isLoading = false;
+    });;
   }
 }
 

@@ -20,6 +20,7 @@ export class SetPayslipComponent {
   fileList: any = [];
   options: any;
   employees:any;
+  isLoading:boolean=false;
 
 
   constructor(private defaultService: DefaultService, 
@@ -53,6 +54,7 @@ export class SetPayslipComponent {
  
 submit() {
   if (this.form.valid) {
+    this.isLoading=true;
     const dataToSend= this.form.value;
     var svc;
     this.payslip.id ? svc = this.defaultService.updatePayslip(this.payslip.id, dataToSend) : 
@@ -60,15 +62,17 @@ submit() {
     svc.subscribe(res => {
       this.notification.success('Saved', 'Payslip Saved Successfully!', { nzDuration: 10000 });
       this.output.emit(res);
+      this.isLoading=false;
       this.toggle(false);
       this.fileList = []
     },error=>{
       if(error && error.error && error.error.message){
         this.notification.error('Error', error.error.message);
+        this.isLoading=false;
       }
-
-  
-    });
+    }).add(() => {
+      this.isLoading = false; 
+    });;
   }
 }
 

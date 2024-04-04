@@ -1,9 +1,9 @@
 
 <nz-layout class="app-layout" nzTheme="light">
-  <nz-sider class="menu-sidebar" nzTheme="light" nzCollapsible  [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+  <nz-sider class="menu-sidebar" nzTheme="dark"  nzCollapsible nzBreakpoint="lg" [nzCollapsedWidth]="0">
     <div class="logo-container">
        </div>
-      <ul nz-menu   nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <ul nz-menu nzTheme="dark"   nzMode="inline" [nzInlineCollapsed]="isCollapsed">
         <li nz-submenu nzOpen nzTitle="Dashboard" >
           <ul>
   
@@ -14,7 +14,7 @@
   
             <li *ngxPermissionsOnly="['ADMIN']"  nz-menu-item routerLink="/welcome/calendar">
               <i nz-icon nzType='calendar'></i>
-              <span>Calendar</span>
+              <span>Statistics</span>
             </li>
             
             <li *ngxPermissionsOnly="['ADMIN']"  nz-menu-item routerLink="/welcome/allLeaves">
@@ -65,14 +65,14 @@
         </li>
       </ul>
 <div class="sidebar-footer">
-        <button nz-button nzType="primary" class="logout-button" (click)="logout()"><i nz-icon nzType="logout"></i>Logout</button>
+        <button nz-button nzType="default" class="logout-button" (click)="logout()"><i nz-icon nzType="logout"></i>Logout</button>
       </div>
     </nz-sider>
     <nz-layout >
       <nz-header class="app-header">
-        <div class="user-icon" style="margin-right: 20px;">
+        <div class="user-icon" style="margin-right: 10px;">
           <a class="user-info" routerLink="/welcome/myAccount">
-            <i nz-icon nzType="user"></i>
+            <nz-avatar nzIcon="user" style="background-color:#120e2f;" [nzSize]="'small'"></nz-avatar>
             <b><span>{{user | uppercase}}</span></b>
           </a>
         </div>

@@ -1,5 +1,50 @@
+<div style="background: #ECECEC; padding: 30px;">
+    <nz-row [nzGutter]="16">
+      <nz-col [nzSpan]="6">
+        <nz-card>
+          <nz-statistic
+            [nzValue]="all"
+            [nzTitle]="'All'"
+            [nzValueStyle]="{ color: '#3F8600' }"
+          ></nz-statistic>
+          <ng-template #prefixTplOne><span nz-icon nzType="arrow-up"></span></ng-template>
+        </nz-card>
+      </nz-col>
+      <nz-col [nzSpan]="6">
+        <nz-card>
+          <nz-statistic
+            [nzValue]="pending"
+            [nzTitle]="'Pending'"
+            [nzValueStyle]="{ color: '#3F8600' }"
+          ></nz-statistic>
+          <ng-template #prefixTplOne><span nz-icon nzType="arrow-up"></span></ng-template>
+        </nz-card>
+      </nz-col>
+      <nz-col [nzSpan]="6">
+        <nz-card>
+          <nz-statistic
+            [nzValue]="approved"
+            [nzTitle]="'Approved'"
+            [nzValueStyle]="{ color: '#3F8600' }"
+          ></nz-statistic>
+          <ng-template #prefixTplTwo><span nz-icon nzType="arrow-down"></span></ng-template>
+        </nz-card>
+      </nz-col>
+      <nz-col [nzSpan]="6">
+        <nz-card>
+          <nz-statistic
+            [nzValue]="rejected"
+            [nzTitle]="'Rejected'"
+            [nzValueStyle]="{ color: '#CF1322' }"
+          ></nz-statistic>
+          <ng-template #prefixTplTwo><span nz-icon nzType="arrow-down"></span></ng-template>
+        </nz-card>
+      </nz-col>
+    </nz-row>
+  </div>
+  
 <div id='calendar-container'>
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+    <div style="display: flex; justify-content: space-between;">
         <p style="display: flex; flex-direction: column;">
            <span><nz-badge nzColor="#9c1c1c"></nz-badge><b>UNPAID LEAVE</b></span> 
             <span><nz-badge nzColor="#141c4c"></nz-badge><b>VACATION</b></span>

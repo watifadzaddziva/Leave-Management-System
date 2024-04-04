@@ -58,6 +58,9 @@ import { SetPayslipComponent } from './components/set-payslip/set-payslip.compon
 import { ViewPayslipComponent } from './view-payslip/view-payslip.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { NzStatisticModule } from 'ng-zorro-antd/statistic';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 
 registerLocaleData(en);
@@ -94,7 +97,10 @@ registerLocaleData(en);
  FullCalendarModule,
  NgxPermissionsModule,
  FlexLayoutModule,
- NzInputNumberModule
+ NzInputNumberModule,
+ NzStatisticModule,
+ NzAvatarModule,
+ NzSpinModule
 
  
 

@@ -30,7 +30,6 @@ export const CreatePayslipFields = function get(employees:Array<any>): FormlyFie
                 placeholder: '',
                 required:true,
                 options:[
-                  {value:'Sick', label:'Sick Leave'},
                   {value:'Unpaid', label:'Unpaid Leave'},
                   {value:'Special', label:'Special Leave'},
                   {value:'Annual', label:'Annual Leave'},

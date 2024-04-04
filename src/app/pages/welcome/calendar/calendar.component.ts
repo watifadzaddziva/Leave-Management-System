@@ -14,11 +14,19 @@ import { HttpClient } from '@angular/common/http';
 export class CalendarComponent implements OnInit {
 
   calendarOptions!:CalendarOptions
+  all!: any;
+  pending!:any;
+  rejected!:any;
+  approved!:any;
 
 constructor(private defaultService: DefaultService, private http:HttpClient){}
 
   ngOnInit(): void {
     this.getAllEvents();
+    this.getAllleave();
+    this.getApproved();
+    this.getPending();
+    this.getRejected();
   }
 
   getAllEvents() {
@@ -58,5 +66,28 @@ getEventColor(leaveType:string):string{
   }
 }
 
+getAllleave(){
+  this.defaultService.getTotalLeaves().subscribe((res)=>{
+    this.all=res;
+  })
+}
+
+getPending(){
+  this.defaultService.getTotalPending().subscribe((res=>{
+    this.pending=res;
+  }))
+}
+
+getApproved(){
+  this.defaultService.getTotalApproved().subscribe((res)=>{
+    this.approved=res;
+  })
+}
+
+getRejected(){
+  this.defaultService.getTotalRejected().subscribe((res)=>{
+    this.rejected=res;
+  })
+}
 
 }

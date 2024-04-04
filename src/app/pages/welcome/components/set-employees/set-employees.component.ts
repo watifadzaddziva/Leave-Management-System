@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Injector, Input, OnInit, Output } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { EmployeesFields } from '../../forms/employees.field';
@@ -20,21 +20,34 @@ export class SetEmployeesComponent implements OnInit {
   fileList: any = [];
   options: any;
   departments:any;
+  isLoaded:boolean= false;
+  isLoading:boolean=false;
 
 
   constructor(private defaultService: DefaultService, 
-    private notification: NzNotificationService, 
+    private notification: NzNotificationService, private fb:UntypedFormBuilder,
     private injector: Injector) {
   }
 
   ngOnInit(): void {
+    this.form=this.fb.group({
+      firstName:['',[Validators.required]],
+      lastName:['',[Validators.required]],
+      gender:['',[Validators.required]],
+      dateOfBirth:['',[Validators.required]],
+      date_of_join:['',[Validators.required]],
+      grade:['',[Validators.required]],
+      status:['',[Validators.required]],
+      email:['',[Validators.required]],
+      password:['',[Validators.required]],
+      username:['',[Validators.required]],
+      departmentId:['',[Validators.required]],
+    });
     this.getDepartments();
-    this.fields = EmployeesFields(this.departments);
   }
 
   ngOnChanges() {
     this.employee = { ...this.employee };
-    this.fields = EmployeesFields(this.departments);
   }
 
   toggle(visible: boolean): void {
@@ -44,20 +57,24 @@ export class SetEmployeesComponent implements OnInit {
  
 submit() {
   if (this.form.valid) {
+    this.isLoading=true;
     var svc;
     this.employee.id ? svc = this.defaultService.updateEmployee(this.employee.id, this.employee) : 
     svc = this.defaultService.createEmployee( this.employee);
     svc.subscribe(res => {
       this.notification.success('Saved', 'Employee Saved Successfully!', { nzDuration: 10000 });
-      this.output.emit(res);
+      this.isLoading=false;
+      this.output.emit(res); 
       this.toggle(false);
       this.fileList = []
     },error=>{
+      this.isLoading=false;
       if(error && error.error && error.error.message){
         this.notification.error('Error', error.error.message);
+        
       }
-
-  
+    }).add(() => {
+      this.isLoading = false; 
     });
   }
 }
@@ -67,7 +84,6 @@ getDepartments(){
     this.departments= res.map((department:any)=>{
       return {label:department.name,value:department.id}
     });
-    this.fields=EmployeesFields(this.departments);
   })
 }
 

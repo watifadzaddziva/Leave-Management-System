@@ -1,39 +1,24 @@
-<!-- <h3>
-<nz-card [style]="{backgroundColor:'#EEEEEE',borderRadius:'20px', width:'700px'}" nzTitle="EMPLOYEE DETAILS" >
 
-  
-  <div >
-  <h3>
-    Email            :{{  this.employeeDetails.email}}<br>
-    Full Name     : {{this.employeeDetails.firstName | titlecase }}  {{this.employeeDetails.lastName | titlecase}}<br>
-    Date Of Birth : {{this.employeeDetails.dateOfBirth}}<br>
-    Gender        : {{this.employeeDetails.gender}}<br><br>
-    Sick Days Available     : {{this.employeeDetails.availableSickLeave}}<br>
-    Vacation Days Available : {{this.employeeDetails.availableVacationLeave}}<br>
-    Unpaid Leave Available  : {{this.employeeDetails.availableUnpaidLeave}}<br>
-</h3>
-  </div> 
-  </nz-card>
- </h3> -->
-<div>
- <div class="col text-center">
-  <div class="card" style="border-radius: 20px; height: 500px;"><br><br>
-    <h4>EMPLOYEE PROFILE</h4><br>
-    <div class="row">
-    <div class="col">
-    <p>Email: {{this.employeeDetails.email}}</p>
-    <p>First Name: {{this.employeeDetails.firstName}}</p>
-    <p>Last Name: {{this.employeeDetails.lastName}}</p>
-    <p>Username: {{this.employeeDetails.username}}</p>
-    <p>Date Of Birth: {{this.employeeDetails.dateOfBirth}}</p>
-    <p>Gender: {{this.employeeDetails.gender}}</p>
-  </div>
-    <div class="col">
-    <p>Available Sick Days: {{this.employeeDetails.availableSickLeave}}</p>
-    <p>Available Unpaid Days: {{this.employeeDetails.availableUnpaidLeave}}</p>
-    <p>Available Vacation Days: {{this.employeeDetails.availableVacationLeave}}</p>
+
+
+<div class="row">
+  <div class="col text-center">
+    <div class="card" style=" border-radius: 20px; height: 400px; "><br><br>
+      <h4> PROFILE</h4><br>
+      <p>Email: {{this.employeeDetails.email}}</p>
+      <p>First Name: {{this.employeeDetails.firstName}}</p>
+      <p>Last Name: {{this.employeeDetails.lastName}}</p>
+      <p>Username: {{this.employeeDetails.username}}</p>
+      <p>Date Of Birth: {{this.employeeDetails.dateOfBirth}}</p>
+      <p>Gender: {{this.employeeDetails.gender}}</p>
     </div>
-   </div>
   </div>
-</div> 
+  <div class="col text-center">
+    <div class="card" style=" border-radius: 20px; height: 400px;"><br><br>
+      <h4> LEAVES</h4><br>
+      <p>Available Annual Days: {{this.employeeDetails.availableAnnualLeave}}</p>
+      <p>Available Unpaid Days: {{this.employeeDetails.availableUnpaidLeave}}</p>
+      <p>Available Special Days: {{this.employeeDetails.availableSpecialLeave}}</p>
+     </div>
+  </div>
 </div>

@@ -30,6 +30,7 @@ export class MainComponent implements OnInit {
   options: any;
   id: any;
   baseUrl: any;
+  isLoading:boolean=false;
 
   constructor(
     private fb: UntypedFormBuilder,
@@ -59,6 +60,7 @@ export class MainComponent implements OnInit {
 
   submit() {
     if (this.form.valid) {
+      this.isLoading=true;
       const dataToSend = this.form.value as { employeeId: number };
       const tokenData = JSON.parse(sessionStorage.getItem('user_data') ?? '{}');
       dataToSend.employeeId = tokenData.user.employee.id;
@@ -77,15 +79,16 @@ export class MainComponent implements OnInit {
             nzDuration: 10000,
           });
           this.output.emit(res);
-          this.leavesToApproveCount++;
-          this.leaveToApproveCountChange.emit(this.leavesToApproveCount);
+          this.isLoading=false;
           this.toggle(false);
           this.fileList = [];
         },
         (error) => {
-          this.notification.error('Error ,Invalid Dates', '');
+          this.notification.error('Error while applying', '');
         }
-      );
+      ).add(() => {
+        this.isLoading = false; 
+      });;
     }
   }
 

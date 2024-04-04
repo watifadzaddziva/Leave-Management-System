@@ -18,8 +18,6 @@ const routes: Routes = [
   { path: 'verify-password',  component:VerificationCodeComponent },
   { path: 'welcome', canActivate:[AuthGuard, ],
      loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule) },
-
-// { path: 'welcome' , loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule) },
 {path:'**', component: PageNotFoundComponent},
 ];
 

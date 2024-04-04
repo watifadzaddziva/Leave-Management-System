@@ -1,5 +1,5 @@
 body {
-  background: url('src/assets/laptop2.jpg') no-repeat ; 
+  background: url('src/assets/better.jpg') no-repeat ; 
   background-attachment: fixed;
   background-size:cover;
   background-size: 100%  100%;
@@ -47,7 +47,7 @@ body {
         margin: auto;
         padding-top: 100px;
         width: 300px;
-        background-color: #9fa2a33c;
+        background-color: rgba(255, 255, 255, 0.637);
         border-radius: 6px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         padding: 20px;

@@ -20,6 +20,7 @@ export class SetHodComponent  implements OnInit{
   fileList: any = [];
   options: any;
   employees:any;
+  isLoading:boolean= false;
   departments:any;
 
 
@@ -43,28 +44,40 @@ export class SetHodComponent  implements OnInit{
   }
 
  
-submit() {
-  if (this.form.valid) {
-    const dataToSend = {
-      ...this.form.value,
-      departmentId: this.form.get('departmentId')?.value,
-      employeeId: this.form.get('employeeId')?.value
-    };
-    var svc;
-    this.hod.id ? svc = this.defaultService.updateDepartment(this.hod.id, this.hod) : 
-    svc = this.defaultService.createHOD(dataToSend.departmentId,dataToSend.employeeId, '');
-    svc.subscribe(res => {
-      this.notification.success('Saved', 'Department Saved Successfully!', { nzDuration: 10000 });
-      this.output.emit(res);
-      this.toggle(false);
-      this.fileList = []
-    },error=>{
-      if(error && error.error && error.error.message){
-        this.notification.error('Error', error.error.message);
+  submit() {
+    if (this.form.valid) {
+      this.isLoading = true;
+      const dataToSend = {
+        ...this.form.value,
+        departmentId: this.form.get('departmentId')?.value,
+        employeeId: this.form.get('employeeId')?.value
+      };
+      let svc;
+      if (this.hod.id) {
+        svc = this.defaultService.updateDepartment(this.hod.id, this.hod);
+      } else {
+        svc = this.defaultService.createHOD(dataToSend.departmentId, dataToSend.employeeId, '');
       }
-    });
+      svc.subscribe(
+        res => {
+          this.notification.success('Saved', 'Department Saved Successfully!', { nzDuration: 10000 });
+          this.output.emit(res);
+          this.toggle(false);
+          this.fileList = [];
+        },
+        error => {
+          if (error && error.error && error.error.message) {
+            this.notification.error('Error', error.error.message);
+          } else {
+            this.notification.error('Error', 'An error occurred while saving the department.');
+          }
+        }
+      ).add(() => {
+        this.isLoading = false; 
+      });
+    }
   }
-}
+  
 
 
 getAll() {

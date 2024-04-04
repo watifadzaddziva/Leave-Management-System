@@ -9,8 +9,10 @@
       <form nz-form [formGroup]='form' nzLayout='vertical' (ngSubmit)='submit()'>
         <formly-form [model]='hod' [fields]='fields' [options]="options"  [form]='form' ></formly-form>
         <nz-button-group class='mt-1'>
-          <button nz-button nzType='primary' type='submit' [disabled]="form.invalid">Save</button>
-          <button nz-button nzType='primary' (click)='toggle(false)' nzGhost type='reset'>Cancel</button>
+          <div>
+            <app-loader *ngIf="isLoading"></app-loader>
+            <button nz-button nzType="primary" type="submit" [disabled]="form.invalid">Save</button>
+          </div>   <button nz-button nzType='primary' (click)='toggle(false)' nzGhost type='reset'>Cancel</button>
         </nz-button-group>
       </form>
     </ng-container>
