@@ -43,18 +43,23 @@
     </nz-row>
   </div>
   
-<div id='calendar-container'>
+<div >
     <div style="display: flex; justify-content: space-between;">
         <p style="display: flex; flex-direction: column;">
-           <span><nz-badge nzColor="#9c1c1c"></nz-badge><b>UNPAID LEAVE</b></span> 
-            <span><nz-badge nzColor="#141c4c"></nz-badge><b>VACATION</b></span>
-           <span><nz-badge nzStatus="warning"></nz-badge><b>SICK LEAVE</b></span> 
+           <span><nz-badge nzColor="#CF1322"></nz-badge><b>UNPAID LEAVE</b></span> 
+            <span><nz-badge nzColor="#141c4c"></nz-badge><b>ANNUAL LEAVE</b></span>
+           <span><nz-badge nzColor="#7c1c1c"></nz-badge><b>SICK LEAVE</b></span> 
+        </p>
+        <p style="display: flex; flex-direction: column;">
+          <span><nz-badge nzColor="#9c1c1c"></nz-badge><b>STUDY LEAVE</b></span> 
+          <span><nz-badge nzColor="#5c1f2c"></nz-badge><b>MATERNITY</b></span>
+         <span><nz-badge nzColor="#3F8600"></nz-badge><b>SPECIAL LEAVE</b></span>
         </p>
         <button nzType="primary" nz-button (click)="toggleWeekends()">toggle weekends</button>
     </div>
-    <full-calendar [options]="calendarOptions">
-        <ng-template #eventContent let-arg>
-            <i>{{arg.event.title}}</i>
-        </ng-template>
-    </full-calendar>
 </div>
+<full-calendar [options]="calendarOptions">
+  <ng-template #eventContent let-arg>
+      <i>{{arg.event.title}}</i>
+  </ng-template>
+</full-calendar>

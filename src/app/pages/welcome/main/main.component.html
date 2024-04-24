@@ -9,11 +9,14 @@
     <form nz-form [formGroup]='form' nzLayout='vertical' (ngSubmit)='submit()'>
       <formly-form [model]="leave" [fields]='fields' [options]="options" [form]='form'></formly-form>
       <nz-form-item>
-        <nz-form-label  nzFor="email">Leave Type</nz-form-label>
+        <nz-form-label  >Leave Type</nz-form-label>
         <nz-form-control>
-          <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a leave " formControlName="leaveType" >
+          <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a leave " formControlName="leaveType" (ngModelChange)="handleLeaveTypeChange($event)" >
             <nz-option nzLabel="Annual" nzValue="Annual"></nz-option>
             <nz-option nzLabel="Unpaid" nzValue="Unpaid"></nz-option>
+            <nz-option nzLabel="Sick" nzValue="Sick"></nz-option>
+            <nz-option nzLabel="Maternity" nzValue="Maternity"></nz-option>
+            <nz-option nzLabel="Study" nzValue="Study"></nz-option>
             <nz-option nzLabel="Special" nzValue="Special"></nz-option>
           </nz-select>
         </nz-form-control>
@@ -27,24 +30,21 @@
         </nz-form-control>
       </nz-form-item>
       <div class="clearfix">
-        <ng-container *ngIf="showUpload"   >
-          <nz-upload
-            [nzAction]="baseUrl+'/file/upload'"
-            nzListType="picture-card"
-            [(nzFileList)]="fileList"
-            [nzShowButton]="fileList.length < 1"
-            [nzPreview]="handlePreview"
-            nzAccept=".png,.jpg, .jpeg, .gif, .bmp"
-            [nzRemove]="handleRemove"
-            [nzWithCredentials]="true"
-            (nzChange)="uploadedFile($event)"
-          >
-            <div>
-              <i nz-icon nzType="plus"></i>
-              <div style="margin-top: 8px">Upload</div>
-            </div>
-          </nz-upload>
-        </ng-container>
+              <ng-container *ngIf="showUpload">
+                <nz-upload
+                nzType="drag"
+                [nzMultiple]="true"
+                [nzAction]="baseUrl+'/file/create'"
+                (nzChange)="handleChange($event)"
+              >
+                <p class="ant-upload-drag-icon">
+                  <span nz-icon nzType="inbox"></span>
+                </p>
+                <p class="ant-upload-text">Click or drag file to this area to upload</p>
+                <p class="ant-upload-hint">
+                </p>
+              </nz-upload>
+              </ng-container>
 
         <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null" (nzOnCancel)="previewVisible = false">
           <ng-template #modalContent>

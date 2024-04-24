@@ -4,10 +4,11 @@ import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { AuthService,  } from 'src/app/services/auth.service';
-import { NzUploadFile } from 'ng-zorro-antd/upload';
+import { NzUploadChangeParam, NzUploadFile } from 'ng-zorro-antd/upload';
 import { DefaultService } from '../services/default.service';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { ApplyLeaveFieldsFields } from '../forms/apply-leave';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-main',
@@ -28,9 +29,11 @@ export class MainComponent implements OnInit {
   previewVisible = false;
   uploading = false;
   options: any;
+  leave_types!:any;
   id: any;
-  baseUrl: any;
+  baseUrl=`http://localhost:8085`;
   isLoading:boolean=false;
+  imageUrl!:any;
 
   constructor(
     private fb: UntypedFormBuilder,
@@ -38,7 +41,8 @@ export class MainComponent implements OnInit {
     private authService: AuthService,
     private notification: NzNotificationService,
     private jwtHelper: JwtHelperService,
-    private router: Router
+    private router: Router,
+    private msg: NzMessageService
   ) {}
 
   ngOnInit(): void {
@@ -47,11 +51,12 @@ export class MainComponent implements OnInit {
     this.form = this.fb.group({
       leaveType: ['', [Validators.required]],
       reason: ['', [Validators.required]],
+      file:[]
     });
   }
 
   handleLeaveTypeChange(value: string) {
-    this.showUpload = value === 'Study' || value === 'Sick';
+    this.showUpload = value === 'Study' ;
   }
 
   toggle(visible: boolean): void {
@@ -61,9 +66,10 @@ export class MainComponent implements OnInit {
   submit() {
     if (this.form.valid) {
       this.isLoading=true;
-      const dataToSend = this.form.value as { employeeId: number };
+      const dataToSend = this.form.value as { employeeId: number ,file:any};
       const tokenData = JSON.parse(sessionStorage.getItem('user_data') ?? '{}');
       dataToSend.employeeId = tokenData.user.employee.id;
+      dataToSend.file= this.imageUrl;
       this.id = tokenData.user.employee.id;
       var svc;
       this.leave.id
@@ -84,7 +90,9 @@ export class MainComponent implements OnInit {
           this.fileList = [];
         },
         (error) => {
-          this.notification.error('Error while applying', '');
+          if(error && error.error && error.error.error){
+            this.notification.error('Error', error.error.error);      
+          }
         }
       ).add(() => {
         this.isLoading = false; 
@@ -92,42 +100,24 @@ export class MainComponent implements OnInit {
     }
   }
 
-  handlePreview = async (file: NzUploadFile) => {
-    if (!file.url && !file['preview']) {
-      file['preview'] = await this.getBase64(file.originFileObj!);
+  handleChange({ file, fileList }: NzUploadChangeParam): void {
+    const status = file.status;
+    if (status !== 'uploading') {
+      console.log(file, fileList);
     }
-    this.previewImage = file.url || file['preview'];
-    this.previewVisible = true;
-  };
-
-  handleRemove = (file: NzUploadFile) => {
-    // if (!file.response) return false;
-    // this.service.delete(`/file/${file.response.id}`).subscribe(res => {
-    //   this.leave.imageUrl = null;
-    //   this.leave.success = null;
-    //   return true;
-    // });
-    return true;
-  };
-
-  getBase64(file: File): Promise<string | ArrayBuffer | null> {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
+    if (status === 'done') {
+      this.msg.success(`${file.name} file uploaded successfully.`);
+      this.imageUrl= file.response?.location;
+      console.log(this.imageUrl)
+    } else if (status === 'error') {
+      this.msg.error(`${file.name} file upload failed.`);
+    } 
   }
 
-  uploadedFile(e: any) {
-    if (e.type == 'success' && e.file.status == 'done')
-      if (e.file.response)
-        this.leave = {
-          ...this.leave,
-          productImageId: e.file.response.id,
-          success: true,
-          file: e.file.response.location,
-        };
-      else this.leave = { ...this.leave, success: false };
+
+  getLeaves(){
+    this.defaultService.getLeaveTypes().subscribe((res)=>{
+      this.leave_types=res;
+    })
   }
 }
