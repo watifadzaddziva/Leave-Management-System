@@ -37,7 +37,7 @@ export class EmployeesComponent implements OnInit {
 
   load( event?: number): void {
     this.defaultService.getAllEmployees().subscribe((res)=>{
-      this.employees= res.content
+      this.employees= res;
      })
   }
 

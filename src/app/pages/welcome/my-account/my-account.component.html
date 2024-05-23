@@ -1,24 +1,105 @@
-<div class="row">
-  <div class="col text-center">
-    <div class="card" style="border-radius: 20px; height: 400px;"><br><br>
-      <h4>MY PROFILE</h4><br>
-      <p><b>Email: {{this.userInfo.email}}</b></p>
-      <p><b>First Name: {{this.userInfo.firstName}}</b></p>
-      <p><b>Last Name: {{this.userInfo.lastName}}</b></p>
-      <p><b>Username: {{this.userInfo.username}}</b></p>
-      <!-- <p><b>Date Of Birth: {{this.userInfo.dateOfBirth}}</b></p> -->
-      <!-- <p><b>Gender: {{this.userInfo.gender}}</b></p> -->
+<div class="container">
+  <div class="row">
+    <div class="card profile">
+      <nz-avatar nzSrc="/assets/user.jpg" nzSize="large" nzShape="circle" style="display: flex; justify-content: center;"></nz-avatar>
+      <h5>Profile</h5>
+      <hr>
+      <div class="text-left">
+        <p>
+          <i nz-icon nzType="mail" nzTheme="outline" style="color: #201377; margin-right: 5px;"></i>
+          <strong>Email:</strong> {{ this.employeeDetails.email }}
+        </p>
+        <p>
+          <i nz-icon nzType="user" nzTheme="outline" style="color: #201377; margin-right: 5px;"></i>
+          <strong>First Name:</strong> {{ this.employeeDetails.firstName }}
+        </p>
+        <p>
+          <i nz-icon nzType="user" nzTheme="outline" style="color: #201377; margin-right: 5px;"></i>
+          <strong>Last Name:</strong> {{ this.employeeDetails.lastName }}
+        </p>
+        <p>
+          <i nz-icon nzType="user" nzTheme="outline" style="color: #201377; margin-right: 5px;"></i>
+          <strong>Username:</strong> {{ this.employeeDetails.username }}
+        </p>
+        <p>
+          <i nz-icon nzType="user" nzTheme="outline" style="color: #201377; margin-right: 5px;"></i>
+          <strong>Gender:</strong> {{ this.employeeDetails.gender }}
+        </p>
+      </div>
+    </div>
+
+    <div class="card details">
+      <h5>Employee Details</h5>
+      <hr>
+      <div class="text-left">
+        <p>
+          <i nz-icon nzType="idcard" nzTheme="outline" style="color: #201377; margin-right: 5px;"></i>
+          <strong>Employee Number:</strong> {{ this.employeeDetails.emp_number }}
+        </p>
+        <p>
+          <i nz-icon nzType="file" nzTheme="outline" style="color: #201377; margin-right: 5px;"></i>
+          <strong>Contract Type:</strong> {{ this.employeeDetails.status }}
+        </p>
+        <p>
+          <i nz-icon nzType="team" nzTheme="outline" style="color: #201377; margin-right: 5px;"></i>
+          <strong>Employee Status:</strong> {{ this.employeeDetails.employeeStatus }}
+        </p>
+        <p>
+          <i nz-icon nzType="star" nzTheme="outline" style="color: #201377; margin-right: 5px;"></i>
+          <strong>Grade:</strong> {{ this.employeeDetails.grade }}
+        </p>
+        <p>
+          <i nz-icon nzType="calendar" nzTheme="outline" style="color: #201377; margin-right: 5px;"></i>
+          <strong>Date Of Birth:</strong> {{ this.employeeDetails.dateOfBirth | date: 'yyyy-MM-dd' }}
+        </p>
+      </div>
     </div>
   </div>
-  <div class="col text-center">
-    <div class="card" style=" border-radius: 20px; height: 400px;"><br><br>
-      <h4>MY LEAVES</h4><br>
-      <p><b>Default Sick Days: 10</b></p>
-      <p><b>Default Unpaid Days: 365</b></p>
-      <p><b>Default Vacation Days:22 </b></p><br>
-      <!-- <p><b>Available Annual Days: {{this.userDetails.availableAnnualLeave}}</b></p>
-      <p><b>Available Unpaid Days: {{this.userDetails.availableUnpaidLeave}}</b></p>
-      <p><b>Available Special Days: {{this.userDetails.availableSickLeave}}</b></p> -->
+
+  <div class="row">
+    <div class="card leaves">
+      <h5>Leaves</h5>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Leave Type</th>
+            <th>Default Days</th>
+            <th>Available Days</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Unpaid Leave</td>
+            <td>365</td>
+            <td>{{ this.employeeDetails.availableUnpaidLeave }}</td>
+          </tr>
+          <tr>
+            <td>Annual Leave</td>
+            <td>22</td>
+            <td>{{ this.employeeDetails.availableAnnualLeave }}</td>
+          </tr>
+          <tr>
+            <td>Special Leave</td>
+            <td>10</td>
+            <td>{{ this.employeeDetails.availableSpecialLeave }}</td>
+          </tr>
+          <tr>
+            <td>Sick Leave</td>
+            <td>12</td>
+            <td>{{ this.employeeDetails.availableSickLeave }}</td>
+          </tr>
+          <tr>
+            <td>Study Leave</td>
+            <td>10</td>
+            <td>{{ this.employeeDetails.availableStudyLeave }}</td>
+          </tr>
+          <tr>
+            <td>Maternity Leave</td>
+            <td>90</td>
+            <td>{{ this.employeeDetails.availableMaternityLeave }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormGroup, UntypedFormBuilder } from '@angular/forms';
+import { FormGroup, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
@@ -18,7 +18,7 @@ export class ViewPayslipComponent {
   disabled = true;
   loading: boolean = false;
   visible!: boolean;
-  form = new FormGroup({});
+  form = new UntypedFormGroup({});
   fields !: FormlyFieldConfig[];
   dates:any;
   pdfSrc!: string;
@@ -47,7 +47,7 @@ export class ViewPayslipComponent {
 
   submit() {
     this.loading= true;
-    this.service.payslipReport()
+    this.service.payslipReport(this.form.value.id)
       .subscribe(
          (res:any) => {
           const file = new Blob([res], { type: 'application/pdf' });
@@ -65,8 +65,7 @@ export class ViewPayslipComponent {
 
   getEmployees(){
     this.service.getAllEmployees().subscribe((res)=>{
-      this.employees = res.content.map((employee: any) => {
-        console.log(res)
+      this.employees = res.map((employee: any) => {
         return { label: `${employee.firstName} ${employee.lastName}`, value: employee.id };
       });
       this.fields= REPORTFields(this.employees);

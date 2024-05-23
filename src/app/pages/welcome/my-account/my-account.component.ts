@@ -26,7 +26,8 @@ export class MyAccountComponent {
   });
   token!: string;
   tokenInfo: any;
-  userDetails!: any;
+  employeeDetails!: any;
+  id!: number;
 
 
   constructor(private fb: UntypedFormBuilder,  private router : Router,
@@ -38,24 +39,33 @@ export class MyAccountComponent {
   
     ngOnInit(): void {
 this.UseDet();
+this.empDetails();
      }
 
 
   UseDet(){ 
-    
+      // const tokenData=JSON.parse(sessionStorage.getItem('user_data') ?? '{}')  
+      // this.userInfo=tokenData.user
+      // const id= tokenData.user.employee.id
+      // this.defaultService.getRemainingLeaveDays(id).subscribe((res)=>{
+      // this.userDetails=res
+      // },error=>{
+      //   this.notification.error("Error while fetching employee leaves","")
+      // })
+  }
+
+  empDetails(){
       const tokenData=JSON.parse(sessionStorage.getItem('user_data') ?? '{}')  
       this.userInfo=tokenData.user
       const id= tokenData.user.employee.id
-      this.defaultService.getRemainingLeaveDays(id).subscribe((res)=>{
-      this.userDetails=res
-      },error=>{
-        this.notification.error("Error while fetching employee leaves","")
-      })
-
+    this.defaultService.getEmployeeById(id).subscribe(data=>{
+     this.employeeDetails=data;
+   });
+}
   }
      
      
-     }
+     
 
 
 

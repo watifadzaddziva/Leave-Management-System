@@ -1,59 +1,64 @@
-<div style="background: #ECECEC; padding: 30px;">
-    <nz-row [nzGutter]="16">
-      <nz-col [nzSpan]="6">
-        <nz-card>
-          <nz-statistic
-            [nzValue]="all"
-            [nzTitle]="'All'"
-            [nzValueStyle]="{ color: '#3F8600' }"
-          ></nz-statistic>
-          <ng-template #prefixTplOne><span nz-icon nzType="arrow-up"></span></ng-template>
-        </nz-card>
-      </nz-col>
-      <nz-col [nzSpan]="6">
-        <nz-card>
-          <nz-statistic
-            [nzValue]="pending"
-            [nzTitle]="'Pending'"
-            [nzValueStyle]="{ color: '#3F8600' }"
-          ></nz-statistic>
-          <ng-template #prefixTplOne><span nz-icon nzType="arrow-up"></span></ng-template>
-        </nz-card>
-      </nz-col>
-      <nz-col [nzSpan]="6">
-        <nz-card>
-          <nz-statistic
-            [nzValue]="approved"
-            [nzTitle]="'Approved'"
-            [nzValueStyle]="{ color: '#3F8600' }"
-          ></nz-statistic>
-          <ng-template #prefixTplTwo><span nz-icon nzType="arrow-down"></span></ng-template>
-        </nz-card>
-      </nz-col>
-      <nz-col [nzSpan]="6">
-        <nz-card>
-          <nz-statistic
-            [nzValue]="rejected"
-            [nzTitle]="'Rejected'"
-            [nzValueStyle]="{ color: '#CF1322' }"
-          ></nz-statistic>
-          <ng-template #prefixTplTwo><span nz-icon nzType="arrow-down"></span></ng-template>
-        </nz-card>
-      </nz-col>
-    </nz-row>
-  </div>
+<div class="stats-container" style="background: #ECECEC; padding: 30px; border-radius: 8px;">
+  <nz-row [nzGutter]="16">
+    <nz-col [nzSpan]="6">
+      <nz-card nzStyle="background: #f5f5f5; border-radius: 8px;">
+        <nz-statistic
+          [nzValue]="all"
+          [nzTitle]="'All'"
+          [nzValueStyle]="{ color: '#141c4c' }"
+        >
+          <ng-template #prefixTplOne><span nz-icon nzType="arrow-up" style="color: #141c4c;"></span></ng-template>
+        </nz-statistic>
+      </nz-card>
+    </nz-col>
+    <nz-col [nzSpan]="6">
+      <nz-card nzStyle="background: #dcedfe; border-radius: 8px;">
+        <nz-statistic
+          [nzValue]="pending"
+          [nzTitle]="'Pending'"
+          [nzValueStyle]="{ color: '#3F8600' }"
+        >
+          <ng-template #prefixTplOne><span nz-icon nzType="arrow-up" style="color: #3F8600;"></span></ng-template>
+        </nz-statistic>
+      </nz-card>
+    </nz-col>
+    <nz-col [nzSpan]="6">
+      <nz-card nzStyle="background: #dcedfe; border-radius: 8px;">
+        <nz-statistic
+          [nzValue]="approved"
+          [nzTitle]="'Approved'"
+          [nzValueStyle]="{ color: '#3F8600' }"
+        >
+          <ng-template #prefixTplTwo><span nz-icon nzType="arrow-down" style="color: #3F8600;"></span></ng-template>
+        </nz-statistic>
+      </nz-card>
+    </nz-col>
+    <nz-col [nzSpan]="6">
+      <nz-card nzStyle="background: #f9e7e7; border-radius: 8px;">
+        <nz-statistic
+          [nzValue]="rejected"
+          [nzTitle]="'Rejected'"
+          [nzValueStyle]="{ color: '#CF1322' }"
+        >
+          <ng-template #prefixTplTwo><span nz-icon nzType="arrow-down" style="color: #CF1322;"></span></ng-template>
+        </nz-statistic>
+      </nz-card>
+    </nz-col>
+  </nz-row>
+</div>
+
   
 <div >
     <div style="display: flex; justify-content: space-between;">
         <p style="display: flex; flex-direction: column;">
-           <span><nz-badge nzColor="#CF1322"></nz-badge><b>UNPAID LEAVE</b></span> 
-            <span><nz-badge nzColor="#141c4c"></nz-badge><b>ANNUAL LEAVE</b></span>
-           <span><nz-badge nzColor="#7c1c1c"></nz-badge><b>SICK LEAVE</b></span> 
+           <span><nz-badge nzColor="#CCCC00"></nz-badge><b>Unpaid leave</b></span> 
+            <span><nz-badge nzColor="#141c4c"></nz-badge><b>Annual leave</b></span>
+           <span><nz-badge nzColor="#7c1c1c"></nz-badge><b>Sick leave</b></span> 
         </p>
         <p style="display: flex; flex-direction: column;">
-          <span><nz-badge nzColor="#9c1c1c"></nz-badge><b>STUDY LEAVE</b></span> 
-          <span><nz-badge nzColor="#5c1f2c"></nz-badge><b>MATERNITY</b></span>
-         <span><nz-badge nzColor="#3F8600"></nz-badge><b>SPECIAL LEAVE</b></span>
+          <span><nz-badge nzColor="#C71585"></nz-badge><b>Study leave</b></span> 
+          <span><nz-badge nzColor="#6B8E23"></nz-badge><b>Maternity</b></span>
+         <span><nz-badge nzColor="#FF8C00"></nz-badge><b>Special leave</b></span>
         </p>
         <button nzType="primary" nz-button (click)="toggleWeekends()">toggle weekends</button>
     </div>

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormGroup, UntypedFormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { EmployeesReportFields } from '../report forms/all-employees';
 import { DatePipe } from '@angular/common';
@@ -20,13 +20,16 @@ export class AllEmployeesComponent implements OnInit {
   disabled = true;
   loading: boolean = false;
   visible!: boolean;
-  form = new FormGroup({});
+  form = new UntypedFormGroup({});
   fields!: FormlyFieldConfig[];
+  @Input() report!:any;
+  @Output() output = new EventEmitter();
   dates:any;
   pdfSrc!: string;
   safeUrl: any;
   isLoaded:boolean =false;
-  options:any
+  options:any;
+  employees:any;
 
   constructor(private nzNotification: NzNotificationService,
     private dp: DatePipe,
@@ -36,6 +39,8 @@ export class AllEmployeesComponent implements OnInit {
   }
 
   ngOnInit(): void {  
+    this.getAll();
+    this.fields=EmployeesReportFields(this.employees);
   }
 
   toggle(visible: boolean) {
@@ -45,12 +50,11 @@ export class AllEmployeesComponent implements OnInit {
 
   submit() {
     this.loading= true;
-    this.service.employeesReport()
+    this.service.employeesReport(this.form.value.id)
       .subscribe(
          (res:any) => {
           const file = new Blob([res], { type: 'application/pdf' });
           const fileURL = URL.createObjectURL(file);
-          // window.open(fileURL, '_blank');
           this.safeUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(fileURL);
           this.isLoaded = true;
           this.loading=false;
@@ -60,5 +64,14 @@ export class AllEmployeesComponent implements OnInit {
           this.loading= false;
         }
       );
+  }
+
+  getAll() {
+      this.service.getAllEmployees().subscribe((res)=>{
+        this.employees = res.map((employee: any) => {
+          return { label: `${employee.firstName} ${employee.lastName}`, value: employee.id };
+        }); 
+        this.fields = EmployeesReportFields(this.employees);
+      })
   }
 }

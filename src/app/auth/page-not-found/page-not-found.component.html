@@ -1,14 +1,11 @@
 <body>
 <div class="container">
     <div class="content">
-      <h1>OOOPS!</h1>
-      <h2>404 - PAGE NOT FOUND</h2>
-      <p>
-        The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
-      </p>
-      <button nz-button  class="login-form-button "  nzType="primary">
-        <a routerLink="/">GO TO HOMEPAGE</a>
-      </button>
+      <nz-result nzStatus="404" nzTitle="404" nzSubTitle="Sorry, the page you visited does not exist.">
+        <div nz-result-extra>
+          <button nz-button nzType="primary" routerLink="/">Back Home</button>
+        </div>
+      </nz-result>
      </div>
   </div>   
 </body>

@@ -3,7 +3,7 @@
     <span *ngIf="!payslip.id">Add Payslip</span>
     
   </button><br>
-  <nz-drawer [nzClosable]='false' [nzWidth]='400' [nzVisible]='visible' nzPlacement='right'
+  <nz-drawer [nzClosable]='false' [nzWidth]='500' [nzVisible]='visible' nzPlacement='right'
              [nzTitle]='payslip.id ? "Edit Payslip" : "Add Payslip"' (nzOnClose)='toggle(false)'>
     <ng-container *nzDrawerContent>
       <form nz-form [formGroup]='form' nzLayout='vertical' (ngSubmit)='submit()'>
@@ -11,9 +11,9 @@
        <div class="row">
         <div class="col">
           <nz-form-item>
-            <nz-form-label>Number of Days</nz-form-label>
+            <nz-form-label nzRequired>No of Days(Of Leave Type)</nz-form-label>
             <nz-form-control>
-              <nz-input-number [nzMin]="0" formControlName="leaveDays" ></nz-input-number>
+              <nz-input-number [nzMin]="0" formControlName="leaveDays" style="width:100%" ></nz-input-number>
             </nz-form-control>
           </nz-form-item>
         </div>
@@ -21,29 +21,92 @@
           <nz-form-item>
             <nz-form-label nzRequired>Basic Salary</nz-form-label>
             <nz-form-control>
-              <nz-input-number [nzMin]="0" formControlName="basic_salary" ></nz-input-number>
+              <nz-input-number [nzMin]="0" formControlName="basic_salary" style="width:100%"></nz-input-number>
             </nz-form-control>
           </nz-form-item>
         </div>
       </div>
-        <div class="row">
+ 
+       <div class="row">
         <div class="col">
           <nz-form-item>
-            <nz-form-label>Allowances</nz-form-label>
+            <nz-form-label nzRequired>Transport Allowance</nz-form-label>
             <nz-form-control>
-              <nz-input-number [nzMin]="0" formControlName="allowances" ></nz-input-number>
+              <nz-input-number [nzMin]="0" formControlName="transport_allowance" style="width:100%"></nz-input-number>
             </nz-form-control>
           </nz-form-item>
         </div>
         <div class="col">
           <nz-form-item>
-            <nz-form-label>Deductions</nz-form-label>
+            <nz-form-label nzRequired>Night Allowance</nz-form-label>
             <nz-form-control>
-              <nz-input-number  [nzMin]="0" formControlName="otherDeductions" ></nz-input-number>
+              <nz-input-number [nzMin]="0" formControlName="night_allowance" style="width:100%"></nz-input-number>
             </nz-form-control>
           </nz-form-item>
         </div>
-       </div> 
+      </div>
+      <div class="row">
+        <div class="col">
+          <nz-form-item>
+            <nz-form-label nzRequired>Other Allowances</nz-form-label>
+            <nz-form-control>
+              <nz-input-number [nzMin]="0" formControlName="allowances" style="width:100%"></nz-input-number>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div class="col">
+          <nz-form-item>
+            <nz-form-label nzRequired>Attendance Bonus</nz-form-label>
+            <nz-form-control>
+              <nz-input-number  [nzMin]="0" formControlName="attendance_bonus" style="width:100%" ></nz-input-number>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+       </div>
+       <div class="row">
+        <div class="col">
+          <nz-form-item>
+            <nz-form-label nzRequired> Housing Plan</nz-form-label>
+            <nz-form-control>
+              <nz-input-number [nzMin]="0" formControlName="housing_plan" style="width:100%"></nz-input-number>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div class="col">
+          <nz-form-item>
+            <nz-form-label nzRequired>Deductions</nz-form-label>
+            <nz-form-control>
+              <nz-input-number  [nzMin]="0" formControlName="otherDeductions" style="width:100%" ></nz-input-number>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+       </div>
+       <div class="row">
+        <div class="col">
+          <nz-form-item>
+            <nz-form-label nzRequired>Overtime Holiday</nz-form-label>
+            <nz-form-control>
+              <nz-input-number [nzMin]="0" formControlName="overtime_holiday" style="width:100%"></nz-input-number>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div class="col">
+          <nz-form-item>
+            <nz-form-label nzRequired>NSSA</nz-form-label>
+            <nz-form-control>
+              <nz-input-number [nzMin]="0" formControlName="nssa" style="width:100%"></nz-input-number>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div class="col">
+          <nz-form-item>
+            <nz-form-label nzRequired>Overtime Hours</nz-form-label>
+            <nz-form-control>
+              <nz-input-number [nzMin]="0" formControlName="overtime" style="width:100%"></nz-input-number>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
         <nz-button-group class='mt-1'>
           <div>
             <app-loader *ngIf="isLoading"></app-loader>

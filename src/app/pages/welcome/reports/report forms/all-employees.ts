@@ -1,42 +1,17 @@
 import { FormlyFieldConfig } from "@ngx-formly/core";
 
-export const EmployeesReportFields = function (
-  
-): FormlyFieldConfig[] {
+export const EmployeesReportFields = function get(employees_list:Array<any>): FormlyFieldConfig[] {
   return [
     {
-      key: 'status',
+      key: 'id',
       type: 'select',
       templateOptions: {
-        label: 'Leave Status',
-        options: [
-          { value: 'APPROVED', label: 'Approved' },
-          { value: 'PENDING', label: 'Pending' },,
-          { value: 'REJECTED', label: 'Rejected' },
-         
-        ]
+        label: 'Employees',
+        placeholder:'select employee',
+        options:employees_list,
 
       },
     },
-    {
-      key: 'startDate',
-      type: 'input',
-      templateOptions: {
-        label: 'Start Date',
-        placeholder: 'Enter start date',
-        type: 'date',
-        required:true
-      }
-    },
-    {
-      key: 'endDate',
-      type: 'input',
-      templateOptions: {
-        label: 'End Date',
-        placeholder: 'Enter end date',
-        type: 'date',
-        required:true
-      }
-    },
+
   ];
 };

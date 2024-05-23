@@ -86,7 +86,7 @@ getAll() {
     this.defaultService.getDepartments()
   ]).subscribe(([employeesRes, departmentsRes]) => {
     
-    this.employees = employeesRes.content.map((employee: any) => {
+    this.employees = employeesRes.map((employee: any) => {
       return { label: `${employee.firstName} ${employee.lastName}`, value: employee.id };
     });
 

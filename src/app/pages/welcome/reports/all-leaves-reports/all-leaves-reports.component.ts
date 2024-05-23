@@ -1,12 +1,13 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { DefaultService } from '../../services/default.service';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { EmployeesReportFields } from '../report forms/all-employees';
 import { HttpClient } from '@angular/common/http';
+import { LeaveReportFields } from '../report forms/leave.fields';
 
 @Component({
   selector: 'app-all-leaves-reports',
@@ -20,33 +21,35 @@ export class AllLeavesReportsComponent implements OnInit {
   disabled = true;
   loading: boolean = false;
   visible!: boolean;
-  form = new FormGroup({});
+  form = new UntypedFormGroup({});
   fields!: FormlyFieldConfig[];
   pdfSrc!: string;
   safeUrl: any;
   isLoaded:boolean =false;
-  baseUrl = 'http://localhost:8085/'
+  baseUrl = 'http://localhost:8085/';
+  report: any;
+  options: any;
+ 
 
   constructor(
     private service: DefaultService,
-    private nzNotification: NzNotificationService,private http:HttpClient,
     private dp: DatePipe,
-    private domSanitizer: DomSanitizer,
+    private domSanitizer: DomSanitizer,private fb:UntypedFormBuilder
   ) {}
   
   ngOnInit(): void {
-    this.fields= EmployeesReportFields();
+    this.form=this.fb.group({
+      id:[]
+ })
   }
 
   toggle(visible: boolean) {
     this.visible = visible;
   }
 
- 
-
   submit() {
     this.loading= true;
-    this.service.leavesReport()
+    this.service.leavesReport(this.form.value.id)
       .subscribe(
          (res:any) => {
           console.log(res)

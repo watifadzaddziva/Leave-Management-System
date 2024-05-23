@@ -1,8 +1,8 @@
 <br>
 <h4 class="text-center">All Leaves Report</h4>
 <div style="float:right">
-  <button nz-button (click)="submit()" type="submit" nzType="primary">
-    <i nz-icon nzType="filter" style="margin-right: 8px;"></i>View Report
+  <button nz-button (click)='toggle(true)' nzType="primary">
+    <i nz-icon nzType="filter" style="margin-right: 8px;"></i>Insert Filters
   </button>
 </div>
 <div style="padding: 30px;">
@@ -13,3 +13,28 @@
       </ng-container>
     </div>
 </div>
+<nz-drawer [nzClosable]='false' [nzWidth]='400' [nzVisible]='visible' nzPlacement='right'
+[nzTitle]="'Insert Filters'" (nzOnClose)='toggle(false)'>
+<ng-container *nzDrawerContent>
+<form nz-form [formGroup]='form' nzLayout='vertical' (ngSubmit)='submit()'>
+  <!-- <formly-form [model]="report" [fields]="fields" [options]="options" [form]="form"></formly-form> -->
+  <nz-form-item>
+    <nz-form-label  >Leave Type</nz-form-label>
+    <nz-form-control>
+      <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a leave " formControlName="id"  >
+        <nz-option nzLabel="Annual" nzValue="Annual"></nz-option>
+        <nz-option nzLabel="Unpaid" nzValue="Unpaid"></nz-option>
+        <nz-option nzLabel="Sick" nzValue="Sick"></nz-option>
+        <nz-option nzLabel="Maternity" nzValue="Maternity"></nz-option>
+        <nz-option nzLabel="Study" nzValue="Study"></nz-option>
+        <nz-option nzLabel="Special" nzValue="Special"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+<nz-button-group class='mt-1'>
+<button nz-button nzType='primary' type='submit'>Save</button>&nbsp;
+<button nz-button nzType='primary' (click)='toggle(false)' nzGhost type='reset'>Cancel</button>
+</nz-button-group>
+</form>
+</ng-container>
+</nz-drawer>

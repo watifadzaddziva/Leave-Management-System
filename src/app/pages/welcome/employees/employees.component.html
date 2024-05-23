@@ -43,7 +43,7 @@
             <!-- <td>{{data.department}}</td> -->
             <td>{{data.email}} </td>
             <td>{{data.gender}} </td>
-            <td>{{data.dateOfBirth}} </td>
+            <td>{{data.dateOfBirth | date: 'yyyy-MM-dd'}} </td>
             <td>
               <nz-button-group>
               <app-set-employees [employee]='data' (output)='load($event)'></app-set-employees>

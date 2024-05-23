@@ -39,6 +39,7 @@ import { VerificationCodeComponent } from './auth/verification-code/verification
 import { SetNewPasswordComponent } from './auth/set-new-password/set-new-password.component';
 import { CacheInterceptor } from './models/cache.interceptor';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { NzResultModule } from 'ng-zorro-antd/result';
 registerLocaleData(en);
 
 @NgModule({
@@ -75,6 +76,7 @@ registerLocaleData(en);
     FullCalendarModule,
     NgxPermissionsModule.forRoot(),
   RouterModule,
+  NzResultModule
 
   ],
 

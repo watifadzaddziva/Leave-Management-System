@@ -90,8 +90,8 @@ export class MainComponent implements OnInit {
           this.fileList = [];
         },
         (error) => {
-          if(error && error.error && error.error.error){
-            this.notification.error('Error', error.error.error);      
+          if(error && error.error && error.error.message){
+            this.notification.error('Error', error.error.message);      
           }
         }
       ).add(() => {

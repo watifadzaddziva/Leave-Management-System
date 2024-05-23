@@ -58,15 +58,15 @@ getEventColor(leaveType:string):string{
     case 'Annual':
       return '#141c4c'; 
     case 'Unpaid':
-      return '#9c1c1c'; 
+      return '#CCCC00'; 
     case 'Sick':
       return '#F79327';
     case 'Special':
-      return '#3F8600';
+      return '#FF8C00';
     case 'Study':
-      return '#9c1c1c';
+      return '#C71585';
     case 'Maternity':
-      return '#5c1f2c';
+      return '#6B8E23';
 
     default:
       return '#000000'; 

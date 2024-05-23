@@ -33,11 +33,18 @@ export class SetPayslipComponent {
     this.getEmployees();
     this.fields = CreatePayslipFields(this.employees);
     this.form= this.fb.group({
-    period:[''],
+    overtime:['',[Validators.required]],
     basic_salary:['',[Validators.required]],
     allowances:['',Validators.required],
     leaveDays:['',Validators.required],
-    otherDeductions:['',Validators.required]
+    otherDeductions:['',Validators.required],
+    housing_plan:['',[Validators.required]],
+    attendance_bonus:['',Validators.required],
+    transport_allowance:['',Validators.required],
+    night_allowance:['',Validators.required],
+    overtime_holiday:['',Validators.required],
+    nssa:['',Validators.required]
+
 
     })
   }
@@ -78,7 +85,7 @@ submit() {
 
 getEmployees(){
   this.defaultService.getAllEmployees().subscribe((res)=>{
-    this.employees= res.content.map((employee:any)=>{
+    this.employees= res.map((employee:any)=>{
       return {label:`${employee.firstName} ${employee.lastName}`,value:employee.id}
     });
     this.fields=CreatePayslipFields(this.employees);

@@ -16,17 +16,17 @@ export class DefaultService {
 
 
 getAllEmployees(): Observable<any>{
-  return this.http.get(`${this.baseUrl}employee/getAllEmployees?offset=0&size=100`)
+  return this.http.get(`${this.baseUrl}employee/activeEmployees`)
   }
 
-  getEmployeeById(id: number): Observable<Employee>{
+  getEmployeeById(id: number): Observable<any>{
     return this.http.get<Employee>(`${this.baseUrl}employee/getById/${id}`)
   }
-  updateEmployee(id: number, data: Employee ): Observable<any>{
+  updateEmployee(id: number, data: any ): Observable<any>{
     return this.http.put<any>(`${this.baseUrl}employee/update/${id}`, data)
   }
 
-  createEmployee(data: Employee): Observable<any>{
+  createEmployee(data: any): Observable<any>{
     return  this.http.post(`${this.baseUrl}employee/create`, data)
   }
 
@@ -48,23 +48,48 @@ getAllEmployees(): Observable<any>{
     return this.http.get(`${this.baseUrl}leave/myleaves/${id}`)
   }
   
-  employeesReport():Observable<any>{
-    return this.http.get(`${this.baseUrl}employee/employees/report`,{responseType:'blob' as 'json'}).pipe(map(data=>{
-      return data;
-    }))
+  employeesReport(id: any): Observable<any> {
+    let url = `${this.baseUrl}reports/employees/report/`;
+    if (id) {
+      url += `?id=${id}`;
+    } else {
+      url = url;
+    }
+  
+    return this.http.get(url, { responseType: 'blob' as 'json' }).pipe(
+      map((data) => {
+        return data;
+      })
+    );
   }
 
-  leavesReport():Observable<any>{
-    return this.http.get(`${this.baseUrl}employee/leave/report`, {responseType:'blob' as 'json'}).pipe(map(data=>{
-      return data;
-    }))
-
+  leavesReport(id: any): Observable<any> {
+    let url = `${this.baseUrl}reports/leave/report/`;
+    if (id) {
+      url += `?leavetype=${id}`;
+    } else {
+      url = url;
+    }
+  
+    return this.http.get(url, { responseType: 'blob' as 'json' }).pipe(
+      map((data) => {
+        return data;
+      })
+    );
   }
 
-  payslipReport():Observable<any>{
-    return this.http.get(`${this.baseUrl}payslip/report`,{responseType:'blob' as 'json'}).pipe(map(data=>{
-      return data;
-    }))
+  payslipReport(id:number):Observable<any>{
+    let url = `${this.baseUrl}reports/payslip/report/`;
+    if (id) {
+      url += `?id=${id}`;
+    } else {
+      url = url;
+    }
+    return this.http.get(url, { responseType: 'blob' as 'json' }).pipe(
+      map((data) => {
+        return data;
+      })
+    );
   }
  
   applyForLeave(data : any){
@@ -153,7 +178,7 @@ deleteDepartment(id : number):Observable<any>{
   return this.http.delete(`${this.baseUrl}department/delete/${id}`)
 }
 // HODs
-createHOD(empId :any, dptId: any, data:any):Observable<any>{
+createHOD(dptId: any,empId :any, data:any):Observable<any>{
   return this.http.post(`${this.baseUrl}headOfDepartment/create/${dptId}/${empId}`, data)
 
 }

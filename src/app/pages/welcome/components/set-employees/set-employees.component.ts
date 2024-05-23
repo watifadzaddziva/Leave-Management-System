@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Injector, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { EmployeesFields } from '../../forms/employees.field';
 import { DefaultService } from '../../services/default.service';
-
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-set-employees',
   templateUrl: './set-employees.component.html',
@@ -13,7 +13,7 @@ import { DefaultService } from '../../services/default.service';
 export class SetEmployeesComponent implements OnInit {
 
   visible = false;
-  form = new FormGroup({});
+  form = new UntypedFormGroup({});
   fields !: FormlyFieldConfig[];
   @Input() employee!: any;
   @Output() output = new EventEmitter();
@@ -24,7 +24,7 @@ export class SetEmployeesComponent implements OnInit {
   isLoading:boolean=false;
 
 
-  constructor(private defaultService: DefaultService, 
+  constructor(private defaultService: DefaultService, private dp: DatePipe,
     private notification: NzNotificationService, private fb:UntypedFormBuilder,
     private injector: Injector) {
   }
@@ -38,10 +38,14 @@ export class SetEmployeesComponent implements OnInit {
       date_of_join:['',[Validators.required]],
       grade:['',[Validators.required]],
       status:['',[Validators.required]],
-      email:['',[Validators.required]],
+      email:['',[Validators.email, Validators.required]],
       password:['',[Validators.required]],
       username:['',[Validators.required]],
       departmentId:['',[Validators.required]],
+      branch_name:['',[Validators.required]],
+      acc_name:['',[Validators.required]],
+      bank:['',[Validators.required]],
+      designation:['',[Validators.required]]
     });
     this.getDepartments();
   }
@@ -58,9 +62,12 @@ export class SetEmployeesComponent implements OnInit {
 submit() {
   if (this.form.valid) {
     this.isLoading=true;
+    const dataToSend= this.form.value;
+    dataToSend.dateOfBirth=this.dp.transform(dataToSend.dateOfBirth,'dd-MM-yyyy')
+    dataToSend.date_of_join=this.dp.transform(dataToSend.date_of_join,'dd-MM-yyyy')
     var svc;
-    this.employee.id ? svc = this.defaultService.updateEmployee(this.employee.id, this.employee) : 
-    svc = this.defaultService.createEmployee( this.employee);
+    this.employee.id ? svc = this.defaultService.updateEmployee(this.employee.id, dataToSend) : 
+    svc = this.defaultService.createEmployee( dataToSend);
     svc.subscribe(res => {
       this.notification.success('Saved', 'Employee Saved Successfully!', { nzDuration: 10000 });
       this.isLoading=false;
